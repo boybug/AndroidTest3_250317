@@ -62,7 +62,11 @@ public class ViewCustomer implements ICRUDAdap<Customer> {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists() == false) {
-                            refTB.push().setValue(_item);
+
+                            String keyId = refTB.push().getKey();
+                            refTB.child(keyId).setValue(_item);
+                            _item.setFirebaseId(keyId);
+
                             result.onReturn(DAOState.SUCCESS, CRUDMessage.MSG_ADDED);
                         } else {
                             result.onReturn(DAOState.CONDITION, "!Customer Code has used.");

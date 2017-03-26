@@ -64,6 +64,8 @@ public class ActOrderCmd extends _ActivityCustom {
     boolean initNavListProd;
     boolean isNavListProdPoint;
 
+    static String cus_code;
+
     void initActivity() {
         try {
 
@@ -108,8 +110,9 @@ public class ActOrderCmd extends _ActivityCustom {
                     });
                     listViewOrProd.setOnItemLongClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
-                        OrderItem ent = adapOrProd.getItem(position);
-                        adapOrProd.removeItem(ent, new ICRUDResult() {
+                        OrderItem ordi = adapOrProd.getItem(position);
+                        ordi.setCus_code(ent.getCus_code());
+                        adapOrProd.removeItem(ordi, new ICRUDResult() {
                             @Override
                             public void onReturn(DAOState status, String message) {
                                 if (status != DAOState.SUCCESS)
@@ -281,13 +284,14 @@ public class ActOrderCmd extends _ActivityCustom {
                 orit.setPro_key_id(ent_pro.getFirebaseId());
                 orit.setPro_code(ent_pro.getCode());
                 orit.setPro_name(ent_pro.getName());
+                orit.setCus_code(ent.getCus_code());
 
                 if (!isNavListProdPoint) {
                     orit.setFoc_flag(foc_flag);
                     orit.setPoint(ent_pro.getPoint());
                 } else {
                     orit.setFoc_flag(foc_flag);
-                    orit.setPoint(ent_pro.getFocpoint());
+                    orit.setPoint(ent_pro.getFocpoint()* -1);
                 }
 
                 adapOrProd.addItem(orit, (DAOState istatus, String imessage) -> {
@@ -299,7 +303,7 @@ public class ActOrderCmd extends _ActivityCustom {
             } else {
                 orit.setDelta(orit.getQty());
                 orit.setQty(orit.getQty() + 1);
-
+                orit.setCus_code(ent.getCus_code());
                 adapOrProd.updateItem(orit, (DAOState ostatus, String omessage) -> {
                     if (ostatus == DAOState.SUCCESS) {
                         showMessageNoti("Item : " + ent_pro.getName() + " + quantity");

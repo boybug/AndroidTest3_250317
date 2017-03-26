@@ -111,6 +111,22 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
                 });
     }
 
+    private void updatePoint(OrderItem _item, int point){
+        refDB.child("customer_" + Globaldata.Branch.getCode())
+                .orderByChild("code").equalTo(_item.getCus_code()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                    DataSnapshot value = dataSnapshot.getChildren().iterator().next();
+                    Customer cus = (Customer) value.getValue(Customer.class);
+                    int curr_point = cus.getPoint() + point;
+                        value.getRef().child("point").setValue(curr_point); // Set value by some field
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
     @Override
     public void addItem(OrderItem _item, ICRUDResult result) {
 
@@ -126,14 +142,17 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
                 _item.setNo(last_no + 1);
                 _item.setPro_code_foc_flag(_item.getPro_code() + "_" + _item.getFoc_flag());
 
-                if (_item.getFoc_flag() == "N") {
+                if (_item.getFoc_flag().equals("N")) {
                     _item.setPrice((float) price);
                 } else {
                     _item.setPrice(0);
                 }
-
                 _item.setAmt(calTotal(_item));
-                refTB.push().setValue(_item);
+                updatePoint(_item, _item.getPoint());
+
+                String keyId = refTB.push().getKey();
+                refTB.child(keyId).setValue(_item);
+                _item.setFirebaseId(keyId);
 
                 result.onReturn(status, CRUDMessage.MSG_ADDED);
             } else {
@@ -150,13 +169,15 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
                 , (status, message, price) -> {
                     if (status == DAOState.SUCCESS) {
 
-                        if (_item.getFoc_flag() == "N") {
+                        if (_item.getFoc_flag().equals("N")) {
                             _item.setPrice((float) price);
                         } else {
                             _item.setPrice(0);
                         }
 
                         _item.setAmt(calTotal(_item));
+
+                        updatePoint(_item, (_item.getPoint() * (_item.getQty() - _item.getDelta())));
                         refTB.child(_item.getFirebaseId()).setValue(_item);
 
                         result.onReturn(status, CRUDMessage.MSG_UPDATED);
@@ -173,6 +194,7 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
         updateProductStock(_item, (_item.getQty() * -1), (status, message, price) -> {
             if (status == DAOState.SUCCESS) {
 
+                updatePoint(_item, (_item.getPoint()* _item.getQty() * -1));
                 refTB.child(_item.getFirebaseId()).removeValue();
                 result.onReturn(status, CRUDMessage.MSG_DELETED);
 

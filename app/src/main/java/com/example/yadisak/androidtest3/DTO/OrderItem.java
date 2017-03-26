@@ -41,6 +41,9 @@ public class OrderItem extends _FirebaseAttribute implements Serializable {
 
     @Exclude
     private int delta;
+
+    @Exclude
+    private String cus_code;
 //    @Exclude
 //    private ArrayList<ProductPrice> priceList;
 
@@ -141,6 +144,14 @@ public class OrderItem extends _FirebaseAttribute implements Serializable {
 
     public void setPro_code_foc_flag(String pro_code_foc_flag) {
         this.pro_code_foc_flag = pro_code_foc_flag;
+    }
+    @Exclude
+    public String getCus_code() {
+        return cus_code;
+    }
+    @Exclude
+    public void setCus_code(String cus_code) {
+        this.cus_code = cus_code;
     }
 
 //    @Exclude
