@@ -64,8 +64,6 @@ public class ActOrderCmd extends _ActivityCustom {
     boolean initNavListProd;
     boolean isNavListProdPoint;
 
-    static String cus_code;
-
     void initActivity() {
         try {
 
