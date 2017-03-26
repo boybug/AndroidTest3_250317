@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:background="?attr/colorPrimary"-->
+        <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"></LinearLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:stretchColumns="1">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:gravity="center|right"
+                    android:paddingRight="10dp"
+                    android:text="Order No." />
+
+                <EditText
+                    android:id="@+id/txt_order_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:gravity="center|left" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:gravity="center|right"
+                    android:paddingRight="10dp"
+                    android:text="Date" />
+
+                <EditText
+                    android:id="@+id/txt_order_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:enabled="false"
+                    android:gravity="center|left"
+                    android:inputType="date" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:gravity="center|right"
+                    android:paddingRight="10dp"
+                    android:text="Customer" />
+
+                <Spinner
+                    android:id="@+id/sp_customer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_column="1"
+                    android:spinnerMode="dialog" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tr_order_save"
+                android:paddingBottom="5dp"
+                android:visibility="visible">
+
+                <include
+                    layout="@layout/_cmd_command"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_span="2" />
+            </TableRow>
+
+            <TableRow android:id="@+id/tr_item_head">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_span="2"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/bt_add_item_point"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center|right"
+                        android:background="@color/colorRedLight"
+                        android:text="+"
+                        android:textColor="@color/colorWhite" />
+
+                    <TextView
+                        android:id="@+id/lab_orderitem_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorBlue"
+                        android:gravity="center"
+                        android:paddingLeft="20dp"
+                        android:text="Order Items"
+                        android:textColor="@color/colorWhite" />
+
+                    <Button
+                        android:id="@+id/bt_add_item"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center|right"
+                        android:background="@color/colorGreen"
+                        android:text="+"
+                        android:textColor="@color/colorWhite" />
+
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow android:id="@+id/tr_item_detail">
+
+                <ListView
+                    android:id="@+id/list_order_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2" />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

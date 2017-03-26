@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:background="#fff"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:stretchColumns="1">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/lab_name"
+                android:layout_width="wrap_content"
+                android:layout_span="2"
+                android:ellipsize="end"
+                android:gravity="top|left"
+                android:lines="1"
+                android:maxLines="2"
+                android:text="Name"
+                android:textColor="@color/colorGreen" />
+
+        </TableRow>
+
+        <TableRow android:layout_marginTop="4dp">
+
+        <TextView
+            style="@style/App_TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_column="0"
+            android:gravity="center|right"
+            android:text="Code : " />
+
+        <TextView
+            android:id="@+id/lab_code"
+            style="@style/App_TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:gravity="center|left"
+            android:lines="1"
+            android:maxLines="2" />
+    </TableRow>
+
+        <TableRow android:layout_marginTop="4dp">
+
+            <TextView
+                style="@style/App_TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center|right"
+                android:text="Tax ID : " />
+
+            <TextView
+                android:id="@+id/lab_taxid"
+                style="@style/App_TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:gravity="center|left"/>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

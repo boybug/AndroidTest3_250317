@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:background="#eee"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:stretchColumns="0">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/lab_pro_name"
+                style="@style/App_TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:gravity="center|left"
+                android:paddingLeft="5dp"
+                android:paddingRight="20dp"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/lab_pro_cal"
+                style="@style/App_TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:gravity="center|right"
+                android:paddingRight="5dp"
+                android:text="Qty" />
+
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

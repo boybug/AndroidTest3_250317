@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1">
+
+        <TableRow android:id="@+id/tr_search">
+
+            <CheckedTextView
+                android:id="@+id/lab_search_ic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:checkMark="@drawable/ic_custom_search"
+                android:checked="false"
+                android:gravity="center"
+                android:paddingLeft="10dp" />
+
+            <EditText
+                android:id="@+id/txt_search"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_column="1"
+                android:gravity="center|left"
+                android:hint="Search...">
+
+            </EditText>
+        </TableRow>
+
+        <TableRow>
+
+            <ListView
+                android:id="@+id/list_view_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="2"></ListView>
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/emptyElement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_span="2"
+                android:gravity="center"
+                android:text="NOT FOUND DATA"
+                android:textColor="@color/colorDark"
+                android:textSize="22dp"
+                android:visibility="gone" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

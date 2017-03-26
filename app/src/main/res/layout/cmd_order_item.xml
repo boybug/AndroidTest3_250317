@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:id="@+id/linearLayout3">
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/bt_command_height"
+        android:id="@+id/scrollView3">
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:stretchColumns="1">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:gravity="center|right"
+                    android:paddingRight="20dp"
+                    android:text="Code" />
+
+                <EditText
+                    android:id="@+id/txt_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:enabled="false"
+                    android:gravity="center|left"
+
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:lines="1"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="end"/>
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:gravity="center|right"
+                    android:paddingRight="20dp"
+                    android:text="Name" />
+
+                <EditText
+                    android:id="@+id/txt_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:enabled="false"
+                    android:gravity="center|left"
+
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:lines="1"
+                    android:scrollHorizontally="true"
+                    android:ellipsize="end"/>
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:gravity="center|right"
+                    android:paddingRight="20dp"
+                    android:text="Quantity" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+
+                    <Button
+                        android:id="@+id/bt_qty_rem"
+                        android:layout_width="38dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:background="@color/colorRedLight"
+                        android:text="-"
+                        android:textColor="@color/colorWhite" />
+
+                    <EditText
+                        android:id="@+id/txt_stock"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textAlignment="center"
+                        android:inputType="numberSigned" />
+
+                    <Button
+                        android:id="@+id/bt_qty_add"
+                        android:layout_width="38dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:background="@color/colorBlue"
+                        android:text="+"
+                        android:textColor="@color/colorWhite" />
+
+
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:gravity="center|right"
+                    android:paddingRight="20dp"
+                    android:text="Price" />
+
+                <EditText
+                    android:id="@+id/txt_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:enabled="false"
+                    android:gravity="center|left" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:gravity="center|right"
+                    android:paddingRight="20dp"
+                    android:text="Discount (%)" />
+
+                <EditText
+                    android:id="@+id/txt_discount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:enabled="false"
+                    android:gravity="center|left" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:gravity="center|right"
+                    android:paddingRight="20dp"
+                    android:text="After Discount" />
+
+                <EditText
+                    android:id="@+id/txt_discount_amt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:enabled="false"
+                    android:gravity="center|left" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:gravity="center|right"
+                    android:paddingRight="20dp"
+                    android:text="Sub Total" />
+
+                <EditText
+                    android:id="@+id/txt_total_amt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:enabled="false"
+                    android:gravity="center|left" />
+
+            </TableRow>
+        </TableLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/_cmd_command"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scrollView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="43dp"
+        android:ems="10"
+        android:inputType="numberSigned" />
+
+
+</RelativeLayout>

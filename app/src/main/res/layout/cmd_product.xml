@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"></LinearLayout>
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:stretchColumns="1">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center|right"
+                android:paddingRight="20dp"
+                android:text="Product Code" />
+
+            <EditText
+                android:id="@+id/txt_code"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:gravity="center|left" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center|right"
+                android:paddingRight="20dp"
+                android:text="Product Name" />
+
+            <EditText
+                android:id="@+id/txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:ellipsize="end"
+
+                android:gravity="center|left"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLines="2"
+                android:scrollHorizontally="true" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center|right"
+                android:paddingRight="20dp"
+                android:text="Quantity" />
+
+            <EditText
+                android:id="@+id/txt_stock"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:gravity="center|left"
+                android:inputType="number"
+                android:maxLength="3" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_span="2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_span="2"
+                    android:background="@color/colorBlue"
+                    android:gravity="center|left"
+                    android:paddingLeft="20dp"
+                    android:text="Step Price"
+                    android:textColor="@color/colorWhite" />
+
+
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow>
+
+            <ListView
+                android:id="@+id/list_item_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="2" />
+        </TableRow>
+
+    </TableLayout>
+
+
+</RelativeLayout>

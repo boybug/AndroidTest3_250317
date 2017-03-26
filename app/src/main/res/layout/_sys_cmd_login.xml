@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:id="@+id/linearLayout"></LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/bt_command_height">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/txt_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/bt_command_height"
+                    android:ellipsize="end"
+                    android:gravity="center|left"
+                    android:hint="อีเมล"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:textSize="20dp" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <EditText
+                    android:id="@+id/txt_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/bt_command_height"
+                    android:ellipsize="end"
+                    android:gravity="center|left"
+                    android:hint="รหัส ไม่น้อยกว่า 6 หลัก"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:scrollHorizontally="true"
+                    android:textSize="20dp" />
+
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/bt_cmd_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bt_command_height"
+        android:layout_weight="1"
+        android:background="@color/colorGreen"
+        android:gravity="bottom"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="เข้าสู่ระบบ"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="22dp"
+        android:layout_above="@+id/bt_cmd_newaccount"
+        android:layout_toEndOf="@+id/linearLayout" />
+
+    <Button
+        android:id="@+id/bt_cmd_newaccount"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bt_command_height"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="1"
+        android:background="@color/colorRed"
+        android:gravity="bottom"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="สร้างบัญชีใหม่"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="22dp" />
+
+</RelativeLayout>

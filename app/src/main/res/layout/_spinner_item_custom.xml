@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--<RadioButton-->
+        <!--android:id="@+id/rd_spin_item_custom"-->
+        <!--style="@style/App_RadioStyle"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:gravity="center|left"-->
+        <!--android:paddingLeft="20dp"-->
+        <!--android:text="Text" />-->
+
+    <TextView
+    android:id="@+id/lab_spin_item_custom"
+    android:layout_width="match_parent"
+    android:gravity="center|left"
+    android:text="Text"
+    style="@style/App_TextViewStyle"/>
+
+</LinearLayout>

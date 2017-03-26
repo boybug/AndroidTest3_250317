@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"></LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/bt_command_height">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:stretchColumns="1">
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:gravity="center|right"
+                    android:paddingRight="20dp"
+                    android:text="Cust Code" />
+
+                <EditText
+                    android:id="@+id/txt_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:gravity="center|left" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:gravity="center|right"
+                    android:paddingRight="20dp"
+                    android:text="Cust Name" />
+
+                <EditText
+                    android:id="@+id/txt_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:ellipsize="end"
+
+                    android:gravity="center|left"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="2"
+                    android:scrollHorizontally="true" />
+
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+
+    <include
+        layout="@layout/_cmd_command"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>
