@@ -47,7 +47,7 @@
                     android:layout_column="0"
                     android:gravity="center|right"
                     android:paddingRight="10dp"
-                    android:text="Order No." />
+                    android:text="เลขที่เอกสาร" />
 
                 <EditText
                     android:id="@+id/txt_order_no"
@@ -66,7 +66,7 @@
                     android:layout_column="0"
                     android:gravity="center|right"
                     android:paddingRight="10dp"
-                    android:text="Date" />
+                    android:text="วันที่" />
 
                 <EditText
                     android:id="@+id/txt_order_date"
@@ -86,7 +86,7 @@
                     android:layout_column="0"
                     android:gravity="center|right"
                     android:paddingRight="10dp"
-                    android:text="Customer" />
+                    android:text="ลูกค้า" />
 
                 <Spinner
                     android:id="@+id/sp_customer"
@@ -120,11 +120,11 @@
 
                     <Button
                         android:id="@+id/bt_add_item_point"
-                        android:layout_width="50dp"
+                        android:layout_width="60dp"
                         android:layout_height="35dp"
                         android:layout_gravity="center|right"
-                        android:background="@color/colorGreen"
-                        android:text="Foc"
+                        android:background="@color/colorBeef"
+                        android:text="แถม"
                         android:textColor="@color/colorDark" />
 
                     <TextView
@@ -132,10 +132,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_weight="1"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="@color/colorChicken"
                         android:gravity="center"
                         android:paddingLeft="20dp"
-                        android:text="Order Items"
+                        android:text="รายการสินค้า"
                         android:textColor="@color/colorDark" />
 
                     <Button
@@ -143,8 +143,8 @@
                         android:layout_width="60dp"
                         android:layout_height="35dp"
                         android:layout_gravity="center|right"
-                        android:background="@color/colorGreen"
-                        android:text="Item"
+                        android:background="@color/colorBeef"
+                        android:text="ขาย"
                         android:textColor="@color/colorDark" />
 
                 </LinearLayout>

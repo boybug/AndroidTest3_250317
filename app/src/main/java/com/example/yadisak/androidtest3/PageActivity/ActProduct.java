@@ -2,23 +2,22 @@ package com.example.yadisak.androidtest3.PageActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.yadisak.androidtest3.ControllerAdap.*;
+import com.example.yadisak.androidtest3.ControllerAdap.ViewProduct;
 import com.example.yadisak.androidtest3.DTO.Product;
 import com.example.yadisak.androidtest3.PageActivity.CMD.ActProductCmd;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._ActivityCustom;
-import com.example.yadisak.androidtest3._Extension.*;
+import com.example.yadisak.androidtest3._Extension.CMDState;
+import com.example.yadisak.androidtest3._Extension.DAOState;
+import com.example.yadisak.androidtest3._Extension.Utility;
 import com.example.yadisak.androidtest3._Interface.ICRUDResult;
 
 public class ActProduct extends _ActivityCustom {
@@ -78,26 +77,26 @@ public class ActProduct extends _ActivityCustom {
         });
     }
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-
-        MenuItem actionViewItem = menu.findItem(R.id.miActionCustom);
-        View v = MenuItemCompat.getActionView(actionViewItem);
-
-        Button bt_item = (Button) v.findViewById(R.id.bt_action_custom);
-        bt_item.setOnClickListener(view -> {
-
-            Intent nextact = new Intent(this, ActProductCmd.class);
-            nextact.putExtra(Utility.CMD_STATE, CMDState.NEW);
-            toNextActivity(nextact);
-        });
-
-        return super.onPrepareOptionsMenu(menu);
-    }
+//    @Override
+//    public boolean onPrepareOptionsMenu(Menu menu) {
+//
+//        MenuItem actionViewItem = menu.findItem(R.id.miActionCustom);
+//        View v = MenuItemCompat.getActionView(actionViewItem);
+//
+//        Button bt_item = (Button) v.findViewById(R.id.bt_action_custom);
+//        bt_item.setOnClickListener(view -> {
+//
+//            Intent nextact = new Intent(this, ActProductCmd.class);
+//            nextact.putExtra(Utility.CMD_STATE, CMDState.NEW);
+//            toNextActivity(nextact);
+//        });
+//
+//        return super.onPrepareOptionsMenu(menu);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.custom, menu);
+//        getMenuInflater().inflate(R.menu.custom, menu);
         return true;
     }
 

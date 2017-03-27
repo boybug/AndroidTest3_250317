@@ -6,9 +6,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.example.yadisak.androidtest3.ControllerAdap.*;
+import com.example.yadisak.androidtest3.ControllerAdap.ViewOrderItem;
 import com.example.yadisak.androidtest3.DTO.Order;
 import com.example.yadisak.androidtest3.DTO.OrderItem;
 import com.example.yadisak.androidtest3.R;
@@ -48,8 +47,8 @@ public class ActOrderItemCmd extends _ActivityCustom {
         txt_name = (EditText) findViewById(R.id.txt_name);
         txtStock = (EditText) findViewById(R.id.txt_stock);
         txt_price = (EditText) findViewById(R.id.txt_price);
-        txt_discount = (EditText) findViewById(R.id.txt_discount);
-        txt_discount_amt = (EditText) findViewById(R.id.txt_discount_amt);
+//        txt_discount = (EditText) findViewById(R.id.txt_discount);
+//        txt_discount_amt = (EditText) findViewById(R.id.txt_discount_amt);
         txt_total_amt = (EditText) findViewById(R.id.txt_total_amt);
 
         Intent curtact = getIntent();

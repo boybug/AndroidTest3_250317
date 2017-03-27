@@ -35,7 +35,7 @@
                     android:layout_column="0"
                     android:gravity="center|right"
                     android:paddingRight="20dp"
-                    android:text="Code" />
+                    android:text="รหัสสินค้า" />
 
                 <EditText
                     android:id="@+id/txt_code"
@@ -43,7 +43,7 @@
                     android:layout_height="match_parent"
                     android:layout_column="1"
                     android:enabled="false"
-                    android:gravity="center|left"
+                    android:gravity="center|right"
 
                     android:inputType="text"
                     android:maxLines="1"
@@ -61,7 +61,7 @@
                     android:layout_column="0"
                     android:gravity="center|right"
                     android:paddingRight="20dp"
-                    android:text="Name" />
+                    android:text="ชื่อสินค้า" />
 
                 <EditText
                     android:id="@+id/txt_name"
@@ -87,7 +87,7 @@
                     android:layout_column="0"
                     android:gravity="center|right"
                     android:paddingRight="20dp"
-                    android:text="Quantity" />
+                    android:text="จำนวน" />
 
 
                 <LinearLayout
@@ -104,7 +104,7 @@
                         android:layout_width="38dp"
                         android:layout_height="35dp"
                         android:layout_gravity="center"
-                        android:background="@color/colorRedLight"
+                        android:background="@color/colorBeef"
                         android:text="-"
                         android:textColor="@color/colorWhite" />
 
@@ -122,7 +122,7 @@
                         android:layout_width="38dp"
                         android:layout_height="35dp"
                         android:layout_gravity="center"
-                        android:background="@color/colorBlue"
+                        android:background="@color/colorFish"
                         android:text="+"
                         android:textColor="@color/colorWhite" />
 
@@ -138,7 +138,7 @@
                     android:layout_column="0"
                     android:gravity="center|right"
                     android:paddingRight="20dp"
-                    android:text="Price" />
+                    android:text="ราคา" />
 
                 <EditText
                     android:id="@+id/txt_price"
@@ -146,9 +146,49 @@
                     android:layout_height="match_parent"
                     android:layout_column="1"
                     android:enabled="false"
-                    android:gravity="center|left" />
+                    android:gravity="center|right" />
 
             </TableRow>
+
+            <!--<TableRow>-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_column="0"-->
+                    <!--android:gravity="center|right"-->
+                    <!--android:paddingRight="20dp"-->
+                    <!--android:text="Discount (%)" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/txt_discount"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_column="1"-->
+                    <!--android:enabled="false"-->
+                    <!--android:gravity="center|left" />-->
+
+            <!--</TableRow>-->
+
+            <!--<TableRow>-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_column="0"-->
+                    <!--android:gravity="center|right"-->
+                    <!--android:paddingRight="20dp"-->
+                    <!--android:text="After Discount" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/txt_discount_amt"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_column="1"-->
+                    <!--android:enabled="false"-->
+                    <!--android:gravity="center|left" />-->
+
+            <!--</TableRow>-->
 
             <TableRow>
 
@@ -158,47 +198,7 @@
                     android:layout_column="0"
                     android:gravity="center|right"
                     android:paddingRight="20dp"
-                    android:text="Discount (%)" />
-
-                <EditText
-                    android:id="@+id/txt_discount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_column="1"
-                    android:enabled="false"
-                    android:gravity="center|left" />
-
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_column="0"
-                    android:gravity="center|right"
-                    android:paddingRight="20dp"
-                    android:text="After Discount" />
-
-                <EditText
-                    android:id="@+id/txt_discount_amt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_column="1"
-                    android:enabled="false"
-                    android:gravity="center|left" />
-
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_column="0"
-                    android:gravity="center|right"
-                    android:paddingRight="20dp"
-                    android:text="Sub Total" />
+                    android:text="ยอดรวม" />
 
                 <EditText
                     android:id="@+id/txt_total_amt"
@@ -206,7 +206,7 @@
                     android:layout_height="match_parent"
                     android:layout_column="1"
                     android:enabled="false"
-                    android:gravity="center|left" />
+                    android:gravity="center|right" />
 
             </TableRow>
         </TableLayout>
@@ -217,16 +217,6 @@
         layout="@layout/_cmd_command"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/scrollView3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="43dp"
-        android:ems="10"
-        android:inputType="numberSigned" />
 
 
 </RelativeLayout>

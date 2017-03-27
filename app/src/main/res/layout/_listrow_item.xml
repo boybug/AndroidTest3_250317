@@ -25,7 +25,7 @@
                 android:gravity="top|left"
                 android:paddingLeft="20dp"
                 android:text="Name"
-                android:textColor="@color/colorGreen"
+                android:textColor="@color/colorFish"
                 android:textSize="18dp" />
 
         </TableRow>

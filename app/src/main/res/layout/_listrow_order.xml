@@ -24,7 +24,7 @@
                 android:gravity="center|right"
                 android:paddingLeft="20dp"
                 android:text="Order No."
-                android:textColor="@color/colorGreen"
+                android:textColor="@color/colorFish"
                 android:textSize="24dp" />
 
             <TextView
@@ -34,7 +34,7 @@
                 android:layout_column="1"
                 android:gravity="center|left"
                 android:paddingLeft="10dp"
-                android:textColor="@color/colorGreen"
+                android:textColor="@color/colorFish"
                 android:textSize="24dp" />
 
         </TableRow>

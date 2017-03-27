@@ -5,14 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.yadisak.androidtest3.DTO._CustomMenu;
+import com.example.yadisak.androidtest3.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.yadisak.androidtest3.DTO.*;
-import com.example.yadisak.androidtest3.R;
 
 public class ViewCustomMenu extends BaseAdapter {
 
@@ -64,7 +63,7 @@ public class ViewCustomMenu extends BaseAdapter {
         lab_menu.setText(item.getMenu_name());
 
         if(item.getMenu_id() != 0){
-            lab_menu.setBackgroundResource(R.color.colorGreen);
+            lab_menu.setBackgroundResource(R.color.colorFish);
         }
         else{
             lab_menu.setBackgroundResource(R.color.colorBlue);
