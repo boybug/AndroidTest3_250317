@@ -9,7 +9,7 @@
         android:id="@+id/lab_main"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorRedLight"
+        android:background="@color/colorPrimaryDark"
         android:gravity="center"
         android:text="MAIN MENU"
         android:textSize="24dp"

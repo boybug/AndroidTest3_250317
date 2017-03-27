@@ -120,32 +120,32 @@
 
                     <Button
                         android:id="@+id/bt_add_item_point"
-                        android:layout_width="35dp"
+                        android:layout_width="50dp"
                         android:layout_height="35dp"
                         android:layout_gravity="center|right"
-                        android:background="@color/colorRedLight"
-                        android:text="+"
-                        android:textColor="@color/colorWhite" />
+                        android:background="@color/colorGreen"
+                        android:text="Foc"
+                        android:textColor="@color/colorDark" />
 
                     <TextView
                         android:id="@+id/lab_orderitem_title"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_weight="1"
-                        android:background="@color/colorBlue"
+                        android:background="@color/colorPrimaryDark"
                         android:gravity="center"
                         android:paddingLeft="20dp"
                         android:text="Order Items"
-                        android:textColor="@color/colorWhite" />
+                        android:textColor="@color/colorDark" />
 
                     <Button
                         android:id="@+id/bt_add_item"
-                        android:layout_width="35dp"
+                        android:layout_width="60dp"
                         android:layout_height="35dp"
                         android:layout_gravity="center|right"
                         android:background="@color/colorGreen"
-                        android:text="+"
-                        android:textColor="@color/colorWhite" />
+                        android:text="Item"
+                        android:textColor="@color/colorDark" />
 
                 </LinearLayout>
 
