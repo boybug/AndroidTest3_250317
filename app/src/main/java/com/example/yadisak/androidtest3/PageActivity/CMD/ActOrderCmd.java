@@ -1,20 +1,25 @@
 package com.example.yadisak.androidtest3.PageActivity.CMD;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.VisibleForTesting;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TableRow;
+import android.widget.Toast;
 
 import com.example.yadisak.androidtest3.CollectionAdap._SelectionAdap;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewCustomer;
@@ -22,16 +27,19 @@ import com.example.yadisak.androidtest3.ControllerAdap.ViewOrder;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewOrderItem;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewProductOrdPick;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewProductOrdPickPoint;
-import com.example.yadisak.androidtest3.ControllerAdap.ViewProductPrice;
-import com.example.yadisak.androidtest3.DTO.*;
-import com.example.yadisak.androidtest3._ActivityCustom;
+import com.example.yadisak.androidtest3.DTO.Order;
+import com.example.yadisak.androidtest3.DTO.OrderItem;
+import com.example.yadisak.androidtest3.DTO.Product;
+import com.example.yadisak.androidtest3.DTO._SelectionProperty;
 import com.example.yadisak.androidtest3.R;
+import com.example.yadisak.androidtest3._ActivityCustom;
 import com.example.yadisak.androidtest3._Extension.CMDState;
 import com.example.yadisak.androidtest3._Extension.DAOState;
 import com.example.yadisak.androidtest3._Extension.Utility;
 import com.example.yadisak.androidtest3._Interface.ICRUDResult;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 public class ActOrderCmd extends _ActivityCustom {
 
@@ -63,6 +71,9 @@ public class ActOrderCmd extends _ActivityCustom {
 
     boolean initNavListProd;
     boolean isNavListProdPoint;
+
+    @VisibleForTesting
+    public ProgressDialog mProgressDialog;
 
     void initActivity() {
         try {
@@ -232,6 +243,7 @@ public class ActOrderCmd extends _ActivityCustom {
                     this.ent.setCus_code(seit.getId().toString());
                     adap.addItem(ent, iCRUDRes);
 
+
                     break;
                 case EDIT:
 
@@ -243,21 +255,27 @@ public class ActOrderCmd extends _ActivityCustom {
         Button bt_add_item = (Button) findViewById(R.id.bt_add_item);
         bt_add_item.setOnClickListener(view -> {
             if ((isNavListProdPoint == true) || (initNavListProd == false)) {
+                showProgressDialog();
                 listViewMsProd.setAdapter(adapMsProd.getAdapter());
                 isNavListProdPoint = false;
 
                 if (!initNavListProd) initNavListProd = true;
             }
+
             toggleNavListProduct();
+            hideProgressDialog();
         });
 
         Button bt_add_item_point = (Button) findViewById(R.id.bt_add_item_point);
         bt_add_item_point.setOnClickListener(view -> {
             if (isNavListProdPoint == false) {
+                showProgressDialog();
                 listViewMsProd.setAdapter(adapMsProdPoint.getAdapter());
                 isNavListProdPoint = true;
             }
+
             toggleNavListProduct();
+            hideProgressDialog();
         });
 
 
@@ -364,4 +382,66 @@ public class ActOrderCmd extends _ActivityCustom {
         }
     }
 
+
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        MenuItem actionViewItem = menu.findItem(R.id.ActionSummary);
+        View v = MenuItemCompat.getActionView(actionViewItem);
+        switch (state) {
+            case NEW:
+
+                actionViewItem.setVisible(false);
+                this.invalidateOptionsMenu();
+                break;
+            case EDIT:
+
+                break;
+        }
+
+
+
+        Button bt_item = (Button) v.findViewById(R.id.bt_action_summary);
+        bt_item.setOnClickListener(view -> {
+
+            Toast.makeText(ActOrderCmd.this, "ทำหน้า Summary", Toast.LENGTH_SHORT).show();
+        });
+
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.summary, menu);
+        return true;
+    }
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage(getString(R.string.loading));
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        hideProgressDialog();
+    }
+
+    @Override
+    public void onStart() {
+
+        super.onStart();
+
+    }
 }

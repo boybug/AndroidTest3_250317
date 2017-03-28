@@ -5,22 +5,12 @@
     android:gravity="top"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/lab_main"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimaryDark"
-        android:gravity="center"
-        android:text="MAIN MENU"
-        android:textSize="24dp"
-        android:textColor="@color/colorWhite" />
-
     <ListView
         android:id="@+id/list_main_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clipToPadding="false"
         android:divider="@color/colorWhite"
-        ></ListView>
-
+        android:paddingTop="4dp"></ListView>
 
 </LinearLayout>

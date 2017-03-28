@@ -18,7 +18,7 @@ import com.example.yadisak.androidtest3._Extension.Utility;
 
 public class ActOrderItemCmd extends _ActivityCustom {
 
-    EditText txt_name, txtStock, txt_price, txt_discount, txt_discount_amt, txt_total_amt;
+    EditText txt_code,txt_name, txtStock, txt_price, txt_discount, txt_discount_amt, txt_total_amt;
 
     ViewOrderItem adap;
 
@@ -44,6 +44,7 @@ public class ActOrderItemCmd extends _ActivityCustom {
 
         setContentView(R.layout.cmd_order_item);
 
+        txt_code = (EditText) findViewById(R.id.txt_code);
         txt_name = (EditText) findViewById(R.id.txt_name);
         txtStock = (EditText) findViewById(R.id.txt_stock);
         txt_price = (EditText) findViewById(R.id.txt_price);
@@ -66,7 +67,7 @@ public class ActOrderItemCmd extends _ActivityCustom {
                 adap = new ViewOrderItem(this, entOrder.getFirebaseId());
 
                 setTitle("เลขที่ : " + entOrder.getNo());
-
+                txt_code.setText(ent.getPro_code());
                 txt_name.setText(ent.getPro_name());
                 txtStock.setText(String.valueOf(ent.getQty()));
                 txt_price.setText(String.valueOf(ent.getPrice()));
@@ -145,5 +146,7 @@ public class ActOrderItemCmd extends _ActivityCustom {
 
 
     }
+
+
 }
 

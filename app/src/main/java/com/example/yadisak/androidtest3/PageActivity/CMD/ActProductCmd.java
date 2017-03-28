@@ -2,19 +2,16 @@ package com.example.yadisak.androidtest3.PageActivity.CMD;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.example.yadisak.androidtest3.ControllerAdap.*;
+import com.example.yadisak.androidtest3.ControllerAdap.ViewProduct;
+import com.example.yadisak.androidtest3.ControllerAdap.ViewProductPrice;
 import com.example.yadisak.androidtest3.DTO.Product;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._ActivityCustom;
 import com.example.yadisak.androidtest3._Extension.CMDState;
-import com.example.yadisak.androidtest3._Extension.DAOState;
 import com.example.yadisak.androidtest3._Extension.Utility;
-import com.example.yadisak.androidtest3._Interface.ICRUDResult;
 
 public class ActProductCmd extends _ActivityCustom {
 
@@ -54,7 +51,7 @@ public class ActProductCmd extends _ActivityCustom {
                 break;
             case EDIT:
 
-                setTitle("Edit Product");
+                setTitle("รายละเอียดสินค้า");
 
                 ent = (Product) curtact.getSerializableExtra(Utility.ENTITY_DTO_NAME);
 
@@ -62,6 +59,8 @@ public class ActProductCmd extends _ActivityCustom {
                 txt_name.setText(ent.getName());
                 txt_stock.setText(String.valueOf(ent.getStock()));
                 txt_code.setEnabled(false);
+                txt_name.setEnabled(false);
+                txt_stock.setEnabled(false);
 
                 ViewProductPrice adapPri = new ViewProductPrice(this,ent.getFirebaseId());
 

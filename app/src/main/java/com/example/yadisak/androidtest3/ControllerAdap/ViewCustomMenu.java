@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.yadisak.androidtest3.DTO._CustomMenu;
@@ -27,9 +29,10 @@ public class ViewCustomMenu extends BaseAdapter {
 
         // Static Create Menu
         items = new ArrayList();
-        items.add(new _CustomMenu(1, "CUSTOMER"));
-        items.add(new _CustomMenu(2, "PRODUCT"));
-        items.add(new _CustomMenu(3, "ORDERS"));
+        items.add(new _CustomMenu(1, "ลูกค้า", R.drawable.customer, R.color.colorPrimaryNavy));
+        items.add(new _CustomMenu(2, "สินค้า", R.drawable.product, R.color.colorPrimaryGreen));
+        items.add(new _CustomMenu(3, "ขาย", R.drawable.order, R.color.colorSquid));
+        items.add(new _CustomMenu(4, "เครื่องมือ", R.drawable.utility, R.color.colorBeef));
 //        items.add(new _CustomMenu(0, "CREATE DATA TEST"));
         //................................
     }
@@ -59,15 +62,14 @@ public class ViewCustomMenu extends BaseAdapter {
 
         _CustomMenu item = this.getItem(position);
 
+        LinearLayout layout_menu = (LinearLayout) view.findViewById(R.id.layout_menu);
+        layout_menu.setBackgroundResource(item.getMenu_color());
+
+        ImageView img_menu = (ImageView) view.findViewById(R.id.img_menu);
+        img_menu.setImageResource(item.getMenu_image());
+
         TextView lab_menu = (TextView) view.findViewById(R.id.lab_menu);
         lab_menu.setText(item.getMenu_name());
-
-        if(item.getMenu_id() != 0){
-            lab_menu.setBackgroundResource(R.color.colorFish);
-        }
-        else{
-            lab_menu.setBackgroundResource(R.color.colorBlue);
-        }
 
         return view;
     }

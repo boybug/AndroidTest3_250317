@@ -43,7 +43,7 @@
                     android:layout_height="match_parent"
                     android:layout_column="1"
                     android:enabled="false"
-                    android:gravity="center|right"
+                    android:gravity="center|left"
 
                     android:inputType="text"
                     android:maxLines="1"
@@ -146,7 +146,7 @@
                     android:layout_height="match_parent"
                     android:layout_column="1"
                     android:enabled="false"
-                    android:gravity="center|right" />
+                    android:gravity="center|left" />
 
             </TableRow>
 
@@ -206,7 +206,7 @@
                     android:layout_height="match_parent"
                     android:layout_column="1"
                     android:enabled="false"
-                    android:gravity="center|right" />
+                    android:gravity="center|left" />
 
             </TableRow>
         </TableLayout>
