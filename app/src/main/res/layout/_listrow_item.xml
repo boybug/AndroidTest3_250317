@@ -24,7 +24,7 @@
                 android:layout_span="2"
                 android:gravity="top|left"
                 android:paddingLeft="20dp"
-                android:text="Name"
+                android:text="ชื่อ"
                 android:textColor="@color/colorFish"
                 android:textSize="18dp" />
 
@@ -41,7 +41,7 @@
                 android:layout_column="0"
                 android:gravity="center|right"
                 android:paddingLeft="20dp"
-                android:text="Code : "
+                android:text="รหัส : "
                 android:textSize="14dp" />
 
             <TextView

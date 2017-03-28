@@ -70,7 +70,7 @@ public class ActOrderCmd extends _ActivityCustom {
             switch (state) {
                 case NEW:
 
-                    setTitle("New Order");
+                    setTitle("ย้ายชื่อลูกค้าขึ้นมา");
 
                     Date currDateTime = new Date(System.currentTimeMillis());
 
@@ -88,7 +88,7 @@ public class ActOrderCmd extends _ActivityCustom {
                     break;
                 case EDIT:
 
-                    setTitle("Edit Order");
+                    setTitle("ย้ายชื่อลูกค้าขึ้นมา");
 
                     if (ent == null)
                         ent = (Order) curtact.getSerializableExtra(Utility.ENTITY_DTO_NAME);
@@ -196,11 +196,11 @@ public class ActOrderCmd extends _ActivityCustom {
 
 
         Button bt_cmd_save = (Button) findViewById(R.id.bt_cmd_save);
-        bt_cmd_save.setText("Create");
+        bt_cmd_save.setText("สร้าง");
         bt_cmd_save.setOnClickListener(view -> {
 
             if (txt_orno.getText().toString().isEmpty()) {
-                showMessageAlert("!Please input Order No.");
+                showMessageAlert("!กรุณาระบุเลขที่");
                 return;
             }
 

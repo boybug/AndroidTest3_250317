@@ -25,7 +25,7 @@
                 android:gravity="top|left"
                 android:lines="1"
                 android:maxLines="2"
-                android:text="Name"
+                android:text="ชื่อลูกค้า"
                 android:textColor="@color/colorFish" />
 
         </TableRow>
@@ -38,7 +38,7 @@
                 android:layout_height="match_parent"
                 android:layout_column="0"
                 android:gravity="center|right"
-                android:text="Code : " />
+                android:text="รหัส : " />
 
             <TextView
                 android:id="@+id/lab_code"
@@ -59,7 +59,7 @@
                 android:layout_height="match_parent"
                 android:layout_column="0"
                 android:gravity="center|right"
-                android:text="Point : " />
+                android:text="แต้ม : " />
 
             <TextView
                 android:id="@+id/lab_point"

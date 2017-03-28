@@ -123,19 +123,21 @@
                         android:layout_width="60dp"
                         android:layout_height="35dp"
                         android:layout_gravity="center|right"
-                        android:background="@color/colorBeef"
+                        android:background="@color/colorFish"
                         android:text="แถม"
-                        android:textColor="@color/colorDark" />
+                        android:textColor="@color/colorWhite" />
 
                     <TextView
                         android:id="@+id/lab_orderitem_title"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_weight="1"
-                        android:background="@color/colorChicken"
+                        android:background="@color/colorPrimary"
                         android:gravity="center"
                         android:paddingLeft="20dp"
                         android:text="รายการสินค้า"
+                        android:textSize="22dp"
+                        android:textStyle="bold"
                         android:textColor="@color/colorDark" />
 
                     <Button
@@ -143,9 +145,9 @@
                         android:layout_width="60dp"
                         android:layout_height="35dp"
                         android:layout_gravity="center|right"
-                        android:background="@color/colorBeef"
+                        android:background="@color/colorFish"
                         android:text="ขาย"
-                        android:textColor="@color/colorDark" />
+                        android:textColor="@color/colorWhite" />
 
                 </LinearLayout>
 

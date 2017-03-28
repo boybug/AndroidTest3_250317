@@ -33,7 +33,7 @@ public class ActOrder extends _ActivityCustom {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.view_data);
-        setTitle("Order");
+        setTitle("ขาย");
 
         adap = new ViewOrder(this);
 

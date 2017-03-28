@@ -29,12 +29,12 @@ public class ActOrderItemCmd extends _ActivityCustom {
     void calculate() {
 
         float sum = ent.getQty() * ent.getPrice();
-        float dis_amt = (sum * ent.getDiscount()) / 100;
-        float total = sum - dis_amt;
-
+//        float dis_amt = (sum * ent.getDiscount()) / 100;
+//        float total = sum - dis_amt;
+        float total = sum;
         txtStock.setText(String.valueOf(ent.getQty()));
-        txt_discount_amt.setText(String.valueOf(dis_amt));
-        txt_discount_amt.setText(String.valueOf(dis_amt));
+//        txt_discount_amt.setText(String.valueOf(dis_amt));
+//        txt_discount_amt.setText(String.valueOf(dis_amt));
         txt_total_amt.setText(String.valueOf(total));
     }
 
@@ -65,12 +65,12 @@ public class ActOrderItemCmd extends _ActivityCustom {
 
                 adap = new ViewOrderItem(this, entOrder.getFirebaseId());
 
-                setTitle("Order No. : " + entOrder.getNo());
+                setTitle("เลขที่ : " + entOrder.getNo());
 
                 txt_name.setText(ent.getPro_name());
                 txtStock.setText(String.valueOf(ent.getQty()));
                 txt_price.setText(String.valueOf(ent.getPrice()));
-                txt_discount.setText(String.valueOf(ent.getDiscount()));
+//                txt_discount.setText(String.valueOf(ent.getDiscount()));
 
                 calculate();
 

@@ -25,7 +25,7 @@
                 android:gravity="top|left"
                 android:lines="1"
                 android:maxLines="2"
-                android:text="Name"
+                android:text="ชื่อสาขา"
                 android:textColor="@color/colorFish" />
 
         </TableRow>
@@ -38,7 +38,7 @@
             android:layout_height="match_parent"
             android:layout_column="0"
             android:gravity="center|right"
-            android:text="Code : " />
+            android:text="รหัสสาขา : " />
 
         <TextView
             android:id="@+id/lab_code"

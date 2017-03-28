@@ -34,7 +34,7 @@
                 android:layout_height="50dp"
                 android:layout_column="1"
                 android:gravity="center|left"
-                android:hint="Search...">
+                android:hint="ค้นหา...">
 
             </EditText>
         </TableRow>
@@ -58,7 +58,7 @@
                 android:layout_centerInParent="true"
                 android:layout_span="2"
                 android:gravity="center"
-                android:text="NOT FOUND DATA"
+                android:text="ไม่พบข้อมูล"
                 android:textColor="@color/colorDark"
                 android:textSize="22dp"
                 android:visibility="gone" />

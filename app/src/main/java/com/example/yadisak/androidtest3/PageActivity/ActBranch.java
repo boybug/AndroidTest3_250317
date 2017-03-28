@@ -35,7 +35,7 @@ public class ActBranch extends _ActivityCustom {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         setContentView(R.layout.view_data);
-        setTitle("Branch");
+        setTitle("สาขา");
 
         adap = new ViewBranch(this);
 

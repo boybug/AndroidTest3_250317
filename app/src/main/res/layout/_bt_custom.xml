@@ -13,7 +13,7 @@
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
         android:textColor="@color/colorWhite"
-        android:background="@color/colorFish"
+        android:background="@color/colorBeef"
         android:layout_gravity="center|right"
         android:text="+" />
 

@@ -28,7 +28,7 @@
                 android:layout_column="0"
                 android:gravity="center|right"
                 android:paddingRight="20dp"
-                android:text="Product Code" />
+                android:text="รหัสสินค้า" />
 
             <EditText
                 android:id="@+id/txt_code"
@@ -47,7 +47,7 @@
                 android:layout_column="0"
                 android:gravity="center|right"
                 android:paddingRight="20dp"
-                android:text="Product Name" />
+                android:text="ชื่อสินค้า" />
 
             <EditText
                 android:id="@+id/txt_name"
@@ -71,7 +71,7 @@
                 android:layout_column="0"
                 android:gravity="center|right"
                 android:paddingRight="20dp"
-                android:text="Quantity" />
+                android:text="สต๊อก" />
 
             <EditText
                 android:id="@+id/txt_stock"
@@ -99,7 +99,7 @@
                     android:background="@color/colorFish"
                     android:gravity="center|left"
                     android:paddingLeft="20dp"
-                    android:text="Step Price"
+                    android:text="ราคา"
                     android:textColor="@color/colorWhite" />
 
 

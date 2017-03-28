@@ -29,7 +29,7 @@ public class ActProduct extends _ActivityCustom {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.view_data);
-        setTitle("Product");
+        setTitle("สินค้า");
 
         adap = new ViewProduct(this);
 

@@ -88,6 +88,7 @@ package com.example.yadisak.androidtest3;
 //}
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -104,10 +105,10 @@ import com.example.yadisak.androidtest3.PageActivity.ActProduct;
 public class MainActivity extends AppCompatActivity {
     GridView grid;
     String[] menuItems = {
-            "Order",
-            "Customer",
-            "Product",
-            "Utility"
+            "ขาย",
+            "ลุกค้า",
+            "สินค้า",
+            "เครื่องมือ"
     };
     int[] menuIcons = {
             R.drawable.order,
@@ -118,11 +119,14 @@ public class MainActivity extends AppCompatActivity {
 
     };
 
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_main);
-        setTitle("Boonsiri Point of Sales");
+
+        context = getApplicationContext();
+
         MainAdapter adapter = new MainAdapter(MainActivity.this, menuItems, menuIcons);
         grid = (GridView) findViewById(R.id.grid);
         grid.setAdapter(adapter);
@@ -133,17 +137,17 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
                 Intent nextact = null;
 
-                if(menuItems[+position] == "Order"){
+                if(menuItems[+position] == "ขาย"){
                     nextact = new Intent(MainActivity.this, ActOrder.class);
                 startActivity(nextact);
-                }else if(menuItems[+position] == "Customer"){
+                }else if(menuItems[+position] == "ลุกค้า"){
                     nextact = new Intent(MainActivity.this, ActCustomer.class);
                     startActivity(nextact);
-                }else if(menuItems[+position] == "Product"){
+                }else if(menuItems[+position] == "สินค้า"){
                     nextact = new Intent(MainActivity.this, ActProduct.class);
                     startActivity(nextact);
-                }else if(menuItems[+position] == "Utility"){
-                    Toast.makeText(MainActivity.this, "Next Version...", Toast.LENGTH_SHORT).show();
+                }else if(menuItems[+position] == "เครื่องมือ"){
+                    Toast.makeText(MainActivity.this, "เวอร์ชัน...ถัดไป", Toast.LENGTH_SHORT).show();
                 }
 
 

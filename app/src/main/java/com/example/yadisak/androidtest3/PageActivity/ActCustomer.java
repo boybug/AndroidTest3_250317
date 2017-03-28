@@ -29,7 +29,7 @@ public class ActCustomer extends _ActivityCustom {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.view_data);
-        setTitle("Customer");
+        setTitle("ลูกค้า");
 
         adap = new ViewCustomer(this);
 

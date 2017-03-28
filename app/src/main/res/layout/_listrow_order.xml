@@ -23,7 +23,7 @@
                 android:layout_column="0"
                 android:gravity="center|right"
                 android:paddingLeft="20dp"
-                android:text="Order No."
+                android:text="เลขที่"
                 android:textColor="@color/colorFish"
                 android:textSize="24dp" />
 
@@ -48,7 +48,7 @@
                 android:layout_column="0"
                 android:gravity="center|right"
                 android:paddingLeft="20dp"
-                android:text="Order Date" />
+                android:text="วันที่" />
 
             <TextView
                 android:id="@+id/lab_order_date"
