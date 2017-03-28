@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
     GridView grid;
     String[] menuItems = {
             "ขาย",
-            "ลุกค้า",
+            "ลูกค้า",
             "สินค้า",
             "เครื่องมือ"
     };
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 if(menuItems[+position] == "ขาย"){
                     nextact = new Intent(MainActivity.this, ActOrder.class);
                 startActivity(nextact);
-                }else if(menuItems[+position] == "ลุกค้า"){
+                }else if(menuItems[+position] == "ลูกค้า"){
                     nextact = new Intent(MainActivity.this, ActCustomer.class);
                     startActivity(nextact);
                 }else if(menuItems[+position] == "สินค้า"){
