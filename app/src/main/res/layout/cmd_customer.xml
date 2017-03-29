@@ -33,7 +33,7 @@
                     android:layout_column="0"
                     android:gravity="center|right"
                     android:paddingRight="20dp"
-                    android:text="Cust Code" />
+                    android:text="รหัสลูกค้า" />
 
                 <EditText
                     android:id="@+id/txt_code"
@@ -52,10 +52,35 @@
                     android:layout_column="0"
                     android:gravity="center|right"
                     android:paddingRight="20dp"
-                    android:text="Cust Name" />
+                    android:text="ชื่อลูกค้า" />
 
                 <EditText
                     android:id="@+id/txt_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:ellipsize="end"
+
+                    android:gravity="center|left"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="2"
+                    android:scrollHorizontally="true" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:gravity="center|right"
+                    android:paddingRight="20dp"
+                    android:text="แต้ม" />
+
+                <EditText
+                    android:id="@+id/txt_point"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_column="1"

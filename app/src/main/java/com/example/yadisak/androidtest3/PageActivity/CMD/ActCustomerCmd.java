@@ -16,7 +16,7 @@ public class ActCustomerCmd extends _ActivityCustom {
     ViewCustomer adap;
     Customer ent;
 
-    EditText txt_code, txt_name;
+    EditText txt_code, txt_name, txt_point;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class ActCustomerCmd extends _ActivityCustom {
 
         txt_code = (EditText) findViewById(R.id.txt_code);
         txt_name = (EditText) findViewById(R.id.txt_name);
+        txt_point = (EditText) findViewById(R.id.txt_point);
 
         Intent curtact = getIntent();
         CMDState state = (CMDState) curtact.getSerializableExtra(Utility.CMD_STATE);
@@ -52,9 +53,11 @@ public class ActCustomerCmd extends _ActivityCustom {
 
                 txt_code.setText(ent.getCode());
                 txt_name.setText(ent.getName());
+                txt_point.setText(String.valueOf(ent.getPoint()));
 
                 txt_code.setEnabled(false);
                 txt_name.setEnabled(false);
+                txt_point.setEnabled(false);
                 break;
         }
     }
