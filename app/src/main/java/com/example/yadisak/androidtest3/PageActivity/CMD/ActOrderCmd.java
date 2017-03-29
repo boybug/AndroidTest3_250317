@@ -158,8 +158,8 @@ public class ActOrderCmd extends _ActivityCustom {
                             @Override
                             public void onReturn(DAOState status, String message) {
                                 if (status == DAOState.SUCCESS) {
-                                    funcCalTotal();
                                     funcCalpoint();
+                                    funcCalTotal();
                                 } else {
                                     showMessageAlert(message);
                                 }
@@ -235,7 +235,7 @@ public class ActOrderCmd extends _ActivityCustom {
                     }
                 });
             }
-        }, 2000);
+        }, 1500);
 
     }
     @Override
@@ -254,7 +254,7 @@ public class ActOrderCmd extends _ActivityCustom {
 
         hasChanged = false;
 
-        initNavListProd = true;
+        initNavListProd = false;
         isNavListProdPoint = false;
 
         adap = new ViewOrder(this);
@@ -387,8 +387,8 @@ public class ActOrderCmd extends _ActivityCustom {
                 adapOrProd.addItem(orit, (DAOState istatus, String imessage) -> {
                     if (istatus == DAOState.SUCCESS) {
 
-                        funcCalTotal();
                         funcCalpoint();
+                        funcCalTotal();
 
                         showMessageNoti("Item : " + ent_pro.getName() + " added in order.");
                     } else
@@ -401,8 +401,8 @@ public class ActOrderCmd extends _ActivityCustom {
                 adapOrProd.updateItem(orit, (DAOState ostatus, String omessage) -> {
                     if (ostatus == DAOState.SUCCESS) {
 
-                        funcCalTotal();
                         funcCalpoint();
+                        funcCalTotal();
 
                         showMessageNoti("Item : " + ent_pro.getName() + " + quantity");
                     } else
