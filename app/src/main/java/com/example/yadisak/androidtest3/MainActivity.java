@@ -49,13 +49,13 @@ public class MainActivity extends _ActivityCustom {
 
             Intent nextact = null;
 
-            if (ent.getMenu_id() == 1) {
+            if (ent.getMenu_id() == 2) {
                 nextact = new Intent(this, ActCustomer.class);
                 startActivity(nextact);
-            } else if (ent.getMenu_id() == 2) {
+            } else if (ent.getMenu_id() == 3) {
                 nextact = new Intent(this, ActProduct.class);
                 startActivity(nextact);
-            } else if (ent.getMenu_id() == 3) {
+            } else if (ent.getMenu_id() == 1) {
                 nextact = new Intent(this, ActOrder.class);
                 startActivity(nextact);
             }else if (ent.getMenu_id() == 4) {

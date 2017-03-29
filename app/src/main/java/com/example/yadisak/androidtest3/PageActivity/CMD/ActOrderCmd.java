@@ -72,6 +72,8 @@ public class ActOrderCmd extends _ActivityCustom {
     boolean initNavListProd;
     boolean isNavListProdPoint;
 
+    String foc_flag = "N";
+
     @VisibleForTesting
     public ProgressDialog mProgressDialog;
 
@@ -285,7 +287,7 @@ public class ActOrderCmd extends _ActivityCustom {
         listViewMsProd = (ListView) findViewById(R.id.list_order_prod_pick);
         listViewMsProd.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
-            String foc_flag = "N";
+
             if (isNavListProdPoint == false)
                 ent_pro = adapMsProd.getItem(position);
             else {
