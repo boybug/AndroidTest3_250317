@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@drawable/bg_btn_button</item>
-        <item name="colorPrimaryDark">@color/colorFish</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryNavy</item>
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:textViewStyle">@style/App_TextViewStyle</item>

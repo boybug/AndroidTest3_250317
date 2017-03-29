@@ -20,6 +20,7 @@ public class Order extends _FirebaseAttribute implements Serializable {
     private Date date;
     @DatabaseField
     private String cus_code;
+    private String cus_name;
 
 //    private List<OrderItem> items;
 
@@ -45,6 +46,14 @@ public class Order extends _FirebaseAttribute implements Serializable {
 
     public void setCus_code(String cus_code) {
         this.cus_code = cus_code;
+    }
+
+    public String getCus_name() {
+        return cus_name;
+    }
+
+    public void setCus_name(String cus_name) {
+        this.cus_name = cus_name;
     }
 
 

@@ -47,15 +47,16 @@
                     android:layout_column="0"
                     android:gravity="center|right"
                     android:paddingLeft="10dp"
-                    android:text="เลขที่เอกสาร" />
+                    android:text="เลขที่ : " />
 
                 <TextView
                     android:id="@+id/txt_order_no"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_column="1"
-                    android:paddingLeft="10dp"
-                    android:gravity="center|left" />
+                    android:gravity="center|left"
+                    android:paddingLeft="10dp" />
+
 
             </TableRow>
 
@@ -67,7 +68,7 @@
                     android:layout_column="0"
                     android:gravity="center|right"
                     android:paddingLeft="10dp"
-                    android:text="ลูกค้า" />
+                    android:text="ลูกค้า : " />
 
                 <Spinner
                     android:id="@+id/sp_customer"
@@ -88,7 +89,7 @@
                     android:layout_column="0"
                     android:gravity="center|right"
                     android:paddingLeft="10dp"
-                    android:text="แต้ม" />
+                    android:text="แต้ม : " />
 
                 <TextView
                     android:id="@+id/txt_point"
@@ -96,8 +97,8 @@
                     android:layout_height="match_parent"
                     android:layout_column="1"
                     android:enabled="false"
-                    android:paddingLeft="10dp"
-                    android:gravity="center|left" />
+                    android:gravity="center|left"
+                    android:paddingLeft="10dp" />
             </TableRow>
 
 

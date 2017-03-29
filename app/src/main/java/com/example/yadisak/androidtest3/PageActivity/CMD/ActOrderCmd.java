@@ -48,6 +48,7 @@ public class ActOrderCmd extends _ActivityCustom {
     ViewOrderItem adapOrProd;
     ViewProductOrdPick adapMsProd;
     ViewProductOrdPickPoint adapMsProdPoint;
+    ViewCustomer adapcusname;
     _SelectionAdap adapSeCus;
 
     DrawerLayout drawer;
@@ -82,7 +83,7 @@ public class ActOrderCmd extends _ActivityCustom {
             switch (state) {
                 case NEW:
 
-                    setTitle("ย้ายชื่อลูกค้าขึ้นมา");
+                   // setTitle("ย้ายชื่อลูกค้าขึ้นมา");
 
                     Date currDateTime = new Date(System.currentTimeMillis());
 
@@ -100,7 +101,7 @@ public class ActOrderCmd extends _ActivityCustom {
                     break;
                 case EDIT:
 
-                    setTitle("ย้ายชื่อลูกค้าขึ้นมา");
+
 
                     if (ent == null)
                         ent = (Order) curtact.getSerializableExtra(Utility.ENTITY_DTO_NAME);
@@ -144,6 +145,11 @@ public class ActOrderCmd extends _ActivityCustom {
                     tr_order_save.setVisibility(View.GONE);
                     tr_item_head.setVisibility(View.VISIBLE);
                     tr_item_detail.setVisibility(View.VISIBLE);
+
+                    _SelectionProperty cus_name = (_SelectionProperty) sp_customer.getSelectedItem();
+
+
+                    setTitle(ent.getCus_name());
 
                     break;
             }
@@ -210,11 +216,11 @@ public class ActOrderCmd extends _ActivityCustom {
         Button bt_cmd_save = (Button) findViewById(R.id.bt_cmd_save);
         bt_cmd_save.setText("สร้าง");
         bt_cmd_save.setOnClickListener(view -> {
-
-            if (txt_orno.getText().toString().isEmpty()) {
-                showMessageAlert("!กรุณาระบุเลขที่");
-                return;
-            }
+            txt_orno.setText("test");
+//            if (txt_orno.getText().toString().isEmpty()) {
+//                showMessageAlert("!กรุณาระบุเลขที่");
+//                return;
+//            }
 
             Date currDateTime = new Date(System.currentTimeMillis());
             _SelectionProperty seit = (_SelectionProperty) sp_customer.getSelectedItem();
@@ -242,6 +248,7 @@ public class ActOrderCmd extends _ActivityCustom {
                     this.ent.setNo(txt_orno.getText().toString());
                     this.ent.setDate(currDateTime);
                     this.ent.setCus_code(seit.getId().toString());
+                    this.ent.setCus_name(seit.getText().toString());
                     adap.addItem(ent, iCRUDRes);
 
 
