@@ -1,9 +1,15 @@
 package com.example.yadisak.androidtest3;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.view.ContextThemeWrapper;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -14,6 +20,9 @@ import com.example.yadisak.androidtest3.DTO._CustomMenu;
 import com.example.yadisak.androidtest3.PageActivity.ActCustomer;
 import com.example.yadisak.androidtest3.PageActivity.ActOrder;
 import com.example.yadisak.androidtest3.PageActivity.ActProduct;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends _ActivityCustom {
 
@@ -60,84 +69,47 @@ public class MainActivity extends _ActivityCustom {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-//    @Override
-//    public boolean onCreateOptionsMenu(_CustomMenu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_sign_out) {
+            Logout();
+        }
+        return true;
+    }
+    public void Logout()
+    {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("ออกจากระบบ");
+        dialog.setIcon(R.mipmap.ic_launcher);
+        dialog.setCancelable(true);
+        dialog.setMessage("คุณต้องการออกจากระบบ?");
+        dialog.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(MainActivity.this,
+                        ActLogin.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+
+                finish();
+            }
+        });
+
+        dialog.setNegativeButton("ไม่", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        dialog.show();
+    }
+
+    public void onBackPressed() {
+        Logout();
+    }
 }
 
-//
-//import android.content.Context;
-//import android.content.Intent;
-//import android.os.Bundle;
-//import android.support.v7.app.AppCompatActivity;
-//import android.view.View;
-//import android.widget.AdapterView;
-//import android.widget.GridView;
-//import android.widget.Toast;
-//
-//import com.example.yadisak.androidtest3.PageActivity.ActCustomer;
-//import com.example.yadisak.androidtest3.PageActivity.ActOrder;
-//import com.example.yadisak.androidtest3.PageActivity.ActProduct;
-//
-//
-//public class MainActivity extends AppCompatActivity {
-//    GridView grid;
-//    String[] menuItems = {
-//            "ขาย",
-//            "ลูกค้า",
-//            "สินค้า",
-//            "เครื่องมือ"
-//    };
-//    int[] menuIcons = {
-//            R.drawable.order,
-//            R.drawable.customer,
-//            R.drawable.product,
-//            R.drawable.utility
-//
-//
-//    };
-//
-//    private Context context;
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.act_main);
-//
-//        context = getApplicationContext();
-//
-//        MainAdapter adapter = new MainAdapter(MainActivity.this, menuItems, menuIcons);
-//        grid = (GridView) findViewById(R.id.grid);
-//        grid.setAdapter(adapter);
-//        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view,
-//                                    int position, long id) {
-//                Intent nextact = null;
-//
-//                if(menuItems[+position] == "ขาย"){
-//                    nextact = new Intent(MainActivity.this, ActOrder.class);
-//                startActivity(nextact);
-//                }else if(menuItems[+position] == "ลูกค้า"){
-//                    nextact = new Intent(MainActivity.this, ActCustomer.class);
-//                    startActivity(nextact);
-//                }else if(menuItems[+position] == "สินค้า"){
-//                    nextact = new Intent(MainActivity.this, ActProduct.class);
-//                    startActivity(nextact);
-//                }else if(menuItems[+position] == "เครื่องมือ"){
-//                    Toast.makeText(MainActivity.this, "เวอร์ชัน...ถัดไป", Toast.LENGTH_SHORT).show();
-//                }
-//
-//
-//            }
-//        });
-//
-//    }
-//
-//}
