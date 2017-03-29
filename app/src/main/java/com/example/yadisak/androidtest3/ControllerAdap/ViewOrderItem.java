@@ -4,24 +4,25 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
-
+import com.example.yadisak.androidtest3.DTO.Customer;
+import com.example.yadisak.androidtest3.DTO.OrderItem;
+import com.example.yadisak.androidtest3.DTO.Product;
+import com.example.yadisak.androidtest3.DTO.ProductPrice;
 import com.example.yadisak.androidtest3.Globaldata;
+import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._Extension.CRUDMessage;
 import com.example.yadisak.androidtest3._Extension.DAOState;
-import com.example.yadisak.androidtest3._FBProvider.*;
-import com.example.yadisak.androidtest3._Interface.*;
-import com.example.yadisak.androidtest3.DTO.*;
-import com.example.yadisak.androidtest3.R;
-
+import com.example.yadisak.androidtest3._FBProvider.FirebaseCustomAdapter;
+import com.example.yadisak.androidtest3._Interface.ICRUDAdap;
+import com.example.yadisak.androidtest3._Interface.ICRUDResult;
+import com.example.yadisak.androidtest3._Interface.ICustomResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.List;
 
 public class ViewOrderItem implements ICRUDAdap<OrderItem> {
 
@@ -111,16 +112,17 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
                 });
     }
 
-    private void updatePoint(OrderItem _item, int point){
+    private void updatePoint(OrderItem _item, int point) {
         refDB.child("customer_" + Globaldata.Branch.getCode())
                 .orderByChild("code").equalTo(_item.getCus_code()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                    DataSnapshot value = dataSnapshot.getChildren().iterator().next();
-                    Customer cus = (Customer) value.getValue(Customer.class);
-                    int curr_point = cus.getPoint() + point;
-                        value.getRef().child("point").setValue(curr_point); // Set value by some field
+                DataSnapshot value = dataSnapshot.getChildren().iterator().next();
+                Customer cus = (Customer) value.getValue(Customer.class);
+                int curr_point = cus.getPoint() + point;
+                value.getRef().child("point").setValue(curr_point); // Set value by some field
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
@@ -194,7 +196,7 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
         updateProductStock(_item, (_item.getQty() * -1), (status, message, price) -> {
             if (status == DAOState.SUCCESS) {
 
-                updatePoint(_item, (_item.getPoint()* _item.getQty() * -1));
+                updatePoint(_item, (_item.getPoint() * _item.getQty() * -1));
                 refTB.child(_item.getFirebaseId()).removeValue();
                 result.onReturn(status, CRUDMessage.MSG_DELETED);
 
@@ -227,6 +229,17 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
         }
 
         return ent;
+    }
+
+    public float getTotalPrice() {
+
+        float total = 0;
+
+        for (OrderItem item : getAllItems()) {
+            total += calTotal(item);
+        }
+
+        return total;
     }
 
     @Override

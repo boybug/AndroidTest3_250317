@@ -4,26 +4,30 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.List;
-
+import com.example.yadisak.androidtest3.DTO.Customer;
+import com.example.yadisak.androidtest3.DTO.Order;
 import com.example.yadisak.androidtest3.Globaldata;
-import com.example.yadisak.androidtest3._Extension.*;
-import com.example.yadisak.androidtest3._FBProvider.*;
-import com.example.yadisak.androidtest3._Interface.*;
-import com.example.yadisak.androidtest3.DTO.*;
 import com.example.yadisak.androidtest3.R;
-
+import com.example.yadisak.androidtest3._Extension.CRUDMessage;
+import com.example.yadisak.androidtest3._Extension.DAOState;
+import com.example.yadisak.androidtest3._Extension.Utility;
+import com.example.yadisak.androidtest3._FBProvider.FirebaseCustomAdapter;
+import com.example.yadisak.androidtest3._Interface.ICRUDAdap;
+import com.example.yadisak.androidtest3._Interface.ICRUDResult;
+import com.example.yadisak.androidtest3._Interface.ICustomResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 
 public class ViewOrder implements ICRUDAdap<Order> {
 
     DatabaseReference refDB = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference refTB = refDB.child("order_"+ Globaldata.Branch.getCode());
+    DatabaseReference refTB = refDB.child("order_" + Globaldata.Branch.getCode());
 
     FirebaseCustomAdapter<Order> adap;
 
@@ -47,6 +51,31 @@ public class ViewOrder implements ICRUDAdap<Order> {
                 return models;
             }
         };
+    }
+
+
+    public void getCustomer(Order _item, ICustomResult result) {
+        refDB.child("customer_" + Globaldata.Branch.getCode())
+                .orderByChild("code").equalTo(_item.getCus_code())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists() == true) {
+
+                            DataSnapshot value = dataSnapshot.getChildren().iterator().next();
+                            Customer cus = (Customer) value.getValue(Customer.class);
+
+                            result.onReturn(DAOState.SUCCESS, "", cus);
+                        } else {
+                            result.onReturn(DAOState.CONDITION, "!Not found Customer.", null);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        result.onReturn(DAOState.ERROR, databaseError.getMessage(), null);
+                    }
+                });
     }
 
     @Override
@@ -113,6 +142,29 @@ public class ViewOrder implements ICRUDAdap<Order> {
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                         result.onReturn(DAOState.CONDITION, databaseError.getMessage());
+                    }
+                });
+    }
+
+
+    public void getlastorder(ICustomResult result) {
+
+        refTB.orderByChild("no").limitToLast(1)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            DataSnapshot value = dataSnapshot.getChildren().iterator().next();
+                            refTB.child(value.getKey()).removeValue();
+                            result.onReturn(DAOState.SUCCESS, "", null);
+                        } else {
+                        result.onReturn(DAOState.CONDITION, "!Not found Order.", null);
+                    }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        result.onReturn(DAOState.ERROR, databaseError.getMessage(), null);
                     }
                 });
     }

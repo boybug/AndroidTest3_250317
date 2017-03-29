@@ -16,7 +16,7 @@ public class Branch extends _FirebaseAttribute implements Serializable {
     @DatabaseField
     private String name;
     @DatabaseField
-    private int taxid;
+    private String taxid;
 
     public String getCode() {
         return code;
@@ -35,11 +35,11 @@ public class Branch extends _FirebaseAttribute implements Serializable {
     }
 
 
-    public int getTaxid() {
+    public String getTaxid() {
         return taxid;
     }
 
-    public void setTaxid(int taxid) {
+    public void setTaxid(String taxid) {
         this.taxid = taxid;
     }
 }

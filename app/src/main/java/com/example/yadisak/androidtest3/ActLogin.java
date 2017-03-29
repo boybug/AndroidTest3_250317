@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.yadisak.androidtest3.ControllerAdap.ViewLogin;
 import com.example.yadisak.androidtest3.DTO.Login;
 import com.example.yadisak.androidtest3.PageActivity.ActBranch;
 import com.google.android.gms.tasks.OnCompleteListener;

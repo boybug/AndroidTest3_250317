@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ViewCustomer implements ICRUDAdap<Customer> {
 
     DatabaseReference refDB = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference refTB = refDB.child("customer_"+ Globaldata.Branch.getCode());
+    DatabaseReference refTB = refDB.child("customer_" + Globaldata.Branch.getCode());
 
     FirebaseCustomAdapter<Customer> adap;
 
@@ -122,6 +122,7 @@ public class ViewCustomer implements ICRUDAdap<Customer> {
                                                 result.onReturn(DAOState.SUCCESS, CRUDMessage.MSG_DELETED);
                                             }
                                         }
+
                                         @Override
                                         public void onCancelled(DatabaseError databaseError) {
                                             result.onReturn(DAOState.ERROR, databaseError.getMessage());
@@ -167,7 +168,7 @@ public class ViewCustomer implements ICRUDAdap<Customer> {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot value : dataSnapshot.getChildren()) {
                                 Customer data = value.getValue(Customer.class);
-                                list.add(new _SelectionProperty(data.getCode(), data.getName()));
+                                list.add(new _SelectionProperty(data.getCode(), data.getName(), data.getPoint()));
                             }
                         }
                         result.onReturn(DAOState.SUCCESS, "", list);

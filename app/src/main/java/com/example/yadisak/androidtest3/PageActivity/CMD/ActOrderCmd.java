@@ -3,7 +3,9 @@ package com.example.yadisak.androidtest3.PageActivity.CMD;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.VisibleForTesting;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TableRow;
@@ -28,6 +31,7 @@ import com.example.yadisak.androidtest3.ControllerAdap.ViewOrder;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewOrderItem;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewProductOrdPick;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewProductOrdPickPoint;
+import com.example.yadisak.androidtest3.DTO.Customer;
 import com.example.yadisak.androidtest3.DTO.Order;
 import com.example.yadisak.androidtest3.DTO.OrderItem;
 import com.example.yadisak.androidtest3.DTO.Product;
@@ -60,8 +64,12 @@ public class ActOrderCmd extends _ActivityCustom {
 
     TextView txt_orno;
     TextView txt_point;
+    TextView txt_total;
     Spinner sp_customer;
 
+    float total_price = 0;
+
+    TableRow tr_customer_new;
     TableRow tr_order_save;
     TableRow tr_item_head;
     TableRow tr_item_detail;
@@ -83,25 +91,48 @@ public class ActOrderCmd extends _ActivityCustom {
             switch (state) {
                 case NEW:
 
-                   // setTitle("ย้ายชื่อลูกค้าขึ้นมา");
+                    // setTitle("ย้ายชื่อลูกค้าขึ้นมา");
 
                     Date currDateTime = new Date(System.currentTimeMillis());
 
+                    // Customer Spinner
+                    ViewCustomer adapCus = new ViewCustomer(this);
+                    adapCus.getSelectionList((DAOState status, String message, Object obj) -> {
+
+                        List<_SelectionProperty> items = (List<_SelectionProperty>) obj;
+                        adapSeCus = new _SelectionAdap(getApplicationContext(), R.layout._spinner_item_custom, R.id.title, items);
+                        sp_customer.setAdapter(adapSeCus);
+
+                        if (items.size() > 0) {
+                            sp_customer.setSelection(0);
+                        }
+                    });
+                    sp_customer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                            _SelectionProperty seit = (_SelectionProperty) sp_customer.getSelectedItem();
+                            txt_point.setText(String.valueOf((int) seit.getUdf1()));
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parentView) {
+                        }
+                    });
+
+                    adapCus = null;
+                    //.............................
+
                     txt_orno.setText("");
+                    txt_total.setText("0.0");
                     //txt_ordate.setText(Utility.DATE_FORMAT.format(currDateTime));
-                    sp_customer.setSelection(0);
 
-                    txt_orno.setEnabled(true);
-                    sp_customer.setEnabled(true);
-
+                    tr_customer_new.setVisibility(View.VISIBLE);
                     tr_order_save.setVisibility(View.VISIBLE);
                     tr_item_head.setVisibility(View.GONE);
                     tr_item_detail.setVisibility(View.GONE);
 
                     break;
                 case EDIT:
-
-
 
                     if (ent == null)
                         ent = (Order) curtact.getSerializableExtra(Utility.ENTITY_DTO_NAME);
@@ -126,27 +157,47 @@ public class ActOrderCmd extends _ActivityCustom {
                         adapOrProd.removeItem(ordi, new ICRUDResult() {
                             @Override
                             public void onReturn(DAOState status, String message) {
-                                if (status != DAOState.SUCCESS)
+                                if (status == DAOState.SUCCESS) {
+                                    funcCalTotal();
+                                    funcCalpoint();
+                                } else {
                                     showMessageAlert(message);
+                                }
                             }
                         });
 
                         return true;
                     });
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            total_price = adapOrProd.getTotalPrice();
+                            txt_total.setText(String.valueOf(total_price));
+                        }
+                    }, 1000);
+
                     //....................................
 
+                    adap.getCustomer(ent, (status, message, obj) -> {
+                        if (status == DAOState.SUCCESS) {
+                            Customer cus = (Customer) obj;
+                            txt_point.setText(String.valueOf(cus.getPoint()));
+                        } else {
+                            showMessageNoti(message);
+                        }
+                    });
 
+                    sp_customer.setAdapter(null);
                     txt_orno.setText(ent.getNo());
                     //txt_ordate.setText(Utility.DATE_FORMAT.format(ent.getDate()));
 
-                    txt_orno.setEnabled(false);
-                    sp_customer.setEnabled(false);
-
+                    tr_customer_new.setVisibility(View.GONE);
                     tr_order_save.setVisibility(View.GONE);
                     tr_item_head.setVisibility(View.VISIBLE);
                     tr_item_detail.setVisibility(View.VISIBLE);
 
-                    _SelectionProperty cus_name = (_SelectionProperty) sp_customer.getSelectedItem();
 
 
                     setTitle(ent.getCus_name());
@@ -158,17 +209,52 @@ public class ActOrderCmd extends _ActivityCustom {
         }
     }
 
+    void funcCalTotal() {
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                total_price = adapOrProd.getTotalPrice();
+                txt_total.setText(String.valueOf(total_price));
+            }
+        }, 1000);
+    }
+    void funcCalpoint() {
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                adap.getCustomer(ent, (status, message, obj) -> {
+                    if (status == DAOState.SUCCESS) {
+                        Customer cus = (Customer) obj;
+                        txt_point.setText(String.valueOf(cus.getPoint()));
+                    } else {
+                        showMessageNoti(message);
+                    }
+                });
+            }
+        }, 2000);
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.cmd_order);
 
+        ImageView img_logo_bar = (ImageView) findViewById(R.id.img_logo_bar);
+        img_logo_bar.setVisibility(View.GONE);
+
+        TextView title = (TextView) findViewById(R.id.title_text);
+        title.setTextColor(Color.parseColor("#bcdee7"));
+
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         hasChanged = false;
 
-        initNavListProd = false;
+        initNavListProd = true;
         isNavListProdPoint = false;
 
         adap = new ViewOrder(this);
@@ -177,38 +263,16 @@ public class ActOrderCmd extends _ActivityCustom {
         this.state = (CMDState) curtact.getSerializableExtra(Utility.CMD_STATE);
 
         this.txt_orno = (TextView) findViewById(R.id.txt_order_no);
+        this.txt_point = (TextView) findViewById(R.id.txt_point);
+        this.txt_total = (TextView) findViewById(R.id.txt_total);
         //this.txt_ordate = (EditText) findViewById(R.id.txt_order_date);
         this.sp_customer = (Spinner) findViewById(R.id.sp_customer);
         this.listViewOrProd = (ListView) findViewById(R.id.list_order_item);
 
+        this.tr_customer_new = (TableRow) findViewById(R.id.tr_customer_new);
         this.tr_order_save = (TableRow) findViewById(R.id.tr_order_save);
         this.tr_item_head = (TableRow) findViewById(R.id.tr_item_head);
         this.tr_item_detail = (TableRow) findViewById(R.id.tr_item_detail);
-
-        // Customer Spinner
-        ViewCustomer adapCus = new ViewCustomer(this);
-        adapCus.getSelectionList((DAOState status, String message, Object obj) -> {
-
-            List<_SelectionProperty> items = (List<_SelectionProperty>) obj;
-            // items.add(0,new _SelectionProperty(null, "--Not Select--"));
-
-            adapSeCus = new _SelectionAdap(getApplicationContext(), R.layout._spinner_item_custom, R.id.title, items);
-            sp_customer.setAdapter(adapSeCus);
-
-            if (state == CMDState.EDIT && ent != null) {
-                for (int inx = 0; inx < adapSeCus.getCount(); inx++) {
-
-                    String id = (String) adapSeCus.getItem(inx).getId();
-                    if (id.equals(ent.getCus_code())) {
-                        sp_customer.setSelection(inx);
-                        break;
-                    }
-                }
-            }
-        });
-
-        adapCus = null;
-        //.............................
 
         this.initActivity();
 
@@ -216,11 +280,13 @@ public class ActOrderCmd extends _ActivityCustom {
         Button bt_cmd_save = (Button) findViewById(R.id.bt_cmd_save);
         bt_cmd_save.setText("สร้าง");
         bt_cmd_save.setOnClickListener(view -> {
-            txt_orno.setText("test");
-//            if (txt_orno.getText().toString().isEmpty()) {
-//                showMessageAlert("!กรุณาระบุเลขที่");
-//                return;
-//            }
+
+
+            int last_no = 0;
+                last_no = getCount() + 1;
+            txt_orno.setText("TEST"+last_no);
+
+
 
             Date currDateTime = new Date(System.currentTimeMillis());
             _SelectionProperty seit = (_SelectionProperty) sp_customer.getSelectedItem();
@@ -271,7 +337,7 @@ public class ActOrderCmd extends _ActivityCustom {
             }
 
             toggleNavListProduct();
-            hideProgressDialog();
+
         });
 
         Button bt_add_item_point = (Button) findViewById(R.id.bt_add_item_point);
@@ -283,7 +349,7 @@ public class ActOrderCmd extends _ActivityCustom {
             }
 
             toggleNavListProduct();
-            hideProgressDialog();
+
         });
 
 
@@ -301,7 +367,7 @@ public class ActOrderCmd extends _ActivityCustom {
                 foc_flag = "Y";
             }
 
-            OrderItem orit = adapOrProd.getItem(ent_pro.getCode(),foc_flag);
+            OrderItem orit = adapOrProd.getItem(ent_pro.getCode(), foc_flag);
 
             if (orit == null) {
                 orit = new OrderItem();
@@ -315,11 +381,15 @@ public class ActOrderCmd extends _ActivityCustom {
                     orit.setPoint(ent_pro.getPoint());
                 } else {
                     orit.setFoc_flag(foc_flag);
-                    orit.setPoint(ent_pro.getFocpoint()* -1);
+                    orit.setPoint(ent_pro.getFocpoint() * -1);
                 }
 
                 adapOrProd.addItem(orit, (DAOState istatus, String imessage) -> {
                     if (istatus == DAOState.SUCCESS) {
+
+                        funcCalTotal();
+                        funcCalpoint();
+
                         showMessageNoti("Item : " + ent_pro.getName() + " added in order.");
                     } else
                         showMessageAlert(imessage);
@@ -330,6 +400,10 @@ public class ActOrderCmd extends _ActivityCustom {
                 orit.setCus_code(ent.getCus_code());
                 adapOrProd.updateItem(orit, (DAOState ostatus, String omessage) -> {
                     if (ostatus == DAOState.SUCCESS) {
+
+                        funcCalTotal();
+                        funcCalpoint();
+
                         showMessageNoti("Item : " + ent_pro.getName() + " + quantity");
                     } else
                         showMessageAlert(omessage);
@@ -361,6 +435,7 @@ public class ActOrderCmd extends _ActivityCustom {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             drawer.openDrawer(GravityCompat.START);
+            hideProgressDialog();
         }
     }
 
@@ -391,7 +466,6 @@ public class ActOrderCmd extends _ActivityCustom {
     }
 
 
-
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
 
@@ -409,7 +483,6 @@ public class ActOrderCmd extends _ActivityCustom {
         }
 
 
-
         Button bt_item = (Button) v.findViewById(R.id.bt_action_summary);
         bt_item.setOnClickListener(view -> {
 
@@ -424,6 +497,7 @@ public class ActOrderCmd extends _ActivityCustom {
         getMenuInflater().inflate(R.menu.summary, menu);
         return true;
     }
+
     public void showProgressDialog() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(this);
@@ -450,6 +524,9 @@ public class ActOrderCmd extends _ActivityCustom {
     public void onStart() {
 
         super.onStart();
+    }
 
+    public int getCount() {
+        return adap.getCount();
     }
 }

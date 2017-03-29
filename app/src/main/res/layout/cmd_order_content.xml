@@ -39,28 +39,7 @@
             android:orientation="vertical"
             android:stretchColumns="1">
 
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_column="0"
-                    android:gravity="center|right"
-                    android:paddingLeft="10dp"
-                    android:text="เลขที่ : " />
-
-                <TextView
-                    android:id="@+id/txt_order_no"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_column="1"
-                    android:gravity="center|left"
-                    android:paddingLeft="10dp" />
-
-
-            </TableRow>
-
-            <TableRow>
+            <TableRow android:id="@+id/tr_customer_new">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -89,18 +68,68 @@
                     android:layout_column="0"
                     android:gravity="center|right"
                     android:paddingLeft="10dp"
-                    android:text="แต้ม : " />
+                    android:text="เลขที่ : " />
 
                 <TextView
-                    android:id="@+id/txt_point"
+                    android:id="@+id/txt_order_no"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_column="1"
-                    android:enabled="false"
+                    android:textColor="@color/colorPrimaryYellow"
                     android:gravity="center|left"
                     android:paddingLeft="10dp" />
+
+
             </TableRow>
 
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:layout_weight="0.03"
+                    android:gravity="center|right"
+                    android:paddingLeft="10dp"
+                    android:text="แต้ม : " />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1">
+
+                    <TextView
+                        android:id="@+id/txt_point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.36"
+                        android:enabled="false"
+                        android:textColor="@color/colorBeef"
+                        android:gravity="center|left"
+                        android:paddingLeft="10dp" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:paddingLeft="10dp"
+                        android:text="ยอดรวม : " />
+
+                    <TextView
+                        android:id="@+id/txt_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.35"
+                        android:enabled="false"
+                        android:gravity="center|left"
+                        android:textColor="@color/colorBeef"
+                        android:paddingLeft="10dp" />
+                </LinearLayout>
+
+
+            </TableRow>
 
 
             <TableRow
@@ -141,9 +170,9 @@
                         android:gravity="center"
                         android:paddingLeft="20dp"
                         android:text="รายการสินค้า"
+                        android:textColor="@color/colorWhite"
                         android:textSize="22dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/colorWhite" />
+                        android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/bt_add_item"

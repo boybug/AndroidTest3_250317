@@ -6,7 +6,6 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 @DatabaseTable(tableName = "tbt_order_detail")
 @SuppressWarnings("serial")
