@@ -29,12 +29,12 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp">
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
 
                 <ImageView
                     android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_height="130dp"
                     android:src="@drawable/splash"
                     android:background="@color/colorPrimaryNavy"/>
             </TableRow>
