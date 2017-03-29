@@ -30,8 +30,8 @@ public class ViewCustomMenu extends BaseAdapter {
         // Static Create Menu
         items = new ArrayList();
         items.add(new _CustomMenu(1, "ขาย", R.drawable.order, R.color.colorPrimaryNavy));
-        items.add(new _CustomMenu(2, "ลูกค้า", R.drawable.customer, R.color.colorSquid));
-        items.add(new _CustomMenu(3, "สินค้า", R.drawable.product, R.color.colorPrimaryGreen));
+        items.add(new _CustomMenu(2, "ลูกค้า", R.drawable.customer, R.color.colorPrimaryGreen));
+        items.add(new _CustomMenu(3, "สินค้า", R.drawable.product, R.color.colorSquid));
         items.add(new _CustomMenu(4, "เครื่องมือ", R.drawable.utility, R.color.colorBeef));
 //        items.add(new _CustomMenu(0, "CREATE DATA TEST"));
         //................................

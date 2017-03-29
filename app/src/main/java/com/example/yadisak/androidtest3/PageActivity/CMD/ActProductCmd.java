@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.yadisak.androidtest3.ControllerAdap.ViewProduct;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewProductPrice;
@@ -18,7 +19,8 @@ public class ActProductCmd extends _ActivityCustom {
     ViewProduct adap;
     Product ent;
 
-    EditText txt_code, txt_name, txt_stock, txt_price;
+    TextView txt_code, txt_stock, txt_price,txt_name;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +30,10 @@ public class ActProductCmd extends _ActivityCustom {
 
         adap = new ViewProduct(this);
 
-        txt_code = (EditText) findViewById(R.id.txt_code);
-        txt_name = (EditText) findViewById(R.id.txt_name);
-        txt_stock = (EditText) findViewById(R.id.txt_stock);
-        txt_price = (EditText) findViewById(R.id.txt_price);
+        txt_code = (TextView) findViewById(R.id.txt_code);
+        txt_name = (TextView) findViewById(R.id.txt_name);
+        txt_stock = (TextView) findViewById(R.id.txt_stock);
+        txt_price = (TextView) findViewById(R.id.txt_price);
 
         Intent curtact = getIntent();
         CMDState state = (CMDState) curtact.getSerializableExtra(Utility.CMD_STATE);

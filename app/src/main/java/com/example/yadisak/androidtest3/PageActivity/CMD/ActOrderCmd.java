@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yadisak.androidtest3.CollectionAdap._SelectionAdap;
@@ -56,8 +57,8 @@ public class ActOrderCmd extends _ActivityCustom {
     Order ent;
     Product ent_pro;
 
-    EditText txt_orno;
-    EditText txt_ordate;
+    TextView txt_orno;
+    TextView txt_point;
     Spinner sp_customer;
 
     TableRow tr_order_save;
@@ -86,7 +87,7 @@ public class ActOrderCmd extends _ActivityCustom {
                     Date currDateTime = new Date(System.currentTimeMillis());
 
                     txt_orno.setText("");
-                    txt_ordate.setText(Utility.DATE_FORMAT.format(currDateTime));
+                    //txt_ordate.setText(Utility.DATE_FORMAT.format(currDateTime));
                     sp_customer.setSelection(0);
 
                     txt_orno.setEnabled(true);
@@ -135,7 +136,7 @@ public class ActOrderCmd extends _ActivityCustom {
 
 
                     txt_orno.setText(ent.getNo());
-                    txt_ordate.setText(Utility.DATE_FORMAT.format(ent.getDate()));
+                    //txt_ordate.setText(Utility.DATE_FORMAT.format(ent.getDate()));
 
                     txt_orno.setEnabled(false);
                     sp_customer.setEnabled(false);
@@ -169,8 +170,8 @@ public class ActOrderCmd extends _ActivityCustom {
         curtact = getIntent();
         this.state = (CMDState) curtact.getSerializableExtra(Utility.CMD_STATE);
 
-        this.txt_orno = (EditText) findViewById(R.id.txt_order_no);
-        this.txt_ordate = (EditText) findViewById(R.id.txt_order_date);
+        this.txt_orno = (TextView) findViewById(R.id.txt_order_no);
+        //this.txt_ordate = (EditText) findViewById(R.id.txt_order_date);
         this.sp_customer = (Spinner) findViewById(R.id.sp_customer);
         this.listViewOrProd = (ListView) findViewById(R.id.list_order_item);
 

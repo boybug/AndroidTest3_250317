@@ -46,14 +46,15 @@
                     android:layout_height="match_parent"
                     android:layout_column="0"
                     android:gravity="center|right"
-                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
                     android:text="เลขที่เอกสาร" />
 
-                <EditText
+                <TextView
                     android:id="@+id/txt_order_no"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_column="1"
+                    android:paddingLeft="10dp"
                     android:gravity="center|left" />
 
             </TableRow>
@@ -65,17 +66,18 @@
                     android:layout_height="match_parent"
                     android:layout_column="0"
                     android:gravity="center|right"
-                    android:paddingRight="10dp"
-                    android:text="วันที่" />
+                    android:paddingLeft="10dp"
+                    android:text="ลูกค้า" />
 
-                <EditText
-                    android:id="@+id/txt_order_date"
+                <Spinner
+                    android:id="@+id/sp_customer"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
                     android:layout_column="1"
-                    android:enabled="false"
-                    android:gravity="center|left"
-                    android:inputType="date" />
+                    android:paddingLeft="10dp"
+                    android:spinnerMode="dialog" />
+
             </TableRow>
 
             <TableRow>
@@ -85,18 +87,20 @@
                     android:layout_height="match_parent"
                     android:layout_column="0"
                     android:gravity="center|right"
-                    android:paddingRight="10dp"
-                    android:text="ลูกค้า" />
+                    android:paddingLeft="10dp"
+                    android:text="แต้ม" />
 
-                <Spinner
-                    android:id="@+id/sp_customer"
+                <TextView
+                    android:id="@+id/txt_point"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_centerHorizontal="true"
                     android:layout_column="1"
-                    android:spinnerMode="dialog" />
-
+                    android:enabled="false"
+                    android:paddingLeft="10dp"
+                    android:gravity="center|left" />
             </TableRow>
+
+
 
             <TableRow
                 android:id="@+id/tr_order_save"
