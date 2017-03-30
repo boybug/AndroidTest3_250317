@@ -176,7 +176,7 @@ public class ActOrderCmd extends _ActivityCustom {
                             total_price = adapOrProd.getTotalPrice();
                             txt_total.setText(String.valueOf(total_price));
                         }
-                    }, 3000);
+                    }, 2000);
 
                     //....................................
 
@@ -218,7 +218,7 @@ public class ActOrderCmd extends _ActivityCustom {
                 total_price = adapOrProd.getTotalPrice();
                 txt_total.setText(String.valueOf(total_price));
             }
-        }, 3000);
+        }, 2000);
     }
     void funcCalpoint() {
 
@@ -235,7 +235,7 @@ public class ActOrderCmd extends _ActivityCustom {
                     }
                 });
             }
-        }, 2000);
+        }, 1000);
 
     }
     @Override
