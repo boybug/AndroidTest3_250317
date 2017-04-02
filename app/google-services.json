@@ -1,71 +1,27 @@
 {
   "project_info": {
-    "project_number": "147284734556",
-    "firebase_url": "https://bsrpos-1bd47.firebaseio.com",
-    "project_id": "bsrpos-1bd47",
-    "storage_bucket": "bsrpos-1bd47.appspot.com"
+    "project_number": "695810244470",
+    "firebase_url": "https://boonsiri-point-of-sales.firebaseio.com",
+    "project_id": "boonsiri-point-of-sales",
+    "storage_bucket": "boonsiri-point-of-sales.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:147284734556:android:960842ad8a05330c",
-        "android_client_info": {
-          "package_name": "com.example.yadisak.androidtest3"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "147284734556-7pkc4hm9k14n8ha0kdfgf1ida9jjon8h.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.yadisak.androidtest3",
-            "certificate_hash": "903608b0aea9a662e0c1768f6117d2f77b2ee289"
-          }
-        },
-        {
-          "client_id": "147284734556-nrb2ki6213g0ss1357k6db5iut7jamj7.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDLtzus4EKvLmfN6PmulsrFiNAP5P_whJY"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "147284734556-nrb2ki6213g0ss1357k6db5iut7jamj7.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:147284734556:android:eead1c58e9256e4c",
+        "mobilesdk_app_id": "1:695810244470:android:eead1c58e9256e4c",
         "android_client_info": {
           "package_name": "com.newit.bsrpos1"
         }
       },
       "oauth_client": [
         {
-          "client_id": "147284734556-nrb2ki6213g0ss1357k6db5iut7jamj7.apps.googleusercontent.com",
+          "client_id": "695810244470-j9b54gsue1p3vqdhnbmb1oon8egck3ac.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDLtzus4EKvLmfN6PmulsrFiNAP5P_whJY"
+          "current_key": "AIzaSyATrrT5VR8VYh6M4VDBjrUc1-oI69Bfikg"
         }
       ],
       "services": {

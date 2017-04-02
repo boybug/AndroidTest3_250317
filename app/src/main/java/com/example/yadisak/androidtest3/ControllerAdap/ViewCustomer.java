@@ -4,27 +4,29 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.example.yadisak.androidtest3.Globaldata;
+import com.example.yadisak.androidtest3.DTO.Customer;
+import com.example.yadisak.androidtest3.DTO._SelectionProperty;
+import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._Extension.CRUDMessage;
 import com.example.yadisak.androidtest3._Extension.DAOState;
-import com.example.yadisak.androidtest3._FBProvider.*;
-import com.example.yadisak.androidtest3._Interface.*;
-import com.example.yadisak.androidtest3.DTO.*;
-import com.example.yadisak.androidtest3.R;
-
+import com.example.yadisak.androidtest3._FBProvider.FirebaseConstant;
+import com.example.yadisak.androidtest3._FBProvider.FirebaseCustomAdapter;
+import com.example.yadisak.androidtest3._Interface.ICRUDAdap;
+import com.example.yadisak.androidtest3._Interface.ICRUDResult;
+import com.example.yadisak.androidtest3._Interface.ICustomResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ViewCustomer implements ICRUDAdap<Customer> {
 
     DatabaseReference refDB = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference refTB = refDB.child("customer_" + Globaldata.Branch.getCode());
+    DatabaseReference refTB = refDB.child("customer");
 
     FirebaseCustomAdapter<Customer> adap;
 
@@ -43,8 +45,8 @@ public class ViewCustomer implements ICRUDAdap<Customer> {
                 TextView lab_code = (TextView) v.findViewById(R.id.lab_code);
                 lab_code.setText(model.getCode());
 
-                TextView lab_point = (TextView) v.findViewById(R.id.lab_point);
-                lab_point.setText(String.valueOf(model.getPoint()));
+                TextView lab_tel = (TextView) v.findViewById(R.id.lab_tel);
+                lab_tel.setText(String.valueOf(model.getTel()));
             }
 
             @Override

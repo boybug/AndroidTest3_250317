@@ -4,21 +4,14 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.yadisak.androidtest3.DTO.OrderItem;
 import com.example.yadisak.androidtest3.DTO.ProductPrice;
 import com.example.yadisak.androidtest3.Globaldata;
 import com.example.yadisak.androidtest3.R;
-import com.example.yadisak.androidtest3._Extension.CRUDMessage;
-import com.example.yadisak.androidtest3._Extension.DAOState;
-import com.example.yadisak.androidtest3._FBProvider.FirebaseConstant;
 import com.example.yadisak.androidtest3._FBProvider.FirebaseCustomAdapter;
 import com.example.yadisak.androidtest3._Interface.ICRUDAdap;
 import com.example.yadisak.androidtest3._Interface.ICRUDResult;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -35,7 +28,7 @@ public class ViewProductPrice implements ICRUDAdap<ProductPrice> {
 
     public ViewProductPrice(Activity activity, String productKeyId) {
 
-        refTB = refDB.child("product_"+ Globaldata.Branch.getCode()).child(productKeyId).child("price");
+        refTB = refDB.child("product_"+ Globaldata.Branch.getId()).child(productKeyId).child("price");
 
         adap = new FirebaseCustomAdapter<ProductPrice>(activity
                 , ProductPrice.class, R.layout._listrow_item_price, refTB.orderByChild("from")) {

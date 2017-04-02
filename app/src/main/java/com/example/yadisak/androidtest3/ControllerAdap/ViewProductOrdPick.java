@@ -2,23 +2,22 @@ package com.example.yadisak.androidtest3.ControllerAdap;
 
 import android.app.Activity;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.List;
-
-import com.example.yadisak.androidtest3.DTO.*;
+import com.example.yadisak.androidtest3.DTO.Product;
 import com.example.yadisak.androidtest3.Globaldata;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._FBProvider.FirebaseCustomAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.List;
+
 
 public class ViewProductOrdPick {
 
     DatabaseReference refDB = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference refTB = refDB.child("product_" + Globaldata.Branch.getCode());
+    DatabaseReference refTB = refDB.child("product_" + Globaldata.Branch.getId());
 
     FirebaseCustomAdapter<Product> adap;
 
@@ -43,8 +42,7 @@ public class ViewProductOrdPick {
                 TextView lab_pro_qty = (TextView) v.findViewById(R.id.lab_pro_qty);
                 lab_pro_qty.setText("[" + String.valueOf(model.getStock()) + "]");
 
-//                TextView lab_pro_price = (TextView) v.findViewById(R.id.lab_pro_price);
-//                lab_pro_price.setText("(" + String.valueOf(model.getPrice()) + ")");
+
             }
 
             @Override

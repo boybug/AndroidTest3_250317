@@ -31,18 +31,18 @@ public class OrderItem extends _FirebaseAttribute implements Serializable {
     private String pro_name;
     @DatabaseField
     private String pro_key_id;
-    @DatabaseField
-    private int point;
-    @DatabaseField
-    private String foc_flag;
-    @DatabaseField
-    private String pro_code_foc_flag;
+//    @DatabaseField
+//    private int point;
+//    @DatabaseField
+//    private String foc_flag;
+//    @DatabaseField
+//    private String pro_code_foc_flag;
 
     @Exclude
     private int delta;
 
-    @Exclude
-    private String cus_code;
+//    @Exclude
+//    private String cus_code;
 //    @Exclude
 //    private ArrayList<ProductPrice> priceList;
 
@@ -121,67 +121,37 @@ public class OrderItem extends _FirebaseAttribute implements Serializable {
         this.delta = delta;
     }
 
-    public int getPoint() {
-        return point;
-    }
-
-    public void setPoint(int point) {
-        this.point = point;
-    }
-
-    public String getFoc_flag() {
-        return foc_flag;
-    }
-
-    public void setFoc_flag(String foc_flag) {
-        this.foc_flag = foc_flag;
-    }
-
-    public String getPro_code_foc_flag() {
-        return pro_code_foc_flag;
-    }
-
-    public void setPro_code_foc_flag(String pro_code_foc_flag) {
-        this.pro_code_foc_flag = pro_code_foc_flag;
-    }
-    @Exclude
-    public String getCus_code() {
-        return cus_code;
-    }
-    @Exclude
-    public void setCus_code(String cus_code) {
-        this.cus_code = cus_code;
-    }
-
-//    @Exclude
-//    public ArrayList<ProductPrice> getPriceList() {
-//        return priceList;
-//    }
-//    @Exclude
-//    public void addPriceList(ProductPrice price) {
-//        priceList.add(price);
-//    }
-
-//    @Exclude
-//    public List<ProductPrice> getPriceList() {
-//        return priceList;
-//    }
-
-//    @Exclude
-//    public void setPriceList(List<ProductPrice> priceList) {
-//        this.priceList = priceList;
+//    public int getPoint() {
+//        return point;
 //    }
 //
-//    @Exclude
-//    public float getPrice(int orderQty) {
-//        float price = 0;
-//        for (int i = 0; i < priceList.size(); i++) {
-//            ProductPrice p = priceList.get(i);
-//            if (orderQty >= p.getFrom() && orderQty <= p.getTo()) {
-//                price = p.getPrice();
-//                break;
-//            }
-//        }
-//        return price;
+//    public void setPoint(int point) {
+//        this.point = point;
 //    }
+//
+//    public String getFoc_flag() {
+//        return foc_flag;
+//    }
+//
+//    public void setFoc_flag(String foc_flag) {
+//        this.foc_flag = foc_flag;
+//    }
+//
+//    public String getPro_code_foc_flag() {
+//        return pro_code_foc_flag;
+//    }
+//
+//    public void setPro_code_foc_flag(String pro_code_foc_flag) {
+//        this.pro_code_foc_flag = pro_code_foc_flag;
+//    }
+//    @Exclude
+//    public String getCus_code() {
+//        return cus_code;
+//    }
+//    @Exclude
+//    public void setCus_code(String cus_code) {
+//        this.cus_code = cus_code;
+//    }
+
+
 }

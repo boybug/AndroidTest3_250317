@@ -4,26 +4,26 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.List;
-
+import com.example.yadisak.androidtest3.DTO.Product;
 import com.example.yadisak.androidtest3.Globaldata;
+import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._Extension.CRUDMessage;
 import com.example.yadisak.androidtest3._Extension.DAOState;
-import com.example.yadisak.androidtest3._FBProvider.*;
-import com.example.yadisak.androidtest3._Interface.*;
-import com.example.yadisak.androidtest3.DTO.*;
-import com.example.yadisak.androidtest3.R;
-
+import com.example.yadisak.androidtest3._FBProvider.FirebaseCustomAdapter;
+import com.example.yadisak.androidtest3._Interface.ICRUDAdap;
+import com.example.yadisak.androidtest3._Interface.ICRUDResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 public class ViewProduct implements ICRUDAdap<Product> {
 
     DatabaseReference refDB = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference refTB = refDB.child("product_"+ Globaldata.Branch.getCode());
+    DatabaseReference refTB = refDB.child("product_"+ Globaldata.Branch.getId());
 
     FirebaseCustomAdapter<Product> adap;
 

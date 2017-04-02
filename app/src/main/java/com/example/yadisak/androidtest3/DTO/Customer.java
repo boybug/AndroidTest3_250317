@@ -20,6 +20,9 @@ public class Customer extends _FirebaseAttribute implements Serializable {
     @DatabaseField
     private int point;
 
+    private String addr;
+    private String tel;
+
     public String getCode() {
         return code;
     }
@@ -42,5 +45,21 @@ public class Customer extends _FirebaseAttribute implements Serializable {
 
     public void setPoint(int point) {
         this.point = point;
+    }
+
+    public String getAddr() {
+        return addr;
+    }
+
+    public void setAddr(String addr) {
+        this.addr = addr;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 }

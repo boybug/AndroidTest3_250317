@@ -26,7 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ActLogin extends _ActivityCustom {
 
-//    ViewLogin adap;
 
     EditText txt_username, txt_password;
 
@@ -46,7 +45,7 @@ public class ActLogin extends _ActivityCustom {
 
         setContentView(R.layout._sys_cmd_login);
 
-        //adap = new ViewLogin(this);
+
 
         txt_username = (EditText) findViewById(R.id.txt_username);
         txt_password = (EditText) findViewById(R.id.txt_password);

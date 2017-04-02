@@ -59,15 +59,16 @@
                 android:layout_height="match_parent"
                 android:layout_column="0"
                 android:gravity="center|right"
-                android:text="แต้ม : " />
+                android:text="เบอร์โทร : " />
 
             <TextView
-                android:id="@+id/lab_point"
+                android:id="@+id/lab_tel"
                 style="@style/App_TextViewStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_column="1"
-                android:gravity="center|left"/>
+                android:gravity="center|left"
+                android:textColor="@color/colorPrimaryYellow"/>
         </TableRow>
     </TableLayout>
 

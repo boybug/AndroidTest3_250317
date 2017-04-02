@@ -18,9 +18,9 @@ public class Product extends _FirebaseAttribute implements Serializable {
 
     private int stock;
 
-    private int point;
-
-    private int focpoint;
+//    private int point;
+//
+//    private int focpoint;
 
     public String getCode() {
         return code;
@@ -46,19 +46,19 @@ public class Product extends _FirebaseAttribute implements Serializable {
         this.stock = stock;
     }
 
-    public int getPoint() {
-        return point;
-    }
-
-    public void setPoint(int point) {
-        this.point = point;
-    }
-
-    public int getFocpoint() {
-        return focpoint;
-    }
-
-    public void setFocpoint(int focpoint) {
-        this.focpoint = focpoint;
-    }
+//    public int getPoint() {
+//        return point;
+//    }
+//
+//    public void setPoint(int point) {
+//        this.point = point;
+//    }
+//
+//    public int getFocpoint() {
+//        return focpoint;
+//    }
+//
+//    public void setFocpoint(int focpoint) {
+//        this.focpoint = focpoint;
+//    }
 }

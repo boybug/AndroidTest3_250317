@@ -2,7 +2,7 @@ package com.example.yadisak.androidtest3.PageActivity.CMD;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.yadisak.androidtest3.ControllerAdap.ViewCustomer;
 import com.example.yadisak.androidtest3.DTO.Customer;
@@ -16,7 +16,8 @@ public class ActCustomerCmd extends _ActivityCustom {
     ViewCustomer adap;
     Customer ent;
 
-    EditText txt_code, txt_name, txt_point;
+    TextView txt_code, txt_name, txt_addr;
+    TextView txt_tel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +27,10 @@ public class ActCustomerCmd extends _ActivityCustom {
 
         adap = new ViewCustomer(this);
 
-        txt_code = (EditText) findViewById(R.id.txt_code);
-        txt_name = (EditText) findViewById(R.id.txt_name);
-        txt_point = (EditText) findViewById(R.id.txt_point);
+        txt_code = (TextView) findViewById(R.id.txt_code);
+        txt_name = (TextView) findViewById(R.id.txt_name);
+        txt_addr = (TextView) findViewById(R.id.txt_addr);
+        txt_tel = (TextView) findViewById(R.id.txt_tel);
 
         Intent curtact = getIntent();
         CMDState state = (CMDState) curtact.getSerializableExtra(Utility.CMD_STATE);
@@ -53,11 +55,9 @@ public class ActCustomerCmd extends _ActivityCustom {
 
                 txt_code.setText(ent.getCode());
                 txt_name.setText(ent.getName());
-                txt_point.setText(String.valueOf(ent.getPoint()));
+                txt_addr.setText(ent.getAddr());
+                txt_tel.setText(ent.getTel());
 
-                txt_code.setEnabled(false);
-                txt_name.setEnabled(false);
-                txt_point.setEnabled(false);
                 break;
         }
     }

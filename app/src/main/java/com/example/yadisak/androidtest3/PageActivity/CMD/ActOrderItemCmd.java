@@ -124,7 +124,7 @@ public class ActOrderItemCmd extends _ActivityCustom {
                 case EDIT:
                     ent.setQty(Integer.valueOf(txtStock.getText().toString()));
                     ent.setAmt(Float.valueOf(txt_total_amt.getText().toString()));
-                    ent.setCus_code(entOrder.getCus_code());
+//                    ent.setCus_code(entOrder.getCus_code());
                     adap.updateItem(ent, (DAOState status, String message) -> {
                         if (status == DAOState.SUCCESS) {
 

@@ -27,7 +27,7 @@ import java.util.List;
 public class ViewOrder implements ICRUDAdap<Order> {
 
     DatabaseReference refDB = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference refTB = refDB.child("order_" + Globaldata.Branch.getCode());
+    DatabaseReference refTB = refDB.child("order_" + Globaldata.Branch.getId());
 
     FirebaseCustomAdapter<Order> adap;
 
@@ -55,7 +55,7 @@ public class ViewOrder implements ICRUDAdap<Order> {
 
 
     public void getCustomer(Order _item, ICustomResult result) {
-        refDB.child("customer_" + Globaldata.Branch.getCode())
+        refDB.child("customer")
                 .orderByChild("code").equalTo(_item.getCus_code())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

@@ -2,11 +2,9 @@ package com.example.yadisak.androidtest3.PageActivity.CMD;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.yadisak.androidtest3.ControllerAdap.ViewProduct;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewProductPrice;
 import com.example.yadisak.androidtest3.DTO.Product;
 import com.example.yadisak.androidtest3.R;
@@ -16,7 +14,7 @@ import com.example.yadisak.androidtest3._Extension.Utility;
 
 public class ActProductCmd extends _ActivityCustom {
 
-    ViewProduct adap;
+//    ViewProduct adap;
     Product ent;
 
     TextView txt_code, txt_stock, txt_price,txt_name;
@@ -28,7 +26,7 @@ public class ActProductCmd extends _ActivityCustom {
 
         setContentView(R.layout.cmd_product);
 
-        adap = new ViewProduct(this);
+//        adap = new ViewProduct(this);
 
         txt_code = (TextView) findViewById(R.id.txt_code);
         txt_name = (TextView) findViewById(R.id.txt_name);

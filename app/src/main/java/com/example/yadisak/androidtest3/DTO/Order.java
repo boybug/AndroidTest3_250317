@@ -22,8 +22,6 @@ public class Order extends _FirebaseAttribute implements Serializable {
     private String cus_code;
     private String cus_name;
 
-//    private List<OrderItem> items;
-
     public String getNo() {
         return no;
     }
@@ -57,11 +55,4 @@ public class Order extends _FirebaseAttribute implements Serializable {
     }
 
 
-//    public List<OrderItem> getItems() {
-//        return items;
-//    }
-//
-//    public void setItems(List<OrderItem> items) {
-//        this.items = items;
-//    }
 }
