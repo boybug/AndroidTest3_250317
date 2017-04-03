@@ -21,6 +21,8 @@ public class Order extends _FirebaseAttribute implements Serializable {
     @DatabaseField
     private String cus_code;
     private String cus_name;
+    private String User;
+    private String Stat;
 
     public String getNo() {
         return no;
@@ -55,4 +57,19 @@ public class Order extends _FirebaseAttribute implements Serializable {
     }
 
 
+    public String getUser() {
+        return User;
+    }
+
+    public void setUser(String user) {
+        User = user;
+    }
+
+    public String getStat() {
+        return Stat;
+    }
+
+    public void setStat(String stat) {
+        Stat = stat;
+    }
 }

@@ -216,19 +216,19 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
         return ent;
     }
 
-//    public OrderItem getItem(String pro_code, String foc_flag) {
-//
-//        OrderItem ent = null;
-//
-//        for (OrderItem item : getAllItems()) {
-//            if (item.getPro_code_foc_flag().equals(pro_code + "_" + foc_flag)) {
-//                ent = item;
-//                break;
-//            }
-//        }
-//
-//        return ent;
-//    }
+    public OrderItem getItem(String pro_code) {
+
+        OrderItem ent = null;
+
+        for (OrderItem item : getAllItems()) {
+            if (item.getPro_code().equals(pro_code)) {
+                ent = item;
+                break;
+            }
+        }
+
+        return ent;
+    }
 
     public float getTotalPrice() {
 

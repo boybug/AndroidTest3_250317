@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.annotation.VisibleForTesting;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
@@ -35,6 +36,7 @@ import com.example.yadisak.androidtest3.DTO.Order;
 import com.example.yadisak.androidtest3.DTO.OrderItem;
 import com.example.yadisak.androidtest3.DTO.Product;
 import com.example.yadisak.androidtest3.DTO._SelectionProperty;
+import com.example.yadisak.androidtest3.Globaldata;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._ActivityCustom;
 import com.example.yadisak.androidtest3._Extension.CMDState;
@@ -313,6 +315,8 @@ public class ActOrderCmd extends _ActivityCustom {
                     this.ent.setDate(currDateTime);
                     this.ent.setCus_code(seit.getId().toString());
                     this.ent.setCus_name(seit.getText().toString());
+                    this.ent.setUser(Globaldata.Login.getName());
+                    this.ent.setStat("new");
                     adap.addItem(ent, iCRUDRes);
 
 
@@ -327,7 +331,7 @@ public class ActOrderCmd extends _ActivityCustom {
         Button bt_add_item = (Button) findViewById(R.id.bt_add_item);
         bt_add_item.setOnClickListener(view -> {
 //            if ((isNavListProdPoint == true) || (initNavListProd == false)) {
-//                showProgressDialog();
+                showProgressDialog();
                 listViewMsProd.setAdapter(adapMsProd.getAdapter());
 //                isNavListProdPoint = false;
 
@@ -433,8 +437,9 @@ public class ActOrderCmd extends _ActivityCustom {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             drawer.openDrawer(GravityCompat.START);
-            hideProgressDialog();
+
         }
+        hideProgressDialog();
     }
 
     @Override
