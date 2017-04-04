@@ -38,15 +38,15 @@ public class ActCustomerCmd extends _ActivityCustom {
         Intent curtact = getIntent();
         CMDState state = (CMDState) curtact.getSerializableExtra(Utility.CMD_STATE);
 
-//        txt_tel.setOnClickListener(new View.OnClickListener() {
-//
-//            public void onClick(View v) {
-//                // TODO Auto-generated method stub
-//
-//                Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+txt_tel));
-//                startActivity(callIntent);
-//            }
-//        });
+        txt_tel.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+
+                Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+txt_tel));
+                startActivity(callIntent);
+            }
+        });
 
 
         switch (state) {

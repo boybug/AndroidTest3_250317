@@ -32,5 +32,5 @@
         <activity android:name=".ActLogin" android:noHistory="true"/>
 
     </application>
-    <!--<uses-permission android:name="android.permission.CALL_PHONE" />-->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 </manifest>
