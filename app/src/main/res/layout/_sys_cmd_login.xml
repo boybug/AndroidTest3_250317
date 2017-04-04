@@ -51,7 +51,8 @@
                     android:ellipsize="end"
                     android:gravity="center|left"
                     android:hint="อีเมล"
-                    android:inputType="text"
+                    android:ems="10"
+                    android:inputType="textEmailAddress"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingLeft="5dp"
@@ -71,11 +72,13 @@
                     android:gravity="center|left"
                     android:hint="รหัสผ่าน [ไม่น้อยกว่า 6 หลัก]"
                     android:inputType="textPassword"
+                    android:ems="10"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingLeft="5dp"
                     android:scrollHorizontally="true"
                     android:textSize="20dp" />
+
 
             </TableRow>
 
