@@ -27,28 +27,39 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yadisak.androidtest3.CollectionAdap._SelectionAdap;
+import com.example.yadisak.androidtest3.ControllerAdap.ViewBranch;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewCustomer;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewOrder;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewOrderItem;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewProductOrdPick;
+import com.example.yadisak.androidtest3.DTO.Branch;
 import com.example.yadisak.androidtest3.DTO.Customer;
 import com.example.yadisak.androidtest3.DTO.Order;
 import com.example.yadisak.androidtest3.DTO.OrderItem;
 import com.example.yadisak.androidtest3.DTO.Product;
+import com.example.yadisak.androidtest3.DTO.ProductPrice;
 import com.example.yadisak.androidtest3.DTO._SelectionProperty;
 import com.example.yadisak.androidtest3.Globaldata;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._ActivityCustom;
 import com.example.yadisak.androidtest3._Extension.CMDState;
+import com.example.yadisak.androidtest3._Extension.CRUDMessage;
 import com.example.yadisak.androidtest3._Extension.DAOState;
 import com.example.yadisak.androidtest3._Extension.Utility;
 import com.example.yadisak.androidtest3._Interface.ICRUDResult;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class ActOrderCmd extends _ActivityCustom {
-
+    ViewBranch adapBranch;
     ViewOrder adap;
     ViewOrderItem adapOrProd;
     ViewProductOrdPick adapMsProd;
@@ -59,9 +70,10 @@ public class ActOrderCmd extends _ActivityCustom {
 
     Intent curtact;
     CMDState state;
+
     Order ent;
     Product ent_pro;
-
+    Branch ent_branch;
     TextView txt_orno;
 //    TextView txt_point;
     TextView txt_total;
@@ -91,8 +103,6 @@ public class ActOrderCmd extends _ActivityCustom {
             switch (state) {
                 case NEW:
 
-                    // setTitle("ย้ายชื่อลูกค้าขึ้นมา");
-
                     Date currDateTime = new Date(System.currentTimeMillis());
 
                     // Customer Spinner
@@ -111,7 +121,7 @@ public class ActOrderCmd extends _ActivityCustom {
                         @Override
                         public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                             _SelectionProperty seit = (_SelectionProperty) sp_customer.getSelectedItem();
-//                            txt_point.setText(String.valueOf((int) seit.getUdf1()));
+
                         }
 
                         @Override
@@ -124,7 +134,6 @@ public class ActOrderCmd extends _ActivityCustom {
 
                     txt_orno.setText("");
                     txt_total.setText("0.0");
-                    //txt_ordate.setText(Utility.DATE_FORMAT.format(currDateTime));
 
                     tr_customer_new.setVisibility(View.VISIBLE);
                     tr_order_save.setVisibility(View.VISIBLE);
@@ -153,13 +162,13 @@ public class ActOrderCmd extends _ActivityCustom {
                     listViewOrProd.setOnItemLongClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
                         OrderItem ordi = adapOrProd.getItem(position);
-//                        ordi.setCus_code(ent.getCus_code());
                         adapOrProd.removeItem(ordi, new ICRUDResult() {
                             @Override
                             public void onReturn(DAOState status, String message) {
                                 if (status == DAOState.SUCCESS) {
-//                                    funcCalpoint();
+
                                     funcCalTotal();
+
                                 } else {
                                     showMessageAlert(message);
                                 }
@@ -183,7 +192,6 @@ public class ActOrderCmd extends _ActivityCustom {
                     adap.getCustomer(ent, (status, message, obj) -> {
                         if (status == DAOState.SUCCESS) {
                             Customer cus = (Customer) obj;
-//                            txt_point.setText(String.valueOf(cus.getPoint()));
                         } else {
                             showMessageNoti(message);
                         }
@@ -191,7 +199,6 @@ public class ActOrderCmd extends _ActivityCustom {
 
                     sp_customer.setAdapter(null);
                     txt_orno.setText(ent.getNo());
-                    //txt_ordate.setText(Utility.DATE_FORMAT.format(ent.getDate()));
 
                     tr_customer_new.setVisibility(View.GONE);
                     tr_order_save.setVisibility(View.GONE);
@@ -220,24 +227,7 @@ public class ActOrderCmd extends _ActivityCustom {
             }
         }, 1000);
     }
-//    void funcCalpoint() {
-//
-//        final Handler handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                adap.getCustomer(ent, (status, message, obj) -> {
-//                    if (status == DAOState.SUCCESS) {
-//                        Customer cus = (Customer) obj;
-////                        txt_point.setText(String.valueOf(cus.getPoint()));
-//                    } else {
-//                        showMessageNoti(message);
-//                    }
-//                });
-//            }
-//        }, 1000);
 
-//    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -277,14 +267,18 @@ public class ActOrderCmd extends _ActivityCustom {
         this.initActivity();
 
 
+        int current = Globaldata.Branch.getNumber();
+
         Button bt_cmd_save = (Button) findViewById(R.id.bt_cmd_save);
         bt_cmd_save.setText("สร้าง");
         bt_cmd_save.setOnClickListener(view -> {
 
+            String date = new SimpleDateFormat("yyMM").format(new Date());
+            String last_no = "000";
+                last_no = last_no + String.valueOf(current + 1);
+                last_no = last_no.substring(last_no.length()-4, last_no.length());
 
-            int last_no = 0;
-                last_no = getCount() + 1;
-            txt_orno.setText("TEST"+last_no);
+            txt_orno.setText(Globaldata.Branch.getCode()+date+last_no);
 
 
 
@@ -298,8 +292,26 @@ public class ActOrderCmd extends _ActivityCustom {
                         if (state == CMDState.NEW) {
 
                             state = CMDState.EDIT;
-                            hasChanged = true;
 
+                            DatabaseReference refDB = FirebaseDatabase.getInstance().getReference();
+                            refDB.child("branch")
+                                    .orderByChild("id").equalTo(Globaldata.Branch.getId())
+                                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            if (dataSnapshot.exists()) {
+                                                DataSnapshot value = dataSnapshot.getChildren().iterator().next();
+
+                                                Globaldata.Branch.setNumber(current + 1);
+                                                value.getRef().child("number").setValue(current + 1);
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+                                        }
+                                    });
+
+                            hasChanged = true;
                             initActivity();
                         }
                     } else
@@ -317,8 +329,7 @@ public class ActOrderCmd extends _ActivityCustom {
                     this.ent.setCus_name(seit.getText().toString());
                     this.ent.setUser(Globaldata.Login.getName());
                     this.ent.setStat("new");
-                    adap.addItem(ent, iCRUDRes);
-
+                    adap.addItem(ent,iCRUDRes);
 
                     break;
                 case EDIT:
@@ -342,54 +353,25 @@ public class ActOrderCmd extends _ActivityCustom {
 
         });
 
-//        Button bt_add_item_point = (Button) findViewById(R.id.bt_add_item_point);
-//        bt_add_item_point.setOnClickListener(view -> {
-//            if (isNavListProdPoint == false) {
-//                showProgressDialog();
-//                listViewMsProd.setAdapter(adapMsProdPoint.getAdapter());
-//                isNavListProdPoint = true;
-//            }
-//
-//            toggleNavListProduct();
-//
-//        });
 
 
         adapMsProd = new ViewProductOrdPick(this);
-//        adapMsProdPoint = new ViewProductOrdPickPoint(this);
+
 
         listViewMsProd = (ListView) findViewById(R.id.list_order_prod_pick);
         listViewMsProd.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
-//            String foc_flag = "N";
-//            if (isNavListProdPoint == false)
-                ent_pro = adapMsProd.getItem(position);
-//            else {
-//                ent_pro = adapMsProdPoint.getItem(position);
-//                foc_flag = "Y";
-//            }
-
-            OrderItem orit = adapOrProd.getItem(ent_pro.getCode()/*, foc_flag*/);
+            OrderItem orit = adapOrProd.getItem(ent_pro.getCode());
 
             if (orit == null) {
                 orit = new OrderItem();
                 orit.setPro_key_id(ent_pro.getFirebaseId());
                 orit.setPro_code(ent_pro.getCode());
                 orit.setPro_name(ent_pro.getName());
-//                orit.setCus_code(ent.getCus_code());
-
-//                if (!isNavListProdPoint) {
-//                    orit.setFoc_flag(foc_flag);
-//                    orit.setPoint(ent_pro.getPoint());
-//                } else {
-//                    orit.setFoc_flag(foc_flag);
-//                    orit.setPoint(ent_pro.getFocpoint() * -1);
-//                }
 
                 adapOrProd.addItem(orit, (DAOState istatus, String imessage) -> {
                     if (istatus == DAOState.SUCCESS) {
 
-//                        funcCalpoint();
                         funcCalTotal();
 
                         showMessageNoti("Item : " + ent_pro.getName() + " added in order.");
@@ -399,11 +381,10 @@ public class ActOrderCmd extends _ActivityCustom {
             } else {
                 orit.setDelta(orit.getQty());
                 orit.setQty(orit.getQty() + 1);
-//                orit.setCus_code(ent.getCus_code());
+
                 adapOrProd.updateItem(orit, (DAOState ostatus, String omessage) -> {
                     if (ostatus == DAOState.SUCCESS) {
 
-//                        funcCalpoint();
                         funcCalTotal();
 
                         showMessageNoti("Item : " + ent_pro.getName() + " + quantity");
@@ -418,7 +399,6 @@ public class ActOrderCmd extends _ActivityCustom {
             @Override
             public void afterTextChanged(Editable arg0) {
                 String text = editsearch.getText().toString();
-                //adapMsProd.filter(text);
             }
 
             @Override

@@ -52,14 +52,19 @@ public class ActOrder extends _ActivityCustom {
         list.setOnItemLongClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
             Order ent = adap.getItem(position);
-            adap.removeItem(ent, new ICRUDResult() {
-                @Override
-                public void onReturn(DAOState status, String message) {
-                    if (status != DAOState.SUCCESS)
-                        showMessageAlert(message);
-                }
-            });
-            return true;
+            if(ent.getStat().equals("new")) {
+                adap.removeItem(ent, new ICRUDResult() {
+                    @Override
+                    public void onReturn(DAOState status, String message) {
+                        if (status != DAOState.SUCCESS)
+                            showMessageAlert(message);
+                    }
+                });
+                return true;
+            }
+            else {
+                return true;
+            }
         });
 
         EditText txt_search = (EditText) findViewById(R.id.txt_search);
