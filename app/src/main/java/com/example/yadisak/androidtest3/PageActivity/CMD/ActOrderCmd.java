@@ -59,11 +59,11 @@ import java.util.Date;
 import java.util.List;
 
 public class ActOrderCmd extends _ActivityCustom {
-    ViewBranch adapBranch;
+
     ViewOrder adap;
     ViewOrderItem adapOrProd;
     ViewProductOrdPick adapMsProd;
-//    ViewProductOrdPickPoint adapMsProdPoint;
+
     _SelectionAdap adapSeCus;
 
     DrawerLayout drawer;
@@ -73,9 +73,8 @@ public class ActOrderCmd extends _ActivityCustom {
 
     Order ent;
     Product ent_pro;
-    Branch ent_branch;
+
     TextView txt_orno;
-//    TextView txt_point;
     TextView txt_total;
     Spinner sp_customer;
 
@@ -92,7 +91,7 @@ public class ActOrderCmd extends _ActivityCustom {
     boolean hasChanged;
 
     boolean initNavListProd;
-//    boolean isNavListProdPoint;
+
 
     @VisibleForTesting
     public ProgressDialog mProgressDialog;
@@ -102,8 +101,6 @@ public class ActOrderCmd extends _ActivityCustom {
 
             switch (state) {
                 case NEW:
-
-                    Date currDateTime = new Date(System.currentTimeMillis());
 
                     // Customer Spinner
                     ViewCustomer adapCus = new ViewCustomer(this);
