@@ -131,6 +131,7 @@
                     android:inputType="phone"
                     android:lines="1"
                     android:maxLines="2"
+                    android:textColor="@color/colorFish"
                     android:scrollHorizontally="true" />
 
             </TableRow>

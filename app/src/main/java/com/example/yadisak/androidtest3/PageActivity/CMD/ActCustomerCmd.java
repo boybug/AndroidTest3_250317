@@ -3,8 +3,8 @@ package com.example.yadisak.androidtest3.PageActivity.CMD;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.yadisak.androidtest3.ControllerAdap.ViewCustomer;
@@ -35,18 +35,10 @@ public class ActCustomerCmd extends _ActivityCustom {
         txt_addr = (TextView) findViewById(R.id.txt_addr);
         txt_tel = (TextView) findViewById(R.id.txt_tel);
 
+
         Intent curtact = getIntent();
         CMDState state = (CMDState) curtact.getSerializableExtra(Utility.CMD_STATE);
 
-        txt_tel.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-
-                Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+txt_tel));
-                startActivity(callIntent);
-            }
-        });
 
 
         switch (state) {
@@ -70,6 +62,22 @@ public class ActCustomerCmd extends _ActivityCustom {
                 txt_name.setText(ent.getName());
                 txt_addr.setText(ent.getAddr());
                 txt_tel.setText(ent.getTel());
+                txt_tel.setInputType(InputType.TYPE_CLASS_PHONE);
+
+                txt_tel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        if(ent.getTel().equals("")) {
+                            return;
+                        }
+                        else {
+                            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                            callIntent.setData(Uri.parse("tel:" + txt_tel.getText()));
+                            startActivity(callIntent);
+                        }
+                    }
+                });
 
 
 

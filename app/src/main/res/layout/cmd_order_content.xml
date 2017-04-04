@@ -66,20 +66,47 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_column="0"
+                    android:layout_weight="0.03"
                     android:gravity="center|right"
                     android:paddingLeft="10dp"
                     android:text="เลขที่ : " />
 
-                <TextView
-                    android:id="@+id/txt_order_no"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_column="1"
-                    android:textColor="@color/colorPrimaryYellow"
-                    android:gravity="center|left"
-                    android:paddingLeft="10dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1">
 
+                    <TextView
+                        android:id="@+id/txt_order_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_column="1"
+                        android:layout_weight="0.55"
+                        android:gravity="center|left"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/colorPrimaryYellow" />
 
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center|right"
+                        android:paddingLeft="10dp"
+                        android:text="น้ำหนักรวม : " />
+
+                    <TextView
+                        android:id="@+id/txt_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+
+                        android:enabled="false"
+                        android:gravity="center|right"
+                        android:textColor="@color/colorBeef"
+                        android:paddingLeft="3dp"
+                        android:textSize="20dp"
+                        android:text="0.0"/>
+
+                </LinearLayout>
             </TableRow>
 
             <TableRow>
@@ -92,7 +119,7 @@
                     android:layout_weight="0.03"
                     android:gravity="center|right"
                     android:paddingLeft="10dp"
-                    android:text="แต้ม : " />
+                    android:text="จำนวน : " />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -100,14 +127,15 @@
                     android:layout_column="1">
 
                     <TextView
-                        android:id="@+id/txt_point"
+                        android:id="@+id/txt_qty"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.36"
+                        android:layout_weight="0.5"
                         android:enabled="false"
-                        android:textColor="@color/colorBeef"
                         android:gravity="center|left"
-                        android:paddingLeft="10dp" />
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/colorBeef"
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/textView5"
@@ -115,17 +143,19 @@
                         android:layout_height="match_parent"
                         android:gravity="center|right"
                         android:paddingLeft="10dp"
-                        android:text="ยอดรวม : " />
+                        android:text="ยอดขายรวม : " />
 
                     <TextView
                         android:id="@+id/txt_total"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.35"
+
                         android:enabled="false"
-                        android:gravity="center|left"
+                        android:gravity="center|right"
+                        android:paddingLeft="3dp"
                         android:textColor="@color/colorBeef"
-                        android:paddingLeft="10dp" />
+                        android:textSize="20dp"
+                        android:text="0.0"/>
                 </LinearLayout>
 
 
@@ -152,14 +182,14 @@
                     android:layout_span="2"
                     android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/bt_add_item_point"
-                        android:layout_width="60dp"
-                        android:layout_height="35dp"
-                        android:layout_gravity="center|right"
-                        android:background="@color/colorBeef"
-                        android:text="แถม"
-                        android:textColor="@color/colorWhite" />
+                    <!--<Button-->
+                        <!--android:id="@+id/bt_add_item_point"-->
+                        <!--android:layout_width="60dp"-->
+                        <!--android:layout_height="35dp"-->
+                        <!--android:layout_gravity="center|right"-->
+                        <!--android:background="@color/colorBeef"-->
+                        <!--android:text="แถม"-->
+                        <!--android:textColor="@color/colorWhite" />-->
 
                     <TextView
                         android:id="@+id/lab_orderitem_title"

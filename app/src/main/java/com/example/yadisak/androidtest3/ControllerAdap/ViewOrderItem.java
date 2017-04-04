@@ -69,7 +69,10 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
 
         return total;
     }
-
+    public float calTotalqty(OrderItem _item) {
+        int sum = _item.getQty();
+        return sum;
+    }
     private void updateProductStock(OrderItem _item, int qty, ICustomResult result) {
 
         refDB.child("product_" + Globaldata.Branch.getId())
@@ -236,6 +239,17 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
 
         for (OrderItem item : getAllItems()) {
             total += calTotal(item);
+        }
+
+        return total;
+    }
+
+    public int getTotalqty() {
+
+        int total = 0;
+
+        for (OrderItem item : getAllItems()) {
+            total += calTotalqty(item);
         }
 
         return total;

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
 import android.support.annotation.VisibleForTesting;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
@@ -37,13 +36,11 @@ import com.example.yadisak.androidtest3.DTO.Customer;
 import com.example.yadisak.androidtest3.DTO.Order;
 import com.example.yadisak.androidtest3.DTO.OrderItem;
 import com.example.yadisak.androidtest3.DTO.Product;
-import com.example.yadisak.androidtest3.DTO.ProductPrice;
 import com.example.yadisak.androidtest3.DTO._SelectionProperty;
 import com.example.yadisak.androidtest3.Globaldata;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._ActivityCustom;
 import com.example.yadisak.androidtest3._Extension.CMDState;
-import com.example.yadisak.androidtest3._Extension.CRUDMessage;
 import com.example.yadisak.androidtest3._Extension.DAOState;
 import com.example.yadisak.androidtest3._Extension.Utility;
 import com.example.yadisak.androidtest3._Interface.ICRUDResult;
@@ -54,7 +51,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -75,11 +71,12 @@ public class ActOrderCmd extends _ActivityCustom {
     Product ent_pro;
     Branch ent_branch;
     TextView txt_orno;
-//    TextView txt_point;
+    TextView txt_qty;
     TextView txt_total;
     Spinner sp_customer;
 
     float total_price = 0;
+    int total_qty = 0;
 
     TableRow tr_customer_new;
     TableRow tr_order_save;
@@ -136,6 +133,7 @@ public class ActOrderCmd extends _ActivityCustom {
 
                     txt_orno.setText("");
                     txt_total.setText("0.0");
+                    txt_qty.setText("0");
                     //txt_ordate.setText(Utility.DATE_FORMAT.format(currDateTime));
 
                     tr_customer_new.setVisibility(View.VISIBLE);
@@ -186,7 +184,9 @@ public class ActOrderCmd extends _ActivityCustom {
                         @Override
                         public void run() {
                             total_price = adapOrProd.getTotalPrice();
+                            total_qty = adapOrProd.getTotalqty();
                             txt_total.setText(String.valueOf(total_price));
+                            txt_qty.setText(String.valueOf(total_qty));
                         }
                     }, 1000);
 
@@ -228,7 +228,9 @@ public class ActOrderCmd extends _ActivityCustom {
             @Override
             public void run() {
                 total_price = adapOrProd.getTotalPrice();
+                total_qty = adapOrProd.getTotalqty();
                 txt_total.setText(String.valueOf(total_price));
+                txt_qty.setText(String.valueOf(total_qty));
             }
         }, 1000);
     }
@@ -277,6 +279,7 @@ public class ActOrderCmd extends _ActivityCustom {
         this.txt_orno = (TextView) findViewById(R.id.txt_order_no);
 //        this.txt_point = (TextView) findViewById(R.id.txt_point);
         this.txt_total = (TextView) findViewById(R.id.txt_total);
+        this.txt_qty = (TextView) findViewById(R.id.txt_qty);
         //this.txt_ordate = (EditText) findViewById(R.id.txt_order_date);
         this.sp_customer = (Spinner) findViewById(R.id.sp_customer);
         this.listViewOrProd = (ListView) findViewById(R.id.list_order_item);
