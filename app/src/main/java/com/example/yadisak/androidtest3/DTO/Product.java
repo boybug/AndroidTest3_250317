@@ -18,9 +18,9 @@ public class Product extends _FirebaseAttribute implements Serializable {
 
     private int stock;
 
-//    private int point;
-//
-//    private int focpoint;
+    private int gross_wgt;
+
+    private String bgcolor;
 
     public String getCode() {
         return code;
@@ -46,19 +46,20 @@ public class Product extends _FirebaseAttribute implements Serializable {
         this.stock = stock;
     }
 
-//    public int getPoint() {
-//        return point;
-//    }
-//
-//    public void setPoint(int point) {
-//        this.point = point;
-//    }
-//
-//    public int getFocpoint() {
-//        return focpoint;
-//    }
-//
-//    public void setFocpoint(int focpoint) {
-//        this.focpoint = focpoint;
-//    }
+
+    public int getGross_wgt() {
+        return gross_wgt;
+    }
+
+    public void setGross_wgt(int gross_wgt) {
+        this.gross_wgt = gross_wgt;
+    }
+
+    public String getBgcolor() {
+        return bgcolor;
+    }
+
+    public void setBgcolor(String bgcolor) {
+        this.bgcolor = bgcolor;
+    }
 }
