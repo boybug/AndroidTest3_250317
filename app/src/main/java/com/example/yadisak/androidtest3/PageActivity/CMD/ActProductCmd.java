@@ -1,6 +1,7 @@
 package com.example.yadisak.androidtest3.PageActivity.CMD;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -14,10 +15,10 @@ import com.example.yadisak.androidtest3._Extension.Utility;
 
 public class ActProductCmd extends _ActivityCustom {
 
-//    ViewProduct adap;
+
     Product ent;
 
-    TextView txt_code, txt_stock, txt_price,txt_name;
+    TextView txt_code, txt_stock, txt_price,txt_name,txt_gross_wgt;
 
 
     @Override
@@ -26,30 +27,16 @@ public class ActProductCmd extends _ActivityCustom {
 
         setContentView(R.layout.cmd_product);
 
-//        adap = new ViewProduct(this);
+
 
         txt_code = (TextView) findViewById(R.id.txt_code);
         txt_name = (TextView) findViewById(R.id.txt_name);
         txt_stock = (TextView) findViewById(R.id.txt_stock);
         txt_price = (TextView) findViewById(R.id.txt_price);
+        txt_gross_wgt = (TextView) findViewById(R.id.txt_gross_wgt);
 
-        Intent curtact = getIntent();
-        CMDState state = (CMDState) curtact.getSerializableExtra(Utility.CMD_STATE);
+                Intent curtact = getIntent();
 
-        switch (state) {
-            case NEW:
-
-                setTitle("New Product");
-
-                txt_code.setText("");
-                txt_name.setText("");
-                txt_stock.setText("");
-                txt_price.setText("");
-
-                txt_code.setEnabled(true);
-
-                break;
-            case EDIT:
 
                 setTitle("รายละเอียดสินค้า");
 
@@ -58,9 +45,11 @@ public class ActProductCmd extends _ActivityCustom {
                 txt_code.setText(ent.getCode());
                 txt_name.setText(ent.getName());
                 txt_stock.setText(String.valueOf(ent.getStock()));
-                txt_code.setEnabled(false);
-                txt_name.setEnabled(false);
-                txt_stock.setEnabled(false);
+                txt_gross_wgt.setText(String.valueOf(ent.getGross_wgt()));
+//                txt_code.setBackgroundColor(Color.parseColor(ent.getBgcolor()));
+//                txt_name.setBackgroundColor(Color.parseColor(ent.getBgcolor()));
+//                txt_stock.setBackgroundColor(Color.parseColor(ent.getBgcolor()));
+//                txt_gross_wgt.setBackgroundColor(Color.parseColor(ent.getBgcolor()));
 
                 ViewProductPrice adapPri = new ViewProductPrice(this,ent.getFirebaseId());
 
@@ -68,7 +57,6 @@ public class ActProductCmd extends _ActivityCustom {
                 list.setAdapter(adapPri.getAdapter());
                 list.setEmptyView(findViewById(R.id.emptyElement));
 
-                break;
-        }
+
     }
 }

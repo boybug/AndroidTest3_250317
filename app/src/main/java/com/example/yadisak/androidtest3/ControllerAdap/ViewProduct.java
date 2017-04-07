@@ -1,6 +1,7 @@
 package com.example.yadisak.androidtest3.ControllerAdap;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
@@ -44,6 +45,8 @@ public class ViewProduct implements ICRUDAdap<Product> {
 
                 TextView lab_code = (TextView) v.findViewById(R.id.lab_code);
                 lab_code.setText(model.getCode());
+
+                v.setBackgroundColor(Color.parseColor(model.getBgcolor()));
             }
 
             @Override
