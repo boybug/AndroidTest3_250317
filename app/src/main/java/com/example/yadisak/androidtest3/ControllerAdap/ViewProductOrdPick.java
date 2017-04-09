@@ -1,6 +1,7 @@
 package com.example.yadisak.androidtest3.ControllerAdap;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,6 +11,7 @@ import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._FBProvider.FirebaseCustomAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.List;
 
@@ -18,6 +20,8 @@ public class ViewProductOrdPick {
 
     DatabaseReference refDB = FirebaseDatabase.getInstance().getReference();
     DatabaseReference refTB = refDB.child("product_" + Globaldata.Branch.getId());
+    Query q = refTB.orderByChild("stock").startAt(1);
+
 
     FirebaseCustomAdapter<Product> adap;
 
@@ -29,20 +33,17 @@ public class ViewProductOrdPick {
 
     public ViewProductOrdPick(Activity activity) {
 
-        adap = new FirebaseCustomAdapter<Product>(activity, Product.class, R.layout._listrow_item_order_pick, refTB.orderByKey()) {
+        adap = new FirebaseCustomAdapter<Product>(activity, Product.class, R.layout._listrow_item_order_pick, q) {
             @Override
             protected void populateView(View v, Product model) {
 
-//                LinearLayout xxx =  (LinearLayout) v.findViewById(R.id.lin_lay_name);
-//                xxx.setBackgroundColor(0xFF000000);
+                    TextView lab_pro_name = (TextView) v.findViewById(R.id.lab_pro_name);
+                    lab_pro_name.setText(model.getName());
 
-                TextView lab_pro_name = (TextView) v.findViewById(R.id.lab_pro_name);
-                lab_pro_name.setText(model.getName());
+                    TextView lab_pro_qty = (TextView) v.findViewById(R.id.lab_pro_qty);
+                    lab_pro_qty.setText("[" + String.valueOf(model.getStock()) + "]");
 
-                TextView lab_pro_qty = (TextView) v.findViewById(R.id.lab_pro_qty);
-                lab_pro_qty.setText("[" + String.valueOf(model.getStock()) + "]");
-
-
+                    v.setBackgroundColor(Color.parseColor(model.getBgcolor()));
             }
 
             @Override
