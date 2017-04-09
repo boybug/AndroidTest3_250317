@@ -1,6 +1,7 @@
 package com.example.yadisak.androidtest3.ControllerAdap;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,7 +11,6 @@ import com.example.yadisak.androidtest3.Globaldata;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._Extension.CRUDMessage;
 import com.example.yadisak.androidtest3._Extension.DAOState;
-import com.example.yadisak.androidtest3._Extension.Utility;
 import com.example.yadisak.androidtest3._FBProvider.FirebaseCustomAdapter;
 import com.example.yadisak.androidtest3._Interface.ICRUDAdap;
 import com.example.yadisak.androidtest3._Interface.ICRUDResult;
@@ -39,11 +39,21 @@ public class ViewOrder implements ICRUDAdap<Order> {
         adap = new FirebaseCustomAdapter<Order>(activity, Order.class, R.layout._listrow_order, refTB.orderByKey()) {
             @Override
             protected void populateView(View v, Order model) {
+
                 TextView lab_order_no = (TextView) v.findViewById(R.id.lab_order_no);
                 lab_order_no.setText(model.getNo());
 
-                TextView lab_order_date = (TextView) v.findViewById(R.id.lab_order_date);
-                lab_order_date.setText(Utility.DATE_FORMAT.format(model.getDate()));
+                TextView lab_order_cus = (TextView) v.findViewById(R.id.lab_order_cus);
+                lab_order_cus.setText(model.getCus_name());
+
+                TextView lab_order_total = (TextView) v.findViewById(R.id.lab_order_total);
+                lab_order_total.setText(String.valueOf(model.getTotal()));
+
+                if (model.getStat().equals("new")) {
+                    v.setBackgroundColor(Color.parseColor("#71c7b3"));
+                }
+                else
+                    v.setBackgroundColor(Color.parseColor("#F49144"));
             }
 
             @Override
@@ -124,6 +134,23 @@ public class ViewOrder implements ICRUDAdap<Order> {
                 });
     }
 
+    public void updateItemtotal(Order _item, float total) {
+        refTB.orderByChild("no").equalTo(_item.getNo())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            DataSnapshot value = dataSnapshot.getChildren().iterator().next();
+                            value.getRef().child("total").setValue(total); // Set value by some field
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+    }
 
     @Override
     public void removeItem(Order _item, ICRUDResult result) {

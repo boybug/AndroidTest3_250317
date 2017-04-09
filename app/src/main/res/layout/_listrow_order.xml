@@ -27,15 +27,44 @@
                 android:textColor="@color/colorFish"
                 android:textSize="24dp" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="1">
+
             <TextView
                 android:id="@+id/lab_order_no"
                 android:layout_width="wrap_content"
                 android:layout_height="28dp"
                 android:layout_column="1"
+                android:layout_weight="0.5"
                 android:gravity="center|left"
                 android:paddingLeft="10dp"
                 android:textColor="@color/colorFish"
                 android:textSize="24dp" />
+
+
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center|right"
+                    android:paddingLeft="6dp"
+                    android:text="ยอดขายรวม : " />
+
+                <TextView
+                    android:id="@+id/lab_order_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+
+                    android:enabled="false"
+                    android:gravity="center|right"
+                    android:paddingLeft="3dp"
+                    android:textColor="@color/colorBeef"
+                    android:textSize="18dp"
+                    android:text="0.0"/>
+            </LinearLayout>
 
         </TableRow>
 
@@ -48,10 +77,10 @@
                 android:layout_column="0"
                 android:gravity="center|right"
                 android:paddingLeft="20dp"
-                android:text="วันที่" />
+                android:text="ลูกค้า" />
 
             <TextView
-                android:id="@+id/lab_order_date"
+                android:id="@+id/lab_order_cus"
                 style="@style/App_TextViewStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

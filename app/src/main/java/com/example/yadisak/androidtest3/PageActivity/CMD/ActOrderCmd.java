@@ -72,11 +72,13 @@ public class ActOrderCmd extends _ActivityCustom {
     Branch ent_branch;
     TextView txt_orno;
     TextView txt_qty;
+    TextView txt_wgt;
     TextView txt_total;
     Spinner sp_customer;
 
     float total_price = 0;
     int total_qty = 0;
+    int total_wgt = 0;
 
     TableRow tr_customer_new;
     TableRow tr_order_save;
@@ -185,8 +187,11 @@ public class ActOrderCmd extends _ActivityCustom {
                         public void run() {
                             total_price = adapOrProd.getTotalPrice();
                             total_qty = adapOrProd.getTotalqty();
+                            total_wgt = adapOrProd.getTotalwgt();
                             txt_total.setText(String.valueOf(total_price));
                             txt_qty.setText(String.valueOf(total_qty));
+                            txt_wgt.setText(String.valueOf(total_wgt));
+                            adap.updateItemtotal(ent,total_price);
                         }
                     }, 1000);
 
@@ -229,8 +234,11 @@ public class ActOrderCmd extends _ActivityCustom {
             public void run() {
                 total_price = adapOrProd.getTotalPrice();
                 total_qty = adapOrProd.getTotalqty();
+                total_wgt = adapOrProd.getTotalwgt();
                 txt_total.setText(String.valueOf(total_price));
                 txt_qty.setText(String.valueOf(total_qty));
+                txt_wgt.setText(String.valueOf(total_wgt));
+                adap.updateItemtotal(ent,total_price);
             }
         }, 1000);
     }
@@ -280,6 +288,7 @@ public class ActOrderCmd extends _ActivityCustom {
 //        this.txt_point = (TextView) findViewById(R.id.txt_point);
         this.txt_total = (TextView) findViewById(R.id.txt_total);
         this.txt_qty = (TextView) findViewById(R.id.txt_qty);
+        this.txt_wgt = (TextView) findViewById(R.id.txt_weight);
         //this.txt_ordate = (EditText) findViewById(R.id.txt_order_date);
         this.sp_customer = (Spinner) findViewById(R.id.sp_customer);
         this.listViewOrProd = (ListView) findViewById(R.id.list_order_item);
@@ -412,6 +421,7 @@ public class ActOrderCmd extends _ActivityCustom {
                 orit.setPro_key_id(ent_pro.getFirebaseId());
                 orit.setPro_code(ent_pro.getCode());
                 orit.setPro_name(ent_pro.getName());
+                orit.setGross_wgt(ent_pro.getGross_wgt());
 //                orit.setCus_code(ent.getCus_code());
 
 //                if (!isNavListProdPoint) {

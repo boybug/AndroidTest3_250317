@@ -73,6 +73,11 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
         int sum = _item.getQty();
         return sum;
     }
+
+    public float calTotalwgt(OrderItem _item) {
+        int sum = _item.getQty()* _item.getGross_wgt();
+        return sum;
+    }
     private void updateProductStock(OrderItem _item, int qty, ICustomResult result) {
 
         refDB.child("product_" + Globaldata.Branch.getId())
@@ -250,6 +255,17 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
 
         for (OrderItem item : getAllItems()) {
             total += calTotalqty(item);
+        }
+
+        return total;
+    }
+
+    public int getTotalwgt() {
+
+        int total = 0;
+
+        for (OrderItem item : getAllItems()) {
+            total += calTotalwgt(item);
         }
 
         return total;

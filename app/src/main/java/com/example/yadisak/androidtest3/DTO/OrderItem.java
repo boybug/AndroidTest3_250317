@@ -41,6 +41,8 @@ public class OrderItem extends _FirebaseAttribute implements Serializable {
     @Exclude
     private int delta;
 
+    private int gross_wgt;
+
 //    @Exclude
 //    private String cus_code;
 //    @Exclude
@@ -119,6 +121,14 @@ public class OrderItem extends _FirebaseAttribute implements Serializable {
     @Exclude
     public void setDelta(int delta) {
         this.delta = delta;
+    }
+
+    public int getGross_wgt() {
+        return gross_wgt;
+    }
+
+    public void setGross_wgt(int gross_wgt) {
+        this.gross_wgt = gross_wgt;
     }
 
 //    public int getPoint() {
