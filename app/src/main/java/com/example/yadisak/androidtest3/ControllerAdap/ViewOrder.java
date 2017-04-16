@@ -49,8 +49,11 @@ public class ViewOrder implements ICRUDAdap<Order> {
                 TextView lab_order_total = (TextView) v.findViewById(R.id.lab_order_total);
                 lab_order_total.setText(String.valueOf(model.getTotal()));
 
+                TextView lab_order_user = (TextView) v.findViewById(R.id.lab_order_user);
+                lab_order_user.setText(String.valueOf(model.getUser()));
+
                 if (model.getStat().equals("new")) {
-                    v.setBackgroundColor(Color.parseColor("#71c7b3"));
+                    v.setBackgroundColor(Color.parseColor("#abdacf"));
                 }
                 else
                     v.setBackgroundColor(Color.parseColor("#F49144"));

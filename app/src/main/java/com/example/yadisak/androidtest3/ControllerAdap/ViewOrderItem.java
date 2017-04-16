@@ -64,19 +64,19 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
     }
 
     public float calTotal(OrderItem _item) {
-        float sum = _item.getQty() * _item.getPrice();
-        float total = sum - ((sum * _item.getDiscount()) / 100);
+        float total = _item.getQty() * _item.getPrice();
+//        float total = sum - ((sum * _item.getDiscount()) / 100);
 
         return total;
     }
-    public float calTotalqty(OrderItem _item) {
-        int sum = _item.getQty();
-        return sum;
+    public int calTotalqty(OrderItem _item) {
+        int total = _item.getQty();
+        return total;
     }
 
-    public float calTotalwgt(OrderItem _item) {
-        int sum = _item.getQty()* _item.getGross_wgt();
-        return sum;
+    public int calTotalwgt(OrderItem _item) {
+        int total = _item.getQty()* _item.getGross_wgt();
+        return total;
     }
     private void updateProductStock(OrderItem _item, int qty, ICustomResult result) {
 
