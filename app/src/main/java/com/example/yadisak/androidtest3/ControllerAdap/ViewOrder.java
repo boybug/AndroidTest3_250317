@@ -40,11 +40,18 @@ public class ViewOrder implements ICRUDAdap<Order> {
             @Override
             protected void populateView(View v, Order model) {
 
+
+
                 TextView lab_order_no = (TextView) v.findViewById(R.id.lab_order_no);
                 lab_order_no.setText(model.getNo());
 
                 TextView lab_order_cus = (TextView) v.findViewById(R.id.lab_order_cus);
                 lab_order_cus.setText(model.getCus_name());
+
+                TextView lab_order_ = (TextView) v.findViewById(R.id.lab_order_);
+                if(model.getCus_name().length() > 30) {
+                    lab_order_.setText("...");
+                }
 
                 TextView lab_order_total = (TextView) v.findViewById(R.id.lab_order_total);
                 lab_order_total.setText(String.valueOf(model.getTotal()));
