@@ -47,6 +47,13 @@ public class ViewProduct implements ICRUDAdap<Product> {
                 lab_code.setText(model.getCode());
 
                 v.setBackgroundColor(Color.parseColor(model.getBgcolor()));
+
+                if(!model.getBgcolor().equals("#ffffff")) {
+                    lab_name.setTextColor(Color.BLACK);
+                }
+                else {
+                    lab_name.setTextColor(Color.parseColor("#0070a2"));
+                }
             }
 
             @Override

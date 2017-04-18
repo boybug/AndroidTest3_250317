@@ -25,6 +25,8 @@
                 android:gravity="top|left"
                 android:paddingLeft="20dp"
                 android:text="ชื่อ"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textColor="@color/colorFish"
                 android:textSize="18dp" />
 
