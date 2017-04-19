@@ -8,35 +8,82 @@
     android:orientation="vertical">
 
 
-    <TableLayout
+    <!--<TableLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="vertical"-->
+        <!--android:stretchColumns="0">-->
+
+        <!--<TableRow>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/lab_pro_no"-->
+                <!--style="@style/App_TextViewStyle"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="0.01"-->
+                <!--android:paddingLeft="5dp"-->
+                <!--android:text="No." />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/lab_pro_name"-->
+                <!--style="@style/App_TextViewStyle"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="0.8"-->
+                <!--android:gravity="center|left"-->
+                <!--android:paddingLeft="5dp"-->
+                <!--android:paddingRight="20dp"-->
+                <!--android:text="Name" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/lab_pro_cal"-->
+                <!--style="@style/App_TextViewStyle"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="0.01"-->
+                <!--android:gravity="center|right"-->
+                <!--android:paddingRight="5dp"-->
+                <!--android:text="Qty" />-->
+
+        <!--</TableRow>-->
+    <!--</TableLayout>-->
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:stretchColumns="0">
+        android:layout_height="wrap_content"
+        android:layout_column="1">
+        <TextView
+            android:id="@+id/lab_pro_no"
+            style="@style/App_TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
 
-        <TableRow>
+            android:gravity="center|right"
+            android:paddingRight="5dp"
+            android:text="No." />
+        <TextView
+            android:id="@+id/lab_pro_name"
+            style="@style/App_TextViewStylePick"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center|left"
+            android:paddingLeft="5dp"
+            android:paddingRight="10dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text="Name" />
 
-            <TextView
-                android:id="@+id/lab_pro_name"
-                style="@style/App_TextViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.8"
-                android:gravity="center|left"
-                android:paddingLeft="5dp"
-                android:paddingRight="20dp"
-                android:text="Name" />
 
-            <TextView
-                android:id="@+id/lab_pro_cal"
-                style="@style/App_TextViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+        <TextView
+            android:id="@+id/lab_pro_cal"
+            style="@style/App_TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
 
-                android:gravity="center|right"
-                android:paddingRight="5dp"
-                android:text="Qty" />
-
-        </TableRow>
-    </TableLayout>
+            android:gravity="center|right"
+            android:paddingRight="5dp"
+            android:text="(Qty)" />
+    </LinearLayout>
 </LinearLayout>

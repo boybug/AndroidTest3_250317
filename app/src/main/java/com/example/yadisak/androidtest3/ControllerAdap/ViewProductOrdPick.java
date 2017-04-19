@@ -2,6 +2,7 @@ package com.example.yadisak.androidtest3.ControllerAdap;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.View;
 import android.widget.TextView;
 
@@ -31,7 +32,7 @@ public class ViewProductOrdPick {
         refTB = refDB.child("product_" + Globaldata.Branch.getId());
 
         adap = new FirebaseCustomAdapter<Product>(activity
-                , Product.class, R.layout._listrow_item_order_pick, refTB) {
+                , Product.class, R.layout._listrow_item_order_pick, refTB.orderByChild("rownum")) {
             @Override
             protected void populateView(View v, Product model) {
 
@@ -42,6 +43,15 @@ public class ViewProductOrdPick {
 
                     TextView lab_pro_qty = (TextView) v.findViewById(R.id.lab_pro_qty);
                     lab_pro_qty.setText("[" + String.valueOf(model.getStock()) + "]");
+
+                    TextView lab_pro_price = (TextView) v.findViewById(R.id.lab_pro_price);
+                    lab_pro_price.setText(String.valueOf(model.getTopprice()) + " ฿");
+                    lab_pro_price.setTextColor(Color.RED);
+
+                    if(String.valueOf(model.getStock()).equals("0")){
+                        lab_pro_name.setPaintFlags(lab_pro_name.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    }
+                    else { lab_pro_name.setPaintFlags(lab_pro_name.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);}
 
             }
 

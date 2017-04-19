@@ -22,6 +22,8 @@ public class Product extends _FirebaseAttribute implements Serializable {
 
     private String bgcolor;
 
+    private String topprice;
+
     public String getCode() {
         return code;
     }
@@ -61,5 +63,13 @@ public class Product extends _FirebaseAttribute implements Serializable {
 
     public void setBgcolor(String bgcolor) {
         this.bgcolor = bgcolor;
+    }
+
+    public String getTopprice() {
+        return topprice;
+    }
+
+    public void setTopprice(String topprice) {
+        this.topprice = topprice;
     }
 }

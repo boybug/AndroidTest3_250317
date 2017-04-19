@@ -36,7 +36,7 @@ public class ViewProduct implements ICRUDAdap<Product> {
 
     public ViewProduct(Activity activity) {
 
-        adap = new FirebaseCustomAdapter<Product>(activity, Product.class, R.layout._listrow_item, refTB.orderByChild("bgcolor")) {
+        adap = new FirebaseCustomAdapter<Product>(activity, Product.class, R.layout._listrow_item, refTB.orderByChild("rownum")) {
             @Override
             protected void populateView(View v, Product model) {
 
