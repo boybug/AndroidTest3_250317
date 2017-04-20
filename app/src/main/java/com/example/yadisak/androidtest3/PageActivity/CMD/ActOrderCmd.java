@@ -88,6 +88,7 @@ public class ActOrderCmd extends _ActivityCustom {
 
     boolean hasChanged;
 
+    int cusid = 0;
 
     @VisibleForTesting
     public ProgressDialog mProgressDialog;
@@ -98,6 +99,8 @@ public class ActOrderCmd extends _ActivityCustom {
             switch (state) {
                 case NEW:
 
+                    cusid  = Integer.parseInt(curtact.getExtras().getString("cusid"));
+
                     ViewCustomer adapCus = new ViewCustomer(this);
                     adapCus.getSelectionList((DAOState status, String message, Object obj) -> {
 
@@ -105,8 +108,12 @@ public class ActOrderCmd extends _ActivityCustom {
                         adapSeCus = new _SelectionAdap(getApplicationContext(), R.layout._spinner_item_custom, R.id.title, items);
                         sp_customer.setAdapter(adapSeCus);
 
-                        if (items.size() > 0) {
-                            sp_customer.setSelection(0);
+//                        if (items.size() > 0) {
+//                            sp_customer.setSelection(0);
+//                        }
+
+                        if (cusid != 0 ) {
+                            sp_customer.setSelection(cusid-1);
                         }
                     });
                     sp_customer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

@@ -18,6 +18,10 @@
     android:layout_width="match_parent"
     android:gravity="center|left"
     android:text="Text"
-    style="@style/App_TextViewStyle"/>
+    android:maxLines="1"
+    android:maxLength="40"
+    android:ellipsize="end"
+    style="@style/App_TextViewSniper"/>
+
 
 </LinearLayout>

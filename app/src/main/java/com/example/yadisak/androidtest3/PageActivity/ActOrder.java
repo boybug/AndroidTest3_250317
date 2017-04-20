@@ -96,6 +96,7 @@ public class ActOrder extends _ActivityCustom {
 
             Intent nextact = new Intent(this, ActOrderCmd.class);
             nextact.putExtra(Utility.CMD_STATE, CMDState.NEW);
+            nextact.putExtra("cusid","1");
             toNextActivity(nextact);
         });
 

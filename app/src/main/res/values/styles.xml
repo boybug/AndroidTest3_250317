@@ -42,8 +42,25 @@
         <item name="android:layout_height">45dp</item>
         <item name="android:textSize">18dp</item>
     </style>
+
+    <style name="App_TextViewSniper" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/colorFish</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:background">@color/colorInsect</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+
     <style name="Dialog">
         <item name="android:textColorPrimary">@color/colorFish</item>
         <item name="android:textColor">@color/colorFish</item>
+    </style>
+
+    <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
+
+    </style>
+
+    <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+
     </style>
 </resources>
