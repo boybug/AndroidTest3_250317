@@ -40,24 +40,17 @@ public class ViewOrder implements ICRUDAdap<Order> {
             @Override
             protected void populateView(View v, Order model) {
 
-
-
-                TextView lab_order_no = (TextView) v.findViewById(R.id.lab_order_no);
+                TextView lab_order_no = (TextView) v.findViewById(R.id.firstLine);
                 lab_order_no.setText(model.getNo());
 
-                TextView lab_order_cus = (TextView) v.findViewById(R.id.lab_order_cus);
-                lab_order_cus.setText(model.getCus_name());
+                TextView lab_order_cus = (TextView) v.findViewById(R.id.secondLine);
+                lab_order_cus.setText("ลูกค้า : "+model.getCus_name());
 
-                TextView lab_order_ = (TextView) v.findViewById(R.id.lab_order_);
-                if(model.getCus_name().length() > 30) {
-                    lab_order_.setText("...");
-                }
-
-                TextView lab_order_total = (TextView) v.findViewById(R.id.lab_order_total);
+                TextView lab_order_total = (TextView) v.findViewById(R.id.icon);
                 lab_order_total.setText(String.valueOf(model.getTotal()));
 
-                TextView lab_order_user = (TextView) v.findViewById(R.id.lab_order_user);
-                lab_order_user.setText(String.valueOf(model.getUser()));
+                TextView lab_order_user = (TextView) v.findViewById(R.id.tridLine);
+                lab_order_user.setText("ผู้เปิดบิล : "+String.valueOf(model.getUser()));
 
                 if (model.getStat().equals("new")) {
                     v.setBackgroundColor(Color.parseColor("#abdacf"));

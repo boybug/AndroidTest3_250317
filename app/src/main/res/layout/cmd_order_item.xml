@@ -106,7 +106,9 @@
                         android:layout_gravity="center"
                         android:background="@color/colorBeef"
                         android:text="-"
-                        android:textColor="@color/colorWhite" />
+                        android:textSize="30dp"
+                        android:textColor="@color/colorWhite"
+                        android:layout_weight="0.35" />
 
                     <EditText
                         android:id="@+id/txt_stock"
@@ -115,7 +117,8 @@
                         android:gravity="center"
                         android:text="1"
                         android:textAlignment="center"
-                        android:inputType="numberSigned" />
+                        android:inputType="numberSigned"
+                        android:layout_weight="0.19" />
 
                     <Button
                         android:id="@+id/bt_qty_add"
@@ -124,7 +127,9 @@
                         android:layout_gravity="center"
                         android:background="@color/colorFish"
                         android:text="+"
-                        android:textColor="@color/colorWhite" />
+                        android:textColor="@color/colorWhite"
+                        android:textSize="30dp"
+                        android:layout_weight="0.35" />
 
 
                 </LinearLayout>

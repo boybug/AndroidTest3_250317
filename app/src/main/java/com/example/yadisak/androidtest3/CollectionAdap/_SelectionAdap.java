@@ -1,18 +1,16 @@
 package com.example.yadisak.androidtest3.CollectionAdap;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import android.widget.ArrayAdapter;
+import com.example.yadisak.androidtest3.DTO._SelectionProperty;
+import com.example.yadisak.androidtest3.R;
 
 import java.util.List;
-
-import com.example.yadisak.androidtest3.DTO.*;
-import com.example.yadisak.androidtest3.R;
 
 public class _SelectionAdap extends ArrayAdapter<_SelectionProperty> {
 
@@ -43,7 +41,6 @@ public class _SelectionAdap extends ArrayAdapter<_SelectionProperty> {
             holder = new viewHolder();
             flater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             rowview = flater.inflate(R.layout._spinner_item_custom, null, false);
-
             holder.item_title = (TextView) rowview.findViewById(R.id.lab_spin_item_custom);
             rowview.setTag(holder);
         } else {

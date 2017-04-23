@@ -390,7 +390,7 @@ public class ActOrderCmd extends _ActivityCustom {
 
                         funcCalTotal();
 
-                        showMessageNoti("Item : " + ent_pro.getName() + " added in order.");
+//                        showMessageNoti("Item : " + ent_pro.getName() + " added in order.");
                     } else
                         showMessageAlert(imessage);
                 });
@@ -402,7 +402,7 @@ public class ActOrderCmd extends _ActivityCustom {
 
                         funcCalTotal();
 
-                        showMessageNoti("Item : " + ent_pro.getName() + " + quantity");
+//                        showMessageNoti("Item : " + ent_pro.getName() + " + quantity");
                     } else
                         showMessageAlert(omessage);
                 });

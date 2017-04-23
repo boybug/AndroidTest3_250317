@@ -105,9 +105,9 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
 
                                 result.onReturn(DAOState.SUCCESS, CRUDMessage.MSG_UPDATED, price);
                             } else
-                                result.onReturn(DAOState.CONDITION, "!Product : " + _item.getPro_code() + " qty not enough.", null);
+                                result.onReturn(DAOState.CONDITION, "จำนวนไม่พอ", null);
                         } else {
-                            result.onReturn(DAOState.CONDITION, "!Product : " + _item.getPro_code() + " not in system.", null);
+                            result.onReturn(DAOState.CONDITION, "ไม่มีสินค้าในระบบ", null);
                         }
                     }
 
