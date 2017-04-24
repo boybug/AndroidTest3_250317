@@ -72,7 +72,7 @@
                         android:layout_weight="0.55"
                         android:gravity="center|left"
                         android:paddingLeft="10dp"
-                        android:textColor="@color/colorPrimaryYellow" />
+                        android:textColor="@color/colorFish" />
 
                     <TextView
                         android:id="@+id/textView6"
