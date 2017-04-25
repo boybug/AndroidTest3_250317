@@ -65,8 +65,8 @@ public class ViewProduct implements ICRUDAdap<Product> {
                 if(searchString != null)
                 {
                     setspantext(searchString,model.getName(),lab_name);
+                    setspantext(searchString,model.getCode(),lab_code);
                 }
-
 
             }
 
@@ -184,7 +184,7 @@ public class ViewProduct implements ICRUDAdap<Product> {
         }
         else{
             for (Product p : adap.getAllItemsold()) {
-                if (p.getName().toLowerCase(Locale.getDefault()).contains(text))
+                if (p.getName().toLowerCase(Locale.getDefault()).contains(text) || p.getCode().toLowerCase(Locale.getDefault()).contains(text))
                     tempProduct.add(p);
             }
             adap.setModels(tempProduct);
