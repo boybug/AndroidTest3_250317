@@ -2,6 +2,10 @@ package com.example.yadisak.androidtest3.ControllerAdap;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.BackgroundColorSpan;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,7 +23,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ViewProduct implements ICRUDAdap<Product> {
 
@@ -27,8 +33,8 @@ public class ViewProduct implements ICRUDAdap<Product> {
     DatabaseReference refTB = refDB.child("product_"+ Globaldata.Branch.getId());
 
     FirebaseCustomAdapter<Product> adap;
+    String searchString = "";
 
-    List<Product> modelsCustom;
 
     public FirebaseCustomAdapter<Product> getAdapter() {
         return adap;
@@ -37,6 +43,7 @@ public class ViewProduct implements ICRUDAdap<Product> {
     public ViewProduct(Activity activity) {
 
         adap = new FirebaseCustomAdapter<Product>(activity, Product.class, R.layout._listrow_item, refTB.orderByChild("rownum")) {
+
             @Override
             protected void populateView(View v, Product model) {
 
@@ -54,6 +61,13 @@ public class ViewProduct implements ICRUDAdap<Product> {
                 else {
                     lab_name.setTextColor(Color.parseColor("#0070a2"));
                 }
+
+                if(searchString != null)
+                {
+                    setspantext(searchString,model.getName(),lab_name);
+                }
+
+
             }
 
             @Override
@@ -145,17 +159,55 @@ public class ViewProduct implements ICRUDAdap<Product> {
         return adap.getAllItems();
     }
 
+    public List<Product> getAllItemsold() {
+        return adap.getAllItemsold();
+    }
+
     @Override
     public int getCount() {
         return adap.getCount();
     }
 
-    public void filter() {
-        try {
 
+    public void filter(String text) {
+        this.searchString = text.toLowerCase(Locale.getDefault());
+        if(adap.getAllItemsold().size() == 0){
+            adap.setOldmodels(adap.getAllItems());
+        }
 
-        } catch (Exception ex) {
+        text = text.toLowerCase(Locale.getDefault());
+        List<Product> tempProduct = new ArrayList<>();
+        tempProduct.clear();
+        if (text.length() == 0)
+        {
+            adap.setModels(adap.getAllItemsold());
+        }
+        else{
+            for (Product p : adap.getAllItemsold()) {
+                if (p.getName().toLowerCase(Locale.getDefault()).contains(text))
+                    tempProduct.add(p);
+            }
+            adap.setModels(tempProduct);
+        }
+        adap.notifyChanged();
+    }
+
+    public void setspantext(String search, String name, TextView textView )
+    {
+        int firstIndex = name.toLowerCase(Locale.getDefault()).indexOf(search,0);
+        Spannable span = new SpannableString(name);
+        for(int i = 0; i < name.length() && firstIndex != -1; i = firstIndex +1){
+            firstIndex = name.toLowerCase(Locale.getDefault()).indexOf(search, i);
+            if(firstIndex == -1)
+                break;
+            else{
+                span.setSpan(new BackgroundColorSpan(0xFFFFFF00),firstIndex,firstIndex + search.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                textView.setText(span,TextView.BufferType.SPANNABLE);
+            }
 
         }
+
     }
+
 }
+

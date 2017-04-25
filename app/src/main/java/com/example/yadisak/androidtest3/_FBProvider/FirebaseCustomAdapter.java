@@ -26,6 +26,7 @@ public abstract class FirebaseCustomAdapter<T> extends BaseAdapter {
     private List<T> models;
     private Map<String, T> modelsMap;
     private ChildEventListener listener;
+    private List<T> oldmodels;
 
 
     public FirebaseCustomAdapter(Activity activity, Class<T> modelClass, int layout, Query ref) {
@@ -35,6 +36,7 @@ public abstract class FirebaseCustomAdapter<T> extends BaseAdapter {
         this.layout = layout;
         inflater = activity.getLayoutInflater();
         models = new ArrayList<T>();
+        oldmodels = new ArrayList<T>();
         modelsMap = new HashMap<String, T>();
 
 
@@ -144,6 +146,10 @@ public abstract class FirebaseCustomAdapter<T> extends BaseAdapter {
         return models;
     }
 
+    public List<T> getAllItemsold() {
+        return oldmodels;
+    }
+
     @Override
     public int getCount() {
         return models.size();
@@ -177,5 +183,13 @@ public abstract class FirebaseCustomAdapter<T> extends BaseAdapter {
 
     public void setLayout(int layout) {
         this.layout = layout;
+    }
+
+    public void setModels(List<T> model) {
+        this.models = model;
+    }
+
+    public void setOldmodels(List<T> oldmodels) {
+        this.oldmodels = models;
     }
 }

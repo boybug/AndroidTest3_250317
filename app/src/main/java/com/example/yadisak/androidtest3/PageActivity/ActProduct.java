@@ -20,6 +20,8 @@ import com.example.yadisak.androidtest3._Extension.DAOState;
 import com.example.yadisak.androidtest3._Extension.Utility;
 import com.example.yadisak.androidtest3._Interface.ICRUDResult;
 
+import java.util.Locale;
+
 public class ActProduct extends _ActivityCustom {
 
     ViewProduct adap;
@@ -36,6 +38,7 @@ public class ActProduct extends _ActivityCustom {
         ListView list = (ListView) findViewById(R.id.list_view_data);
         list.setAdapter(adap.getAdapter());
         list.setEmptyView(findViewById(R.id.emptyElement));
+
         list.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
             Product ent = adap.getItem(position);
@@ -63,8 +66,9 @@ public class ActProduct extends _ActivityCustom {
         txt_search.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable arg0) {
-                String text = txt_search.getText().toString();
-                //adap.filter(text);
+                String text = txt_search.getText().toString().toLowerCase(Locale.getDefault());
+                adap.filter(text);
+
             }
 
             @Override
@@ -73,6 +77,7 @@ public class ActProduct extends _ActivityCustom {
 
             @Override
             public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+
             }
         });
     }
