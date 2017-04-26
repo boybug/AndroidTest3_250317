@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -19,6 +21,8 @@ import com.example.yadisak.androidtest3._Extension.CMDState;
 import com.example.yadisak.androidtest3._Extension.DAOState;
 import com.example.yadisak.androidtest3._Extension.Utility;
 import com.example.yadisak.androidtest3._Interface.ICRUDResult;
+
+import java.util.Locale;
 
 public class ActCustomer extends _ActivityCustom {
 
@@ -63,8 +67,9 @@ public class ActCustomer extends _ActivityCustom {
         txt_search.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable arg0) {
-                String text = txt_search.getText().toString();
+                String text = txt_search.getText().toString().toLowerCase(Locale.getDefault());
                 adap.filter(text);
+
             }
 
             @Override
@@ -74,6 +79,11 @@ public class ActCustomer extends _ActivityCustom {
             @Override
             public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
             }
+        });
+
+        Button cancle = (Button) findViewById(R.id.calc_clear_txt_Prise);
+        cancle.setOnClickListener(view -> {
+            txt_search.setText("");
         });
     }
 

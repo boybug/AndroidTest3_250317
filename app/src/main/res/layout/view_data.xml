@@ -14,29 +14,27 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:stretchColumns="1">
+        android:stretchColumns="0">
 
         <TableRow android:id="@+id/tr_search">
 
-            <CheckedTextView
-                android:id="@+id/lab_search_ic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:checkMark="@drawable/ic_custom_search"
-                android:checked="false"
-                android:gravity="center"
-                android:paddingLeft="10dp" />
+
 
             <EditText
                 android:id="@+id/txt_search"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_column="1"
+                android:layout_column="0"
                 android:gravity="center|left"
-                android:hint="ค้นหา...">
+                android:hint="ค้นหา..."/>
 
-            </EditText>
+            <Button
+                android:id="@+id/calc_clear_txt_Prise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:background="@android:drawable/ic_menu_close_clear_cancel"
+                android:paddingRight="50dp" />
         </TableRow>
 
         <TableRow>

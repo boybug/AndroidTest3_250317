@@ -1,10 +1,15 @@
 package com.example.yadisak.androidtest3.ControllerAdap;
 
 import android.app.Activity;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.BackgroundColorSpan;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.yadisak.androidtest3.DTO.Customer;
+import com.example.yadisak.androidtest3.DTO.Product;
 import com.example.yadisak.androidtest3.DTO._SelectionProperty;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._Extension.CRUDMessage;
@@ -22,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ViewCustomer implements ICRUDAdap<Customer> {
 
@@ -29,6 +35,7 @@ public class ViewCustomer implements ICRUDAdap<Customer> {
     DatabaseReference refTB = refDB.child("customer");
 
     FirebaseCustomAdapter<Customer> adap;
+    String searchString = "";
 
     public FirebaseCustomAdapter<Customer> getAdapter() {
         return adap;
@@ -47,6 +54,12 @@ public class ViewCustomer implements ICRUDAdap<Customer> {
 
                 TextView lab_tel = (TextView) v.findViewById(R.id.lab_tel);
                 lab_tel.setText(String.valueOf(model.getTel()));
+
+                if(searchString != null)
+                {
+                    setspantext(searchString,model.getName(),lab_name);
+                    setspantext(searchString,model.getCode(),lab_code);
+                }
             }
 
             @Override
@@ -184,26 +197,42 @@ public class ViewCustomer implements ICRUDAdap<Customer> {
 
     }
 
-    public void filter(String charText) {
-        try {
-
-//            charText = charText.toLowerCase(Locale.getDefault());
-//            items.clear();
-//
-//            if (charText.length() == 0) {
-//                items.addAll(items_all);
-//
-//            } else {
-//
-//                for (Customer item : items_all) {
-//                    if (item.getName().toLowerCase(Locale.getDefault()).contains(charText)) {
-//                        items.add(item);
-//                    }
-//                }
-//            }
-
-        } catch (Exception ex) {
-            throw ex;
+    public void filter(String text) {
+        this.searchString = text.toLowerCase(Locale.getDefault());
+        if(adap.getAllItemsold().size() == 0){
+            adap.setOldmodels(adap.getAllItems());
         }
+
+        text = text.toLowerCase(Locale.getDefault());
+        List<Customer> tempCustomer = new ArrayList<>();
+        tempCustomer.clear();
+        if (text.length() == 0)
+        {
+            adap.setModels(adap.getAllItemsold());
+        }
+        else{
+            for (Customer p : adap.getAllItemsold()) {
+                if (p.getName().toLowerCase(Locale.getDefault()).contains(text) || p.getCode().toLowerCase(Locale.getDefault()).contains(text))
+                    tempCustomer.add(p);
+            }
+            adap.setModels(tempCustomer);
+        }
+        adap.notifyChanged();
+    }
+    public void setspantext(String search, String name, TextView textView )
+    {
+        int firstIndex = name.toLowerCase(Locale.getDefault()).indexOf(search,0);
+        Spannable span = new SpannableString(name);
+        for(int i = 0; i < name.length() && firstIndex != -1; i = firstIndex +1){
+            firstIndex = name.toLowerCase(Locale.getDefault()).indexOf(search, i);
+            if(firstIndex == -1)
+                break;
+            else{
+                span.setSpan(new BackgroundColorSpan(0xFFFFFF00),firstIndex,firstIndex + search.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                textView.setText(span,TextView.BufferType.SPANNABLE);
+            }
+
+        }
+
     }
 }
