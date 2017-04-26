@@ -415,7 +415,7 @@ public class ActOrderCmd extends _ActivityCustom {
             @Override
             public void afterTextChanged(Editable arg0) {
                 String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
-                adap.filter(text);
+                adapMsProd.filter(text);
             }
 
             @Override

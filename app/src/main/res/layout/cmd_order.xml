@@ -30,30 +30,33 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:stretchColumns="1">
+                android:stretchColumns="0">
 
-                <TableRow>
-
-                    <CheckedTextView
-                        android:id="@+id/lab_search_ic"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:checkMark="@drawable/ic_custom_search"
-                        android:checked="false"
-                        android:gravity="center" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="20dp">
 
                     <EditText
                         android:id="@+id/txt_search"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_column="0"
+
+                        android:hint="ค้นหา..." />
+
+                    <Button
+                        android:id="@+id/calc_clear_txt_Prise"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_column="1"
-                        android:gravity="center|left"
-                        android:paddingTop="30dp"
-                        android:hint="ค้นหา...">
+                        android:layout_gravity="center"
+
+                        android:background="@android:drawable/ic_menu_close_clear_cancel"
+                        android:paddingRight="50dp">
 
                         <requestFocus />
-                    </EditText>
+                    </Button>
                 </TableRow>
 
                 <TableRow>

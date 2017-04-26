@@ -83,6 +83,11 @@ public class ActOrder extends _ActivityCustom {
             public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
             }
         });
+
+        Button cancle = (Button) findViewById(R.id.calc_clear_txt_Prise);
+        cancle.setOnClickListener(view -> {
+            txt_search.setText("");
+        });
     }
 
     @Override
