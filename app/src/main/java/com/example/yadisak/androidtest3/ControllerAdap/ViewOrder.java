@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.example.yadisak.androidtest3.DTO.Customer;
 import com.example.yadisak.androidtest3.DTO.Order;
-import com.example.yadisak.androidtest3.DTO.Product;
 import com.example.yadisak.androidtest3.Globaldata;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._Extension.CRUDMessage;
@@ -192,28 +191,6 @@ public class ViewOrder implements ICRUDAdap<Order> {
     }
 
 
-    public void getlastorder(ICustomResult result) {
-
-        refTB.orderByChild("no").limitToLast(1)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            DataSnapshot value = dataSnapshot.getChildren().iterator().next();
-                            refTB.child(value.getKey()).removeValue();
-                            result.onReturn(DAOState.SUCCESS, "", null);
-                        } else {
-                        result.onReturn(DAOState.CONDITION, "!Not found Order.", null);
-                    }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        result.onReturn(DAOState.ERROR, databaseError.getMessage(), null);
-                    }
-                });
-    }
-
     @Override
     public Order getItem(Object key) {
 
@@ -223,6 +200,19 @@ public class ViewOrder implements ICRUDAdap<Order> {
         return ent;
     }
 
+    public Order getItem(String no) {
+
+        Order ent = null;
+
+        for (Order item : getAllItems()) {
+            if (item.getNo().equals(no)) {
+                ent = item;
+                break;
+            }
+        }
+
+        return ent;
+    }
     @Override
     public List<Order> getAllItems() {
         return adap.getAllItems();
@@ -273,4 +263,5 @@ public class ViewOrder implements ICRUDAdap<Order> {
         }
 
     }
+
 }

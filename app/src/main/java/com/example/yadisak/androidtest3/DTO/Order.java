@@ -1,7 +1,6 @@
 package com.example.yadisak.androidtest3.DTO;
 
 import com.j256.ormlite.table.DatabaseTable;
-import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,11 +13,9 @@ public class Order extends _FirebaseAttribute implements Serializable {
         // ORMLite needs a no-arg constructor
     }
 
-    @DatabaseField(id = true)
+
     private String no;
-    @DatabaseField
     private Date date;
-    @DatabaseField
     private String cus_code;
     private String cus_name;
     private String User;

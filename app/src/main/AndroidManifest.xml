@@ -30,7 +30,7 @@
         <activity android:name=".PageActivity.ActOrder" />
         <activity android:name=".PageActivity.CMD.ActOrderCmd" />
         <activity android:name=".PageActivity.CMD.ActOrderItemCmd" />
-
+        <activity android:name=".SummaryOrder" />
         <activity android:name=".PageActivity.ActBranch" android:noHistory="true"/>
         <activity android:name=".MainActivity" />
         <activity android:name=".ActLogin" android:noHistory="true"/>

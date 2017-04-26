@@ -51,11 +51,9 @@
                         android:layout_height="50dp"
                         android:layout_column="1"
                         android:layout_gravity="center"
+                        android:background="@android:drawable/ic_notification_clear_all"
+                        android:paddingRight="40dp">
 
-                        android:background="@android:drawable/ic_menu_close_clear_cancel"
-                        android:paddingRight="50dp">
-
-                        <requestFocus />
                     </Button>
                 </TableRow>
 

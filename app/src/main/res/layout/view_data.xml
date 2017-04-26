@@ -33,8 +33,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center_vertical"
-                android:background="@android:drawable/ic_menu_close_clear_cancel"
-                android:paddingRight="50dp" />
+                android:background="@android:drawable/ic_notification_clear_all"
+                android:elevation="0dp"
+                android:paddingRight="40dp" />
         </TableRow>
 
         <TableRow>

@@ -1,19 +1,14 @@
 package com.example.yadisak.androidtest3;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v4.app.NavUtils;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.yadisak.androidtest3.MainActivity;
-import com.example.yadisak.androidtest3.R;
 
 public class _ActivityCustom extends AppCompatActivity {
 

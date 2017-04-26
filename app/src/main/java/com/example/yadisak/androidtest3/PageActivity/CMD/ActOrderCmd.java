@@ -23,7 +23,6 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.yadisak.androidtest3.CollectionAdap._SelectionAdap;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewCustomer;
@@ -37,6 +36,7 @@ import com.example.yadisak.androidtest3.DTO.Product;
 import com.example.yadisak.androidtest3.DTO._SelectionProperty;
 import com.example.yadisak.androidtest3.Globaldata;
 import com.example.yadisak.androidtest3.R;
+import com.example.yadisak.androidtest3.SummaryOrder;
 import com.example.yadisak.androidtest3._ActivityCustom;
 import com.example.yadisak.androidtest3._Extension.CMDState;
 import com.example.yadisak.androidtest3._Extension.DAOState;
@@ -438,7 +438,7 @@ public class ActOrderCmd extends _ActivityCustom {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // This is the up button
+
             case android.R.id.home:
 
                 if (hasChanged == true) toPrevActivityRefresh();
@@ -452,7 +452,7 @@ public class ActOrderCmd extends _ActivityCustom {
 
     @Override
     public void onBackPressed() {
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -482,7 +482,16 @@ public class ActOrderCmd extends _ActivityCustom {
         Button bt_item = (Button) v.findViewById(R.id.bt_action_summary);
         bt_item.setOnClickListener(view -> {
 
-            Toast.makeText(ActOrderCmd.this, "ทำหน้า Summary", Toast.LENGTH_SHORT).show();
+            Order ent2 = adap.getItem(txt_orno.getText().toString());
+
+            Intent nextact = new Intent(this, SummaryOrder.class);
+            nextact.putExtra(Utility.ENTITY_DTO_NAME, ent2);
+            nextact.putExtra("name", ent2.getCus_name().toString());
+            nextact.putExtra("no", txt_orno.getText().toString());
+            nextact.putExtra("qty", txt_qty.getText());
+            nextact.putExtra("wgt", txt_wgt.getText());
+            nextact.putExtra("total", txt_total.getText());
+            toNextActivity(nextact);
         });
 
         return super.onPrepareOptionsMenu(menu);
