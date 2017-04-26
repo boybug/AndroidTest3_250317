@@ -2,11 +2,16 @@ package com.example.yadisak.androidtest3.ControllerAdap;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.BackgroundColorSpan;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.yadisak.androidtest3.DTO.Customer;
 import com.example.yadisak.androidtest3.DTO.Order;
+import com.example.yadisak.androidtest3.DTO.Product;
 import com.example.yadisak.androidtest3.Globaldata;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._Extension.CRUDMessage;
@@ -21,7 +26,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class ViewOrder implements ICRUDAdap<Order> {
@@ -30,6 +37,7 @@ public class ViewOrder implements ICRUDAdap<Order> {
     DatabaseReference refTB = refDB.child("order_" + Globaldata.Branch.getId());
 
     FirebaseCustomAdapter<Order> adap;
+    String searchString = "";
 
     public FirebaseCustomAdapter<Order> getAdapter() {
         return adap;
@@ -55,8 +63,15 @@ public class ViewOrder implements ICRUDAdap<Order> {
                 if (model.getStat().equals("new")) {
                     v.setBackgroundColor(Color.parseColor("#abdacf"));
                 }
-                else
+                else {
                     v.setBackgroundColor(Color.parseColor("#F49144"));
+                }
+
+                if(searchString != null)
+                {
+                    setspantext(searchString,model.getNo(),lab_order_no);
+                    setspantext(searchString,model.getCus_name(),lab_order_cus);
+                }
             }
 
             @Override
@@ -219,12 +234,43 @@ public class ViewOrder implements ICRUDAdap<Order> {
     }
 
 
-    public void filter(String charText) {
-        try {
-
-
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+    public void filter(String text) {
+        this.searchString = text.toLowerCase(Locale.getDefault());
+        if(adap.getAllItemsold().size() == 0){
+            adap.setOldmodels(adap.getAllItems());
         }
+
+        text = text.toLowerCase(Locale.getDefault());
+        List<Order> tempOrder = new ArrayList<>();
+        tempOrder.clear();
+        if (text.length() == 0)
+        {
+            adap.setModels(adap.getAllItemsold());
+        }
+        else{
+            for (Order p : adap.getAllItemsold()) {
+                if (p.getNo().toLowerCase(Locale.getDefault()).contains(text) || p.getCus_name().toLowerCase(Locale.getDefault()).contains(text))
+                    tempOrder.add(p);
+            }
+            adap.setModels(tempOrder);
+        }
+        adap.notifyChanged();
+    }
+
+    public void setspantext(String search, String name, TextView textView )
+    {
+        int firstIndex = name.toLowerCase(Locale.getDefault()).indexOf(search,0);
+        Spannable span = new SpannableString(name);
+        for(int i = 0; i < name.length() && firstIndex != -1; i = firstIndex +1){
+            firstIndex = name.toLowerCase(Locale.getDefault()).indexOf(search, i);
+            if(firstIndex == -1)
+                break;
+            else{
+                span.setSpan(new BackgroundColorSpan(0xFFFFFF00),firstIndex,firstIndex + search.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                textView.setText(span,TextView.BufferType.SPANNABLE);
+            }
+
+        }
+
     }
 }

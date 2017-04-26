@@ -3,6 +3,10 @@ package com.example.yadisak.androidtest3.ControllerAdap;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.BackgroundColorSpan;
 import android.view.View;
 import android.widget.TextView;
 
@@ -13,7 +17,9 @@ import com.example.yadisak.androidtest3._FBProvider.FirebaseCustomAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class ViewProductOrdPick {
@@ -22,6 +28,7 @@ public class ViewProductOrdPick {
     DatabaseReference refTB ;
 
     FirebaseCustomAdapter<Product> adap;
+    String searchString = "";
 
     public FirebaseCustomAdapter<Product> getAdapter() {
         return adap;
@@ -53,6 +60,11 @@ public class ViewProductOrdPick {
                     }
                     else { lab_pro_name.setPaintFlags(lab_pro_name.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);}
 
+                if(searchString != null)
+                {
+                    setspantext(searchString,model.getName(),lab_pro_name);
+                }
+
             }
 
             @Override
@@ -68,12 +80,43 @@ public class ViewProductOrdPick {
         return ent;
     }
 
-    public void filter() {
-        try {
+    public void filter(String text) {
+        this.searchString = text.toLowerCase(Locale.getDefault());
+        if(adap.getAllItemsold().size() == 0){
+            adap.setOldmodels(adap.getAllItems());
+        }
 
+        text = text.toLowerCase(Locale.getDefault());
+        List<Product> tempProduct = new ArrayList<>();
+        tempProduct.clear();
+        if (text.length() == 0)
+        {
+            adap.setModels(adap.getAllItemsold());
+        }
+        else{
+            for (Product p : adap.getAllItemsold()) {
+                if (p.getName().toLowerCase(Locale.getDefault()).contains(text))
+                    tempProduct.add(p);
+            }
+            adap.setModels(tempProduct);
+        }
+        adap.notifyChanged();
+    }
 
-        } catch (Exception ex) {
+    public void setspantext(String search, String name, TextView textView )
+    {
+        int firstIndex = name.toLowerCase(Locale.getDefault()).indexOf(search,0);
+        Spannable span = new SpannableString(name);
+        for(int i = 0; i < name.length() && firstIndex != -1; i = firstIndex +1){
+            firstIndex = name.toLowerCase(Locale.getDefault()).indexOf(search, i);
+            if(firstIndex == -1)
+                break;
+            else{
+                span.setSpan(new BackgroundColorSpan(0xFFFFFF00),firstIndex,firstIndex + search.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                textView.setText(span,TextView.BufferType.SPANNABLE);
+            }
 
         }
+
     }
 }
