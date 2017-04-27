@@ -35,7 +35,7 @@
                 android:layout_gravity="right|center_vertical"
                 android:background="@android:drawable/ic_notification_clear_all"
                 android:elevation="0dp"
-                android:paddingRight="40dp" />
+                android:paddingRight="30dp" />
         </TableRow>
 
         <TableRow>
