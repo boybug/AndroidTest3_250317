@@ -218,6 +218,7 @@ public class ActOrderCmd extends _ActivityCustom {
 
                     setTitle(ent.getCus_name());
 
+
                     break;
             }
         } catch (Exception ex) {

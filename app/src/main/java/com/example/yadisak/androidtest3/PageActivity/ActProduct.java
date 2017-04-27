@@ -91,27 +91,5 @@ public class ActProduct extends _ActivityCustom {
 
     }
 
-//    @Override
-//    public boolean onPrepareOptionsMenu(Menu menu) {
-//
-//        MenuItem actionViewItem = menu.findItem(R.id.miActionCustom);
-//        View v = MenuItemCompat.getActionView(actionViewItem);
-//
-//        Button bt_item = (Button) v.findViewById(R.id.bt_action_custom);
-//        bt_item.setOnClickListener(view -> {
-//
-//            Intent nextact = new Intent(this, ActProductCmd.class);
-//            nextact.putExtra(Utility.CMD_STATE, CMDState.NEW);
-//            toNextActivity(nextact);
-//        });
-//
-//        return super.onPrepareOptionsMenu(menu);
-//    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.custom, menu);
-        return true;
-    }
 
 }

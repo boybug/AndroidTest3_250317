@@ -61,9 +61,13 @@ public class ViewOrder implements ICRUDAdap<Order> {
 
                 if (model.getStat().equals("new")) {
                     v.setBackgroundColor(Color.parseColor("#abdacf"));
+                    lab_order_total.setTextColor(Color.parseColor("#ff0000"));
+                    lab_order_no.setTextColor(Color.parseColor("#0070a2"));
                 }
-                else {
+                else  if (model.getStat().equals("confirm")){
                     v.setBackgroundColor(Color.parseColor("#F49144"));
+                    lab_order_total.setTextColor(Color.parseColor("#000000"));
+                    lab_order_no.setTextColor(Color.parseColor("#000000"));
                 }
 
                 if(searchString != null)
@@ -159,6 +163,24 @@ public class ViewOrder implements ICRUDAdap<Order> {
                         if (dataSnapshot.exists()) {
                             DataSnapshot value = dataSnapshot.getChildren().iterator().next();
                             value.getRef().child("total").setValue(total); // Set value by some field
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+    public void updatestatus(Order _item, String stat) {
+        refTB.orderByChild("no").equalTo(_item.getNo())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            DataSnapshot value = dataSnapshot.getChildren().iterator().next();
+                            value.getRef().child("stat").setValue(stat); // Set value by some field
                         }
                     }
 

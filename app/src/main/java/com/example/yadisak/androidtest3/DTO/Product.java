@@ -24,6 +24,8 @@ public class Product extends _FirebaseAttribute implements Serializable {
 
     private String topprice;
 
+    private String step;
+
     public String getCode() {
         return code;
     }
@@ -71,5 +73,13 @@ public class Product extends _FirebaseAttribute implements Serializable {
 
     public void setTopprice(String topprice) {
         this.topprice = topprice;
+    }
+
+    public String getStep() {
+        return step;
+    }
+
+    public void setStep(String step) {
+        this.step = step;
     }
 }

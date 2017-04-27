@@ -13,15 +13,17 @@ import android.widget.ListView;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.yadisak.androidtest3.ControllerAdap.ViewOrder;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewOrderItem;
 import com.example.yadisak.androidtest3.DTO.Order;
+import com.example.yadisak.androidtest3.PageActivity.ActOrder;
 import com.example.yadisak.androidtest3._Extension.Utility;
 
 public class SummaryOrder extends _ActivityCustom {
 
 
     ViewOrderItem adapOrProd;
-
+    ViewOrder adap;
 
 
     Order ent;
@@ -72,6 +74,7 @@ public class SummaryOrder extends _ActivityCustom {
             ent = (Order) curtact.getSerializableExtra(Utility.ENTITY_DTO_NAME);
 
         // Order Item
+
         adapOrProd = new ViewOrderItem(this, ent.getFirebaseId());
         listViewOrProd.setAdapter(adapOrProd.getAdapter());
 
@@ -91,7 +94,11 @@ public class SummaryOrder extends _ActivityCustom {
 
         Button bt_item = (Button) v.findViewById(R.id.bt_action_close);
         bt_item.setOnClickListener(view -> {
+            adap = new ViewOrder(this);
+            adap.updatestatus(ent,"confirm");
 
+            Intent nextact = new Intent(this, ActOrder.class);
+            startActivity(nextact);
         });
 
         return super.onPrepareOptionsMenu(menu);

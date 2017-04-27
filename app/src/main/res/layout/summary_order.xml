@@ -35,16 +35,16 @@
                 <include
                     layout="@layout/customername"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="match_parent"
                     android:layout_span="2" />
 
             </TableRow>
 
-            <TableRow>
+            <TableRow android:paddingTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp"
+                    android:layout_height="match_parent"
                     android:layout_column="0"
                     android:layout_weight="0.03"
                     android:gravity="center|right"

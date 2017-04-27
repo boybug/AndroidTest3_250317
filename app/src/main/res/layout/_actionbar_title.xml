@@ -20,13 +20,16 @@
 
         <TextView
             android:id="@+id/title_text"
-            android:layout_width="238dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="0.71"
             android:paddingLeft="5dp"
             android:text="@string/app_name"
             android:textColor="@color/colorWhite"
             android:textSize="20dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
             android:textStyle="bold" />
     </LinearLayout>
 

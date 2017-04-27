@@ -17,6 +17,7 @@ import com.example.yadisak.androidtest3.ControllerAdap.*;
 import com.example.yadisak.androidtest3.DTO.Order;
 import com.example.yadisak.androidtest3.PageActivity.CMD.ActOrderCmd;
 import com.example.yadisak.androidtest3.R;
+import com.example.yadisak.androidtest3.SummaryOrder;
 import com.example.yadisak.androidtest3._ActivityCustom;
 import com.example.yadisak.androidtest3._Extension.CMDState;
 import com.example.yadisak.androidtest3._Extension.DAOState;
@@ -42,11 +43,34 @@ public class ActOrder extends _ActivityCustom {
         list.setEmptyView(findViewById(R.id.emptyElement));
         list.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
+            Intent nextact = null;
+
             Order ent = adap.getItem(position);
-            Intent nextact = new Intent(this, ActOrderCmd.class);
-            nextact.putExtra(Utility.CMD_STATE, CMDState.EDIT);
-            nextact.putExtra(Utility.ENTITY_DTO_NAME, ent);
-            toNextActivity(nextact);
+
+            if(ent.getStat().equals("new")) {
+                nextact = new Intent(this, ActOrderCmd.class);
+                nextact.putExtra(Utility.CMD_STATE, CMDState.EDIT);
+                nextact.putExtra(Utility.ENTITY_DTO_NAME, ent);
+                toNextActivity(nextact);
+            }
+            else{
+                int total_qty = 0;
+                int total_wgt = 0;
+
+                ViewOrderItem adapOrProd;
+                adapOrProd = new ViewOrderItem(this, ent.getFirebaseId());
+                total_qty = adapOrProd.getTotalqty();
+                total_wgt = adapOrProd.getTotalwgt();
+
+                nextact = new Intent(this, SummaryOrder.class);
+                nextact.putExtra(Utility.ENTITY_DTO_NAME, ent);
+                nextact.putExtra("name", ent.getCus_name().toString());
+                nextact.putExtra("no", ent.getNo().toString());
+                nextact.putExtra("qty", String.valueOf(total_qty));
+                nextact.putExtra("wgt", String.valueOf(total_wgt));
+                nextact.putExtra("total", String.valueOf(ent.getTotal()));
+                toNextActivity(nextact);
+            }
 
         });
         list.setOnItemLongClickListener((AdapterView<?> parent, View view, int position, long id) -> {
