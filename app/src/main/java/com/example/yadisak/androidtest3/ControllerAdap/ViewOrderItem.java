@@ -39,18 +39,18 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
         refTB = refDB.child("order_" + Globaldata.Branch.getId()).child(orderKeyId).child("item");
 
         adap = new FirebaseCustomAdapter<OrderItem>(activity
-                , OrderItem.class, R.layout._listrow_item_order_item, refTB.orderByChild("no")) {
-            @Override
-            protected void populateView(View v, OrderItem model) {
+                        , OrderItem.class, R.layout._listrow_item_order_item, refTB.orderByChild("no")) {
+                    @Override
+                    protected void populateView(View v, OrderItem model) {
 
-                TextView lab_pro_no = (TextView) v.findViewById(R.id.lab_pro_no);
-                lab_pro_no.setText(model.getNo()+".");
+                        TextView lab_pro_no = (TextView) v.findViewById(R.id.lab_pro_no);
+                        lab_pro_no.setText(model.getNo()+".");
 
-                TextView lab_pro_name = (TextView) v.findViewById(R.id.lab_pro_name);
-                lab_pro_name.setText(model.getPro_name());
+                        TextView lab_pro_name = (TextView) v.findViewById(R.id.lab_pro_name);
+                        lab_pro_name.setText(model.getPro_name());
 
-                TextView lab_pro_cal = (TextView) v.findViewById(R.id.lab_pro_cal);
-                lab_pro_cal.setText(model.getQty() + "x" + model.getPrice());
+                        TextView lab_pro_cal = (TextView) v.findViewById(R.id.lab_pro_cal);
+                        lab_pro_cal.setText(model.getQty() + "x" + model.getPrice());
 
             }
 

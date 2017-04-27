@@ -15,6 +15,10 @@ import android.widget.ListView;
 
 import com.example.yadisak.androidtest3.ControllerAdap.*;
 import com.example.yadisak.androidtest3.DTO.Order;
+import com.example.yadisak.androidtest3.DTO.OrderItem;
+import com.example.yadisak.androidtest3.DTO.Product;
+import com.example.yadisak.androidtest3.DTO._FirebaseAttribute;
+import com.example.yadisak.androidtest3.Globaldata;
 import com.example.yadisak.androidtest3.PageActivity.CMD.ActOrderCmd;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3.SummaryOrder;
@@ -22,12 +26,25 @@ import com.example.yadisak.androidtest3._ActivityCustom;
 import com.example.yadisak.androidtest3._Extension.CMDState;
 import com.example.yadisak.androidtest3._Extension.DAOState;
 import com.example.yadisak.androidtest3._Extension.Utility;
+import com.example.yadisak.androidtest3._FBProvider.FirebaseCustomAdapter;
 import com.example.yadisak.androidtest3._Interface.ICRUDResult;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 
 public class ActOrder extends _ActivityCustom {
 
     ViewOrder adap;
+    ViewOrderItem adapOrProd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,17 +64,15 @@ public class ActOrder extends _ActivityCustom {
 
             Order ent = adap.getItem(position);
 
-            if(ent.getStat().equals("new")) {
+            if (ent.getStat().equals("new")) {
                 nextact = new Intent(this, ActOrderCmd.class);
                 nextact.putExtra(Utility.CMD_STATE, CMDState.EDIT);
                 nextact.putExtra(Utility.ENTITY_DTO_NAME, ent);
                 toNextActivity(nextact);
-            }
-            else{
+            } else {
                 int total_qty = 0;
                 int total_wgt = 0;
 
-                ViewOrderItem adapOrProd;
                 adapOrProd = new ViewOrderItem(this, ent.getFirebaseId());
                 total_qty = adapOrProd.getTotalqty();
                 total_wgt = adapOrProd.getTotalwgt();
@@ -75,8 +90,80 @@ public class ActOrder extends _ActivityCustom {
         });
         list.setOnItemLongClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
+
             Order ent = adap.getItem(position);
-            if(ent.getStat().equals("new")) {
+
+
+            if (ent.getStat().equals("new")) {
+
+                DatabaseReference refDB = FirebaseDatabase.getInstance().getReference();
+                DatabaseReference refTB;
+                refTB = refDB.child("order_" + Globaldata.Branch.getId()).child(ent.getFirebaseId()).child("item");
+                refTB.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                        OrderItem oitem = dataSnapshot.getValue(OrderItem.class);
+                        String keyId = dataSnapshot.getKey();
+                        _FirebaseAttribute fbAttr = (_FirebaseAttribute) oitem;
+                        fbAttr.setFirebaseId(keyId);
+
+                        DatabaseReference prodtb = FirebaseDatabase.getInstance().getReference();
+                        prodtb = prodtb.child("product_" + Globaldata.Branch.getId()).child(oitem.getPro_key_id()).child("stock");
+
+                        prodtb.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                int stk = dataSnapshot.getValue(int.class);
+                                stk += oitem.getQty();
+
+                                DatabaseReference prodtb2 = FirebaseDatabase.getInstance().getReference();
+                                prodtb2 = prodtb2.child("product_" + Globaldata.Branch.getId()).child(oitem.getPro_key_id()).child("stock");
+                                prodtb2.setValue(stk);
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
+//                for (OrderItem p : ) {
+//                  adapOrProd.removeItem(p, new ICRUDResult() {
+//                      @Override
+//                      public void onReturn(DAOState status, String message) {
+//                          if (status != DAOState.SUCCESS)
+//                              showMessageAlert(message);
+//                      }
+//                  });
+//                }
+
                 adap.removeItem(ent, new ICRUDResult() {
                     @Override
                     public void onReturn(DAOState status, String message) {
@@ -85,8 +172,7 @@ public class ActOrder extends _ActivityCustom {
                     }
                 });
                 return true;
-            }
-            else {
+            } else {
                 return true;
             }
         });
@@ -125,7 +211,7 @@ public class ActOrder extends _ActivityCustom {
 
             Intent nextact = new Intent(this, ActOrderCmd.class);
             nextact.putExtra(Utility.CMD_STATE, CMDState.NEW);
-            nextact.putExtra("cusid","1");
+            nextact.putExtra("cusid", "1");
             toNextActivity(nextact);
         });
 
