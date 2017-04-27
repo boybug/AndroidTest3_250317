@@ -2,6 +2,7 @@ package com.example.yadisak.androidtest3;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
@@ -37,6 +38,9 @@ public class ActLogin extends _ActivityCustom {
     @VisibleForTesting
     public ProgressDialog mProgressDialog;
 
+    public static final String PREFS_NAME = "MyPrefsFile";
+    private static final String PREF_USERNAME = "username";
+    private static final String PREF_PASSWORD = "password";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,10 @@ public class ActLogin extends _ActivityCustom {
 
         txt_username = (EditText) findViewById(R.id.txt_username);
         txt_password = (EditText) findViewById(R.id.txt_password);
+
+        SharedPreferences pref = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+        txt_username.setText(pref.getString(PREF_USERNAME, null));;
+        txt_password.setText(pref.getString(PREF_PASSWORD, null));
 
 
         Button bt_cmd_save = (Button) findViewById(R.id.bt_cmd_login);
@@ -189,6 +197,12 @@ public class ActLogin extends _ActivityCustom {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists() == true) {
 
+                            getSharedPreferences(PREFS_NAME,MODE_PRIVATE)
+                                    .edit()
+                                    .putString(PREF_USERNAME, txt_username.getText().toString())
+                                    .putString(PREF_PASSWORD, txt_password.getText().toString())
+                                    .commit();
+
                             DataSnapshot value = dataSnapshot.getChildren().iterator().next();
                             Globaldata.Login = value.getValue(Login.class);
                             Intent nextact = new Intent(getApplicationContext(), ActBranch.class);
@@ -269,6 +283,7 @@ public class ActLogin extends _ActivityCustom {
                         else{
                             processlogin();
                         }
+
 
                         hideProgressDialog();
 
