@@ -73,8 +73,8 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
         return total;
     }
 
-    public int calTotalwgt(OrderItem _item) {
-        int total = _item.getQty()* _item.getGross_wgt();
+    public float calTotalwgt(OrderItem _item) {
+        float total = _item.getQty()* _item.getGross_wgt();
         return total;
     }
     private void updateProductStock(OrderItem _item, int qty, ICustomResult result) {
@@ -97,7 +97,7 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
                                 ProductPrice entPrice;
                                 for (DataSnapshot snapPrices : value.child("price").getChildren()) {
                                     entPrice = (ProductPrice) snapPrices.getValue(ProductPrice.class);
-                                    if (_item.getQty() >= entPrice.getFrom() && _item.getQty() <= entPrice.getTo()) {
+                                    if (_item.getQty() >= entPrice.getFrom() && (_item.getQty() <= entPrice.getTo() || entPrice.getTo() == 0)) {
                                         price = entPrice.getPrice();
                                         break;
                                     }

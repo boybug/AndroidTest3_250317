@@ -78,8 +78,7 @@
                 android:layout_height="match_parent"
                 android:layout_column="1"
                 android:gravity="center|left"
-                android:inputType="number"
-                android:maxLength="3" />
+                android:inputType="number" />
 
         </TableRow>
 
@@ -99,8 +98,7 @@
                 android:layout_height="match_parent"
                 android:layout_column="1"
                 android:gravity="center|left"
-                android:inputType="number"
-                android:maxLength="3" />
+                android:inputType="numberDecimal" />
 
         </TableRow>
 

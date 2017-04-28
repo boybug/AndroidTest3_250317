@@ -41,7 +41,7 @@ public class OrderItem extends _FirebaseAttribute implements Serializable {
     @Exclude
     private int delta;
 
-    private int gross_wgt;
+    private float gross_wgt;
 
 //    @Exclude
 //    private String cus_code;
@@ -123,13 +123,14 @@ public class OrderItem extends _FirebaseAttribute implements Serializable {
         this.delta = delta;
     }
 
-    public int getGross_wgt() {
+    public float getGross_wgt() {
         return gross_wgt;
     }
 
-    public void setGross_wgt(int gross_wgt) {
+    public void setGross_wgt(float gross_wgt) {
         this.gross_wgt = gross_wgt;
     }
+
 
 //    public int getPoint() {
 //        return point;

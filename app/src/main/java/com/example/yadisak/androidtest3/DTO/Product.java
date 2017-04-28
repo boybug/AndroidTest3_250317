@@ -18,7 +18,7 @@ public class Product extends _FirebaseAttribute implements Serializable {
 
     private int stock;
 
-    private int gross_wgt;
+    private float gross_wgt;
 
     private String bgcolor;
 
@@ -51,13 +51,7 @@ public class Product extends _FirebaseAttribute implements Serializable {
     }
 
 
-    public int getGross_wgt() {
-        return gross_wgt;
-    }
 
-    public void setGross_wgt(int gross_wgt) {
-        this.gross_wgt = gross_wgt;
-    }
 
     public String getBgcolor() {
         return bgcolor;
@@ -81,5 +75,13 @@ public class Product extends _FirebaseAttribute implements Serializable {
 
     public void setStep(String step) {
         this.step = step;
+    }
+
+    public float getGross_wgt() {
+        return gross_wgt;
+    }
+
+    public void setGross_wgt(float gross_wgt) {
+        this.gross_wgt = gross_wgt;
     }
 }
