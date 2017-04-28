@@ -56,7 +56,7 @@ public class ActLogin extends _ActivityCustom {
 
         SharedPreferences pref = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
         txt_username.setText(pref.getString(PREF_USERNAME, null));;
-        txt_password.setText(pref.getString(PREF_PASSWORD, null));
+//        txt_password.setText(pref.getString(PREF_PASSWORD, null));
 
 
         Button bt_cmd_save = (Button) findViewById(R.id.bt_cmd_login);

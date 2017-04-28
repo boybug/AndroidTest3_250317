@@ -54,11 +54,11 @@ public class ViewProductOrdPick {
                     TextView lab_pro_price = (TextView) v.findViewById(R.id.lab_pro_price);
                     lab_pro_price.setText(String.valueOf(model.getTopprice()) + " ฿");
 
-//                    if(model.getStep().equals("Y")) {
-//                        lab_pro_price.setTextColor(Color.RED);
-//                    }else{
-//                        lab_pro_price.setTextColor(Color.BLACK);
-//                    }
+                    if(model.getStep().equals("Y")) {
+                        lab_pro_price.setTextColor(Color.RED);
+                    }else{
+                        lab_pro_price.setTextColor(Color.BLACK);
+                    }
 
                     if(String.valueOf(model.getStock()).equals("0")){
                         lab_pro_name.setPaintFlags(lab_pro_name.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
