@@ -109,6 +109,15 @@ public class ActOrderCmd extends _ActivityCustom {
                         adapSeCus = new _SelectionAdap(getApplicationContext(), R.layout._spinner_item_custom, R.id.title, items);
                         sp_customer.setAdapter(adapSeCus);
 
+                        public static void selectSpinnerItemByValue(Spinner spnr, long value) {
+                            SimpleCursorAdapter adapter = (SimpleCursorAdapter) spnr.getAdapter();
+                            for (int position = 0; position < adapter.getCount(); position++) {
+                                if(adapter.getItemId(position) == value) {
+                                    spnr.setSelection(position);
+                                    return;
+                                }
+                            }
+                        }
 //                        if (items.size() > 0) {
 //                            sp_customer.setSelection(0);
 //                        }

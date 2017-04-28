@@ -13,10 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.yadisak.androidtest3.ControllerAdap.*;
+import com.example.yadisak.androidtest3.ControllerAdap.ViewOrder;
+import com.example.yadisak.androidtest3.ControllerAdap.ViewOrderItem;
 import com.example.yadisak.androidtest3.DTO.Order;
 import com.example.yadisak.androidtest3.DTO.OrderItem;
-import com.example.yadisak.androidtest3.DTO.Product;
 import com.example.yadisak.androidtest3.DTO._FirebaseAttribute;
 import com.example.yadisak.androidtest3.Globaldata;
 import com.example.yadisak.androidtest3.PageActivity.CMD.ActOrderCmd;
@@ -26,7 +26,6 @@ import com.example.yadisak.androidtest3._ActivityCustom;
 import com.example.yadisak.androidtest3._Extension.CMDState;
 import com.example.yadisak.androidtest3._Extension.DAOState;
 import com.example.yadisak.androidtest3._Extension.Utility;
-import com.example.yadisak.androidtest3._FBProvider.FirebaseCustomAdapter;
 import com.example.yadisak.androidtest3._Interface.ICRUDResult;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -34,10 +33,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 
 public class ActOrder extends _ActivityCustom {
@@ -211,7 +206,7 @@ public class ActOrder extends _ActivityCustom {
 
             Intent nextact = new Intent(this, ActOrderCmd.class);
             nextact.putExtra(Utility.CMD_STATE, CMDState.NEW);
-            nextact.putExtra("cusid", "1");
+            nextact.putExtra("cusid", "0");
             toNextActivity(nextact);
         });
 
