@@ -15,6 +15,50 @@
       },
       "oauth_client": [
         {
+          "client_id": "695810244470-pnghlffdao8096r2hnivdl9jnlaf871s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newit.bsrpos1",
+            "certificate_hash": "903608b0aea9a662e0c1768f6117d2f77b2ee289"
+          }
+        },
+        {
+          "client_id": "695810244470-j9b54gsue1p3vqdhnbmb1oon8egck3ac.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATrrT5VR8VYh6M4VDBjrUc1-oI69Bfikg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "695810244470-j9b54gsue1p3vqdhnbmb1oon8egck3ac.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:695810244470:android:dcfe3732bcad76c0",
+        "android_client_info": {
+          "package_name": "com.newit.bsrpos"
+        }
+      },
+      "oauth_client": [
+        {
           "client_id": "695810244470-j9b54gsue1p3vqdhnbmb1oon8egck3ac.apps.googleusercontent.com",
           "client_type": 3
         }

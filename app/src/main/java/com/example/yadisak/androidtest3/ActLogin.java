@@ -70,13 +70,23 @@ public class ActLogin extends _ActivityCustom {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
                 if (user != null) {
+
                     // User is signed in
+
+
                 } else {
+
                     // User is signed out
+
+
                 }
+
                 // [START_EXCLUDE]
+
                 updateUI(user);
+
                 // [END_EXCLUDE]
+
             }
         };
 
@@ -92,8 +102,6 @@ public class ActLogin extends _ActivityCustom {
     }
 
     private void updateUI(FirebaseUser user) {
-
-        hideProgressDialog();
 
         if (user != null) {
 
@@ -151,22 +159,16 @@ public class ActLogin extends _ActivityCustom {
         // [START create_user_with_email]
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-
                         if (!task.isSuccessful()) {
-
                             Toast.makeText(ActLogin.this, "อีเมลหรือรหัสผ่าน ไม่ถูกต้อง...กรุณาตรวจสอบ",Toast.LENGTH_SHORT).show();
-
                         }
                         else{
                             // คิวรี่ user มาจาก database แล้วก็ ไปหน้า branch
-
                             processlogin();
-
                         }
-                        hideProgressDialog();
+
                     }
 
                 });
@@ -195,6 +197,7 @@ public class ActLogin extends _ActivityCustom {
 
                             DataSnapshot value = dataSnapshot.getChildren().iterator().next();
                             Globaldata.Login = value.getValue(Login.class);
+                            hideProgressDialog();
                             Intent nextact = new Intent(getApplicationContext(), ActBranch.class);
                             startActivity(nextact);
 
@@ -205,7 +208,7 @@ public class ActLogin extends _ActivityCustom {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-
+                        hideProgressDialog();
                     }
                 });
 
@@ -275,7 +278,6 @@ public class ActLogin extends _ActivityCustom {
                         }
 
 
-                        hideProgressDialog();
 
                     }
 
