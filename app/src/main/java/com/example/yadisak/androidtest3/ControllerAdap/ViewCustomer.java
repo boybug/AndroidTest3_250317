@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.yadisak.androidtest3.DTO.Customer;
-import com.example.yadisak.androidtest3.DTO.Product;
 import com.example.yadisak.androidtest3.DTO._SelectionProperty;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._Extension.CRUDMessage;
@@ -183,7 +182,7 @@ public class ViewCustomer implements ICRUDAdap<Customer> {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot value : dataSnapshot.getChildren()) {
                                 Customer data = value.getValue(Customer.class);
-                                list.add(new _SelectionProperty(data.getCode(), data.getName(), data.getPoint()));
+                                list.add(new _SelectionProperty(data.getCode(), data.getName(), data.getFirebaseId()));
                             }
                         }
                         result.onReturn(DAOState.SUCCESS, "", list);

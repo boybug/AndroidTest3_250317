@@ -101,7 +101,7 @@ public class ActCustomerCmd extends _ActivityCustom {
 
             Intent nextact = new Intent(this, ActOrderCmd.class);
             nextact.putExtra(Utility.CMD_STATE, CMDState.NEW);
-            nextact.putExtra("cusid",ent.getName());
+            nextact.putExtra("cusid",ent.getCode());
             toNextActivity(nextact);
         });
 

@@ -89,7 +89,7 @@ public class ActOrderCmd extends _ActivityCustom {
 
     boolean hasChanged;
 
-    int cusid = 0;
+    String cusid = "0";
 
     @VisibleForTesting
     public ProgressDialog mProgressDialog;
@@ -100,7 +100,7 @@ public class ActOrderCmd extends _ActivityCustom {
             switch (state) {
                 case NEW:
 
-                    cusid  = Integer.parseInt(curtact.getExtras().getString("cusid"));
+                    cusid  = curtact.getExtras().getString("cusid");
 
                     ViewCustomer adapCus = new ViewCustomer(this);
                     adapCus.getSelectionList((DAOState status, String message, Object obj) -> {
@@ -109,21 +109,14 @@ public class ActOrderCmd extends _ActivityCustom {
                         adapSeCus = new _SelectionAdap(getApplicationContext(), R.layout._spinner_item_custom, R.id.title, items);
                         sp_customer.setAdapter(adapSeCus);
 
-                        public static void selectSpinnerItemByValue(Spinner spnr, long value) {
-                            SimpleCursorAdapter adapter = (SimpleCursorAdapter) spnr.getAdapter();
-                            for (int position = 0; position < adapter.getCount(); position++) {
-                                if(adapter.getItemId(position) == value) {
-                                    spnr.setSelection(position);
-                                    return;
+
+                        if (cusid != "0" ) {
+                            for(_SelectionProperty s : items){
+                                if(s.getId().equals(cusid)){
+                                    sp_customer.setSelection(items.indexOf(s));
+                                    break;
                                 }
                             }
-                        }
-//                        if (items.size() > 0) {
-//                            sp_customer.setSelection(0);
-//                        }
-
-                        if (cusid != 0 ) {
-                            sp_customer.setSelection(cusid-1);
                         }
                     });
                     sp_customer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

@@ -4,10 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,8 +17,6 @@ import com.example.yadisak.androidtest3.DTO._CustomMenu;
 import com.example.yadisak.androidtest3.PageActivity.ActCustomer;
 import com.example.yadisak.androidtest3.PageActivity.ActOrder;
 import com.example.yadisak.androidtest3.PageActivity.ActProduct;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends _ActivityCustom {
@@ -59,7 +54,7 @@ public class MainActivity extends _ActivityCustom {
                 nextact = new Intent(this, ActOrder.class);
                 startActivity(nextact);
             }else if (ent.getMenu_id() == 4) {
-                Toast.makeText(MainActivity.this, "เวอร์ชัน...ถัดไป", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "เวอร์ชัน 1.0.3", Toast.LENGTH_SHORT).show();
             }
 
         });

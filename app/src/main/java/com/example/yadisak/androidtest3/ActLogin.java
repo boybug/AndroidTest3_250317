@@ -70,23 +70,13 @@ public class ActLogin extends _ActivityCustom {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
                 if (user != null) {
-
                     // User is signed in
-
-
                 } else {
-
                     // User is signed out
-
-
                 }
-
                 // [START_EXCLUDE]
-
                 updateUI(user);
-
                 // [END_EXCLUDE]
-
             }
         };
 
