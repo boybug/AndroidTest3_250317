@@ -62,6 +62,15 @@ public class ViewProduct implements ICRUDAdap<Product> {
                     lab_name.setTextColor(Color.parseColor("#0070a2"));
                 }
 
+                TextView lab_price = (TextView) v.findViewById(R.id.lab_price);
+                lab_price.setText(model.getTopprice());
+
+                if(model.getStep().equals("Y")) {
+                    lab_price.setTextColor(Color.RED);
+                }else{
+                    lab_price.setTextColor(Color.BLACK);
+                }
+
                 if(searchString != null)
                 {
                     setspantext(searchString,model.getName(),lab_name);

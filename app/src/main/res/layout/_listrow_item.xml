@@ -19,8 +19,8 @@
 
             <TextView
                 android:id="@+id/lab_name"
-                android:layout_width="wrap_content"
-                android:layout_height="24dp"
+                android:layout_width="fill_parent"
+                android:layout_height="26dip"
                 android:layout_span="2"
                 android:gravity="top|left"
                 android:paddingLeft="20dp"
@@ -36,25 +36,47 @@
             android:layout_marginBottom="4dp"
             android:layout_marginTop="4dp">
 
+
             <TextView
                 style="@style/App_TextViewStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_column="0"
-                android:gravity="center|right"
+                android:layout_weight="0.03"
                 android:paddingLeft="20dp"
                 android:text="รหัส : "
-                android:textSize="14dp" />
+                android:textSize="14dp"/>
 
-            <TextView
-                android:id="@+id/lab_code"
-                style="@style/App_TextViewStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_column="1"
-                android:gravity="center|left"
-                android:paddingLeft="10dp"
-                android:textSize="14dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="1">
+
+                <TextView
+                    android:id="@+id/lab_code"
+                    style="@style/App_TextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_weight="0.55"
+                    android:gravity="center|left"
+                    android:paddingLeft="10dp"
+                    android:textSize="14dp" />
+
+
+                <TextView
+                    android:id="@+id/lab_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:enabled="false"
+                    android:gravity="center|right"
+                    android:paddingLeft="3dp"
+                    android:textSize="20dp"
+                    android:text="0.0"/>
+
+            </LinearLayout>
+
+
         </TableRow>
     </TableLayout>
 
