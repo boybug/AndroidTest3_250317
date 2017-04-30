@@ -57,7 +57,19 @@ public class ActOrderItemCmd extends _ActivityCustom {
 
         switch (state) {
             case NEW:
+                ent = (OrderItem) curtact.getSerializableExtra(Utility.ENTITY_DTO_NAME);
+                entOrder = (Order) curtact.getSerializableExtra("entOrder");
 
+                adap = new ViewOrderItem(this, entOrder.getFirebaseId());
+
+                setTitle("เลขที่ : " + entOrder.getNo());
+                txt_code.setText(ent.getPro_code());
+                txt_name.setText(ent.getPro_name());
+                txtStock.setText(String.valueOf(ent.getQty()));
+                txt_price.setText(String.valueOf(ent.getPrice()));
+//                txt_discount.setText(String.valueOf(ent.getDiscount()));
+
+                calculate();
                 break;
             case EDIT:
 
@@ -118,9 +130,16 @@ public class ActOrderItemCmd extends _ActivityCustom {
 
         Button bt_cmd_save = (Button) findViewById(R.id.bt_cmd_save);
         bt_cmd_save.setOnClickListener(view -> {
+            Intent intent = new Intent(this, ActOrderCmd.class);
             switch (state) {
                 case NEW:
-                    break;
+
+                    intent.putExtra(Utility.CMD_STATE, CMDState.EDIT);
+                    intent.putExtra(Utility.ENTITY_DTO_NAME, entOrder);
+                    setResult(RESULT_OK, intent);
+                    toNextActivity(intent);
+                    finish();
+
                 case EDIT:
                     ent.setQty(Integer.valueOf(txtStock.getText().toString()));
                     ent.setAmt(Float.valueOf(txt_total_amt.getText().toString()));
@@ -128,10 +147,10 @@ public class ActOrderItemCmd extends _ActivityCustom {
                     adap.updateItem(ent, (DAOState status, String message) -> {
                         if (status == DAOState.SUCCESS) {
 
-                            Intent intent = new Intent();
                             intent.putExtra(Utility.CMD_STATE, CMDState.EDIT);
                             intent.putExtra(Utility.ENTITY_DTO_NAME, entOrder);
                             setResult(RESULT_OK, intent);
+                            toNextActivity(intent);
                             finish();
 
                         } else

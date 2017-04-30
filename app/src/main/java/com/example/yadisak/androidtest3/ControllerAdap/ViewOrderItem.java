@@ -50,7 +50,7 @@ public class ViewOrderItem implements ICRUDAdap<OrderItem> {
                         lab_pro_name.setText(model.getPro_name());
 
                         TextView lab_pro_cal = (TextView) v.findViewById(R.id.lab_pro_cal);
-                        lab_pro_cal.setText(model.getQty() + "x" + model.getPrice());
+                        lab_pro_cal.setText(Math.round(model.getPrice()) + "x" + model.getQty());
 
             }
 

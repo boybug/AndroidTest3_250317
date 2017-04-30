@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.yadisak.androidtest3.CollectionAdap._SelectionAdap;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewCustomer;
@@ -470,31 +471,39 @@ public class ActOrderCmd extends _ActivityCustom {
 
         MenuItem actionViewItem = menu.findItem(R.id.ActionSummary);
         View v = MenuItemCompat.getActionView(actionViewItem);
-        switch (state) {
-            case NEW:
-
-                actionViewItem.setVisible(false);
-                this.invalidateOptionsMenu();
-                break;
-            case EDIT:
-
-                break;
-        }
 
 
         Button bt_item = (Button) v.findViewById(R.id.bt_action_summary);
         bt_item.setOnClickListener(view -> {
+            switch (state) {
+                case NEW:
+                    Toast.makeText(ActOrderCmd.this, "เอกสารไม่ถูกสร้าง ไม่สามารถยืนยันเอกสารได้", Toast.LENGTH_SHORT).show();
+//                actionViewItem.setVisible(false);
+                    this.invalidateOptionsMenu();
+                    break;
+                case EDIT:
+                    if(adapOrProd.getCount() == 0) {
+                        Toast.makeText(ActOrderCmd.this, "ไม่มีรายการขาย ไม่สามารถยืนยันเอกสารได้", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    else{
+                        if (txt_orno.getText().toString() != "") {
+                            Order ent2 = adap.getItem(txt_orno.getText().toString());
+                            Intent nextact = new Intent(this, SummaryOrder.class);
+                            nextact.putExtra(Utility.ENTITY_DTO_NAME, ent2);
+                            nextact.putExtra("name", ent2.getCus_name().toString());
+                            nextact.putExtra("no", txt_orno.getText().toString());
+                            nextact.putExtra("qty", txt_qty.getText());
+                            nextact.putExtra("wgt", txt_wgt.getText());
+                            nextact.putExtra("total", txt_total.getText());
+                            toNextActivity(nextact);
+                        } else {
+                            return;
+                        }
+                    }
+                    break;
+            }
 
-            Order ent2 = adap.getItem(txt_orno.getText().toString());
-
-            Intent nextact = new Intent(this, SummaryOrder.class);
-            nextact.putExtra(Utility.ENTITY_DTO_NAME, ent2);
-            nextact.putExtra("name", ent2.getCus_name().toString());
-            nextact.putExtra("no", txt_orno.getText().toString());
-            nextact.putExtra("qty", txt_qty.getText());
-            nextact.putExtra("wgt", txt_wgt.getText());
-            nextact.putExtra("total", txt_total.getText());
-            toNextActivity(nextact);
         });
 
         return super.onPrepareOptionsMenu(menu);

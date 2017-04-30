@@ -40,7 +40,7 @@
                     <EditText
                         android:id="@+id/txt_search"
                         android:layout_width="wrap_content"
-                        android:layout_height="50dp"
+                        android:layout_height="match_parent"
                         android:layout_column="0"
 
                         android:hint="ค้นหา..." />
@@ -48,7 +48,7 @@
                     <Button
                         android:id="@+id/calc_clear_txt_Prise"
                         android:layout_width="wrap_content"
-                        android:layout_height="50dp"
+                        android:layout_height="match_parent"
                         android:layout_column="1"
                         android:layout_gravity="center"
                         android:background="@android:drawable/ic_notification_clear_all"
