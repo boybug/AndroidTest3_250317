@@ -97,8 +97,7 @@ public class SummaryOrder extends _ActivityCustom {
             adap = new ViewOrder(this);
             adap.updatestatus(ent,"confirm");
 
-            Intent nextact = new Intent(this, ActOrder.class);
-            startActivity(nextact);
+            onBackPressed();
         });
 
         return super.onPrepareOptionsMenu(menu);
@@ -111,6 +110,8 @@ public class SummaryOrder extends _ActivityCustom {
     }
 
     public void onBackPressed() {
-
+        Intent nextact = new Intent(this, ActOrder.class);
+        startActivity(nextact);
+        finish();
     }
 }

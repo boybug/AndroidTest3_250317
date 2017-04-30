@@ -1,12 +1,12 @@
 package com.example.yadisak.androidtest3.PageActivity.CMD;
 
 
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.VisibleForTesting;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -36,6 +36,7 @@ import com.example.yadisak.androidtest3.DTO.OrderItem;
 import com.example.yadisak.androidtest3.DTO.Product;
 import com.example.yadisak.androidtest3.DTO._SelectionProperty;
 import com.example.yadisak.androidtest3.Globaldata;
+import com.example.yadisak.androidtest3.PageActivity.ActOrder;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3.SummaryOrder;
 import com.example.yadisak.androidtest3._ActivityCustom;
@@ -91,9 +92,6 @@ public class ActOrderCmd extends _ActivityCustom {
     boolean hasChanged;
 
     String cusid = "0";
-
-    @VisibleForTesting
-    public ProgressDialog mProgressDialog;
 
     void initActivity() {
         try {
@@ -442,12 +440,8 @@ public class ActOrderCmd extends _ActivityCustom {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-
             case android.R.id.home:
-
-                if (hasChanged == true) toPrevActivityRefresh();
-                else finish();
-
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -457,12 +451,14 @@ public class ActOrderCmd extends _ActivityCustom {
     @Override
     public void onBackPressed() {
 
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            if (hasChanged == true) toPrevActivityRefresh();
-            else super.onBackPressed();
-        }
+//        if (drawer.isDrawerOpen(GravityCompat.START)) {
+//            drawer.closeDrawer(GravityCompat.START);
+//        } else {
+//            if (hasChanged == true) toPrevActivityRefresh();
+//            else super.onBackPressed();
+//        }
+        startActivity(new Intent(this, ActOrder.class));
+        finish();
     }
 
 
@@ -487,19 +483,7 @@ public class ActOrderCmd extends _ActivityCustom {
                         break;
                     }
                     else{
-                        if (txt_orno.getText().toString() != "") {
-                            Order ent2 = adap.getItem(txt_orno.getText().toString());
-                            Intent nextact = new Intent(this, SummaryOrder.class);
-                            nextact.putExtra(Utility.ENTITY_DTO_NAME, ent2);
-                            nextact.putExtra("name", ent2.getCus_name().toString());
-                            nextact.putExtra("no", txt_orno.getText().toString());
-                            nextact.putExtra("qty", txt_qty.getText());
-                            nextact.putExtra("wgt", txt_wgt.getText());
-                            nextact.putExtra("total", txt_total.getText());
-                            toNextActivity(nextact);
-                        } else {
-                            return;
-                        }
+                        Summary();
                     }
                     break;
             }
@@ -508,6 +492,39 @@ public class ActOrderCmd extends _ActivityCustom {
 
         return super.onPrepareOptionsMenu(menu);
     }
+    public void Summary()
+    {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("สรุปบิล");
+        dialog.setIcon(R.mipmap.ic_launcher);
+        dialog.setCancelable(true);
+        dialog.setMessage("คุณต้องการสรุปบิลใช่หรือไม่");
+        dialog.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                if (txt_orno.getText().toString() != "") {
+                    Order ent2 = adap.getItem(txt_orno.getText().toString());
+                    Intent nextact = new Intent(ActOrderCmd.this, SummaryOrder.class);
+                    nextact.putExtra(Utility.ENTITY_DTO_NAME, ent2);
+                    nextact.putExtra("name", ent2.getCus_name().toString());
+                    nextact.putExtra("no", txt_orno.getText().toString());
+                    nextact.putExtra("qty", txt_qty.getText());
+                    nextact.putExtra("wgt", txt_wgt.getText());
+                    nextact.putExtra("total", txt_total.getText());
+                    toNextActivity(nextact);
+                } else {
+                    return;
+                }
+            }
+        });
+
+        dialog.setNegativeButton("ไม่", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        dialog.show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -515,33 +532,6 @@ public class ActOrderCmd extends _ActivityCustom {
         return true;
     }
 
-    public void showProgressDialog() {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(this);
-            mProgressDialog.setMessage(getString(R.string.loading));
-            mProgressDialog.setIndeterminate(true);
-        }
-
-        mProgressDialog.show();
-    }
-
-    public void hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        hideProgressDialog();
-    }
-
-    @Override
-    public void onStart() {
-
-        super.onStart();
-    }
 
     public int getCount() {
         return adap.getCount();

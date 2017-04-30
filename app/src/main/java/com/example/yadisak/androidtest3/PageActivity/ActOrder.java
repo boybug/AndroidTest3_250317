@@ -19,6 +19,7 @@ import com.example.yadisak.androidtest3.DTO.Order;
 import com.example.yadisak.androidtest3.DTO.OrderItem;
 import com.example.yadisak.androidtest3.DTO._FirebaseAttribute;
 import com.example.yadisak.androidtest3.Globaldata;
+import com.example.yadisak.androidtest3.MainActivity;
 import com.example.yadisak.androidtest3.PageActivity.CMD.ActOrderCmd;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3.SummaryOrder;
@@ -204,9 +205,9 @@ public class ActOrder extends _ActivityCustom {
         Button bt_item = (Button) v.findViewById(R.id.bt_action_custom);
         bt_item.setOnClickListener(view -> {
 
-            Intent nextact = new Intent(this, ActOrderCmd.class);
-            nextact.putExtra(Utility.CMD_STATE, CMDState.NEW);
-            nextact.putExtra("cusid", "0");
+            Intent nextact = new Intent(this, ActCustomer.class);
+//            nextact.putExtra(Utility.CMD_STATE, CMDState.NEW);
+//            nextact.putExtra("cusid", "0");
             toNextActivity(nextact);
         });
 
@@ -217,6 +218,23 @@ public class ActOrder extends _ActivityCustom {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.custom, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
 }

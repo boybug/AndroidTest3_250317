@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.yadisak.androidtest3.DTO.Customer;
 import com.example.yadisak.androidtest3.DTO._SelectionProperty;
+import com.example.yadisak.androidtest3.Globaldata;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._Extension.CRUDMessage;
 import com.example.yadisak.androidtest3._Extension.DAOState;
@@ -31,7 +32,7 @@ import java.util.Locale;
 public class ViewCustomer implements ICRUDAdap<Customer> {
 
     DatabaseReference refDB = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference refTB = refDB.child("customer");
+    DatabaseReference refTB = refDB.child("customer_" + Globaldata.Branch.getId());
 
     FirebaseCustomAdapter<Customer> adap;
     String searchString = "";

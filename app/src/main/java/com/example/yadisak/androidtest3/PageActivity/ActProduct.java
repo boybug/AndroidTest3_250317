@@ -2,11 +2,9 @@ package com.example.yadisak.androidtest3.PageActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MotionEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -15,6 +13,7 @@ import android.widget.ListView;
 
 import com.example.yadisak.androidtest3.ControllerAdap.ViewProduct;
 import com.example.yadisak.androidtest3.DTO.Product;
+import com.example.yadisak.androidtest3.MainActivity;
 import com.example.yadisak.androidtest3.PageActivity.CMD.ActProductCmd;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._ActivityCustom;
@@ -90,6 +89,21 @@ public class ActProduct extends _ActivityCustom {
         });
 
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
+    }
 
 }

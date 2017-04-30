@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
-import android.view.MotionEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -14,10 +14,10 @@ import android.widget.ListView;
 
 import com.example.yadisak.androidtest3.ControllerAdap.ViewCustomer;
 import com.example.yadisak.androidtest3.DTO.Customer;
+import com.example.yadisak.androidtest3.MainActivity;
 import com.example.yadisak.androidtest3.PageActivity.CMD.ActCustomerCmd;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._ActivityCustom;
-import com.example.yadisak.androidtest3._Extension.CMDState;
 import com.example.yadisak.androidtest3._Extension.DAOState;
 import com.example.yadisak.androidtest3._Extension.Utility;
 import com.example.yadisak.androidtest3._Interface.ICRUDResult;
@@ -44,7 +44,7 @@ public class ActCustomer extends _ActivityCustom {
 
             Customer ent = adap.getItem(position);
             Intent nextact = new Intent(this, ActCustomerCmd.class);
-            nextact.putExtra(Utility.CMD_STATE, CMDState.EDIT);
+//            nextact.putExtra(Utility.CMD_STATE, CMDState.EDIT);
             nextact.putExtra(Utility.ENTITY_DTO_NAME, ent);
             toNextActivity(nextact);
 
@@ -108,5 +108,22 @@ public class ActCustomer extends _ActivityCustom {
     public boolean onCreateOptionsMenu(Menu menu) {
 //        getMenuInflater().inflate(R.menu.custom, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }

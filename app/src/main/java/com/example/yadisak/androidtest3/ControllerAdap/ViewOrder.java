@@ -56,6 +56,9 @@ public class ViewOrder implements ICRUDAdap<Order> {
                 TextView lab_order_total = (TextView) v.findViewById(R.id.icon);
                 lab_order_total.setText(String.valueOf(model.getTotal()));
 
+                TextView lab_order_ship = (TextView) v.findViewById(R.id.txt_ship);
+                lab_order_ship.setText(model.getShip());
+
                 TextView lab_order_user = (TextView) v.findViewById(R.id.tridLine);
                 lab_order_user.setText("ผู้เปิดบิล : "+String.valueOf(model.getUser()));
 
@@ -86,7 +89,7 @@ public class ViewOrder implements ICRUDAdap<Order> {
 
 
     public void getCustomer(Order _item, ICustomResult result) {
-        refDB.child("customer")
+        refDB.child("customer_" + Globaldata.Branch.getId())
                 .orderByChild("code").equalTo(_item.getCus_code())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

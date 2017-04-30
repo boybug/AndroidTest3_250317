@@ -35,7 +35,7 @@
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingTop="20dp">
+                    android:paddingTop="15dp">
 
                     <EditText
                         android:id="@+id/txt_search"
@@ -47,12 +47,12 @@
 
                     <Button
                         android:id="@+id/calc_clear_txt_Prise"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_column="1"
-                        android:layout_gravity="center"
-                        android:background="@android:drawable/ic_notification_clear_all"
-                        android:paddingRight="40dp">
+                        android:layout_width="@dimen/bt_command_height"
+                        android:layout_height="@dimen/bt_command_height"
+                        android:layout_gravity="right|center_vertical"
+                        android:background="@drawable/cancelsearch"
+                        android:elevation="0dp"
+                        android:paddingRight="5dp">
 
                     </Button>
                 </TableRow>

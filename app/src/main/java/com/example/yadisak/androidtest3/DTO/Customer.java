@@ -22,6 +22,7 @@ public class Customer extends _FirebaseAttribute implements Serializable {
 
     private String addr;
     private String tel;
+    private String ship;
 
     public String getCode() {
         return code;
@@ -61,5 +62,13 @@ public class Customer extends _FirebaseAttribute implements Serializable {
 
     public void setTel(String tel) {
         this.tel = tel;
+    }
+
+    public String getShip() {
+        return ship;
+    }
+
+    public void setShip(String ship) {
+        this.ship = ship;
     }
 }

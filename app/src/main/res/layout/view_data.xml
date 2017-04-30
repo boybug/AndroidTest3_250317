@@ -16,26 +16,29 @@
         android:layout_height="match_parent"
         android:stretchColumns="0">
 
-        <TableRow android:id="@+id/tr_search">
+        <TableRow
+            android:id="@+id/tr_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
 
 
             <EditText
                 android:id="@+id/txt_search"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="match_parent"
                 android:layout_column="0"
                 android:gravity="center|left"
                 android:hint="ค้นหา..."/>
 
             <Button
                 android:id="@+id/calc_clear_txt_Prise"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/bt_command_height"
+                android:layout_height="@dimen/bt_command_height"
                 android:layout_gravity="right|center_vertical"
-                android:background="@android:drawable/ic_notification_clear_all"
+                android:background="@drawable/cancelsearch"
                 android:elevation="0dp"
-                android:paddingRight="30dp" />
+                android:paddingRight="5dp" />
         </TableRow>
 
         <TableRow>
