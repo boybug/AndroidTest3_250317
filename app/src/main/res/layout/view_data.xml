@@ -43,14 +43,30 @@
 
         <TableRow>
 
-            <ListView
-                android:id="@+id/list_view_data"
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:fastScrollEnabled="true">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
 
-            </ListView>
+                <ProgressBar
+                    android:id="@+id/HeaderProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true">
+                </ProgressBar>
+
+                <ListView
+                    android:id="@+id/list_view_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:fastScrollEnabled="true">
+
+                </ListView>
+            </RelativeLayout>
 
         </TableRow>
 
@@ -63,7 +79,7 @@
                 android:layout_centerInParent="true"
                 android:layout_span="2"
                 android:gravity="center"
-                android:text="ไม่พบข้อมูล"
+                android:text="กรุณารอสักครู่..."
                 android:textColor="@color/colorDark"
                 android:textSize="22dp"
                 android:visibility="gone" />

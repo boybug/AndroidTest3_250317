@@ -1,7 +1,9 @@
 package com.example.yadisak.androidtest3.PageActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.VisibleForTesting;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -28,6 +30,25 @@ public class ActCustomer extends _ActivityCustom {
 
     ViewCustomer adap;
 
+    @VisibleForTesting
+    public ProgressDialog mProgressDialog;
+
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage(getString(R.string.loading));
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +57,6 @@ public class ActCustomer extends _ActivityCustom {
         setTitle("ลูกค้า");
 
         adap = new ViewCustomer(this);
-
         ListView list = (ListView) findViewById(R.id.list_view_data);
         list.setAdapter(adap.getAdapter());
         list.setEmptyView(findViewById(R.id.emptyElement));

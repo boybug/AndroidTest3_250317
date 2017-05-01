@@ -67,6 +67,8 @@ public class ViewCustomer implements ICRUDAdap<Customer> {
                 return models;
             }
         };
+
+
     }
 
     @Override
@@ -235,4 +237,5 @@ public class ViewCustomer implements ICRUDAdap<Customer> {
         }
 
     }
+
 }

@@ -92,12 +92,12 @@ public class ActLogin extends _ActivityCustom {
 
         bt_cmd_save.setOnClickListener(view -> {
             signIn(txt_username.getText().toString(), txt_password.getText().toString());
-            mProgressDialog.setCancelable(false);
+
         });
 
         bt_cmd_new.setOnClickListener(view -> {
             createAccount(txt_username.getText().toString(), txt_password.getText().toString());
-            mProgressDialog.setCancelable(false);
+
         });
 
     }
@@ -117,9 +117,11 @@ public class ActLogin extends _ActivityCustom {
             mProgressDialog = new ProgressDialog(this);
             mProgressDialog.setMessage(getString(R.string.loading));
             mProgressDialog.setIndeterminate(true);
+
         }
 
         mProgressDialog.show();
+        mProgressDialog.setCancelable(false);
     }
 
     public void hideProgressDialog() {
@@ -222,7 +224,7 @@ public class ActLogin extends _ActivityCustom {
 
         if (TextUtils.isEmpty(email)) {
 
-            txt_username.setError("Required.");
+            txt_username.setError("ระบุอีเมล.");
 
             valid = false;
 
@@ -236,13 +238,13 @@ public class ActLogin extends _ActivityCustom {
 
         if (TextUtils.isEmpty(password)) {
 
-            txt_password.setError("Required.");
+            txt_password.setError("ระบุรหัสผ่าน.");
 
             valid = false;
 
         }
         else if (password.length() < 6 ){
-            txt_password.setError("รหัสผ่านต้องไม่น้อยหกว่า 6 หลัก");
+            txt_password.setError("รหัสผ่านต้องไม่น้อยกว่า 6 หลัก");
 
             valid = false;
         }
@@ -271,6 +273,7 @@ public class ActLogin extends _ActivityCustom {
 
                         if (!task.isSuccessful()) {
                             Toast.makeText(ActLogin.this, "อีเมลหรือรหัสผ่าน ไม่ถูกต้อง...กรุณาตรวจสอบ",Toast.LENGTH_SHORT).show();
+                            onStop();
                         }
                         else{
                             processlogin();

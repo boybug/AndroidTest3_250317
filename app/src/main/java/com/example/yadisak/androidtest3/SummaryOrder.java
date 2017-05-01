@@ -1,6 +1,8 @@
 package com.example.yadisak.androidtest3;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.yadisak.androidtest3.ControllerAdap.ViewOrder;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewOrderItem;
@@ -85,7 +88,30 @@ public class SummaryOrder extends _ActivityCustom {
         txt_wgt.setText(curtact.getExtras().getString("wgt"));
 
     }
+    public void Confirm()
+    {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("ยืนยันเอกสาร");
+        dialog.setIcon(R.mipmap.ic_launcher);
+        dialog.setCancelable(true);
+        dialog.setMessage("เอกสารยันแล้วจะไม่สามารถแก้ไขได้   คุณต้องการยืนยันใช่หรือไม่");
+        dialog.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                adap = new ViewOrder(SummaryOrder.this);
+                adap.updatestatus(ent,"confirm");
 
+                onBackPressed();
+            }
+        });
+
+        dialog.setNegativeButton("ไม่", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        dialog.show();
+    }
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
 
@@ -94,10 +120,10 @@ public class SummaryOrder extends _ActivityCustom {
 
         Button bt_item = (Button) v.findViewById(R.id.bt_action_close);
         bt_item.setOnClickListener(view -> {
-            adap = new ViewOrder(this);
-            adap.updatestatus(ent,"confirm");
-
-            onBackPressed();
+            if(ent.getStat().equals("confirm"))
+                Toast.makeText(SummaryOrder.this, "เอกสารได้ถูกยืนยันไปแล้ว.", Toast.LENGTH_SHORT).show();
+            else
+                Confirm();
         });
 
         return super.onPrepareOptionsMenu(menu);

@@ -58,12 +58,42 @@
                 </TableRow>
 
                 <TableRow>
+                    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                    <ProgressBar
+                        android:id="@+id/HeaderProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true">
+                    </ProgressBar>
 
                     <ListView
                         android:id="@+id/list_order_prod_pick"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_span="2"></ListView>
+                        android:layout_span="2">
+                    </ListView>
+                    </RelativeLayout>
+                </TableRow>
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/emptyElement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_span="2"
+                        android:gravity="center"
+                        android:text="กรุณารอสักครู่..."
+                        android:textColor="@color/colorDark"
+                        android:textSize="22dp"
+                        android:visibility="gone" />
                 </TableRow>
             </TableLayout>
 

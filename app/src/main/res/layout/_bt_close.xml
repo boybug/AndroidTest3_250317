@@ -4,17 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal" >
+
     <Button
         android:id="@+id/bt_action_close"
         android:layout_width="wrap_content"
-        android:minWidth="50dp"
         android:layout_height="match_parent"
-        android:textSize="16dp"
-        android:textStyle="bold"
+        android:layout_gravity="center|right"
+        android:background="@android:drawable/ic_menu_send"
+        android:minWidth="50dp"
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
-        android:layout_gravity="center|right"
-        android:background="@android:drawable/ic_menu_close_clear_cancel"
-        />
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
 </LinearLayout>

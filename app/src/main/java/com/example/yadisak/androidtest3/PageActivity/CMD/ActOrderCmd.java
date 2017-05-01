@@ -372,7 +372,7 @@ public class ActOrderCmd extends _ActivityCustom {
 
         listViewMsProd = (ListView) findViewById(R.id.list_order_prod_pick);
         listViewMsProd.setAdapter(adapMsProd.getAdapter());
-
+        listViewMsProd.setEmptyView(findViewById(R.id.emptyElement));
         listViewMsProd.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
 
