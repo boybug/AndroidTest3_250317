@@ -10,15 +10,22 @@ import android.widget.EditText;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewOrderItem;
 import com.example.yadisak.androidtest3.DTO.Order;
 import com.example.yadisak.androidtest3.DTO.OrderItem;
+import com.example.yadisak.androidtest3.DTO.Product;
+import com.example.yadisak.androidtest3.Globaldata;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._ActivityCustom;
 import com.example.yadisak.androidtest3._Extension.CMDState;
 import com.example.yadisak.androidtest3._Extension.DAOState;
 import com.example.yadisak.androidtest3._Extension.Utility;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ActOrderItemCmd extends _ActivityCustom {
 
-    EditText txt_code,txt_name, txtStock, txt_price, txt_discount, txt_discount_amt, txt_total_amt;
+    EditText txt_code,txt_name, txtStock, txt_price, txt_total_amt,txt_balance;
 
     ViewOrderItem adap;
 
@@ -29,13 +36,11 @@ public class ActOrderItemCmd extends _ActivityCustom {
     void calculate() {
 
         float sum = ent.getQty() * ent.getPrice();
-//        float dis_amt = (sum * ent.getDiscount()) / 100;
-//        float total = sum - dis_amt;
         float total = sum;
+
         txtStock.setText(String.valueOf(ent.getQty()));
-//        txt_discount_amt.setText(String.valueOf(dis_amt));
-//        txt_discount_amt.setText(String.valueOf(dis_amt));
         txt_total_amt.setText(String.valueOf(total));
+
     }
 
     @Override
@@ -48,47 +53,48 @@ public class ActOrderItemCmd extends _ActivityCustom {
         txt_name = (EditText) findViewById(R.id.txt_name);
         txtStock = (EditText) findViewById(R.id.txt_stock);
         txt_price = (EditText) findViewById(R.id.txt_price);
-//        txt_discount = (EditText) findViewById(R.id.txt_discount);
-//        txt_discount_amt = (EditText) findViewById(R.id.txt_discount_amt);
         txt_total_amt = (EditText) findViewById(R.id.txt_total_amt);
+        txt_balance = (EditText) findViewById(R.id.txt_balance);
 
         Intent curtact = getIntent();
         CMDState state = (CMDState) curtact.getSerializableExtra(Utility.CMD_STATE);
 
-        switch (state) {
-            case NEW:
-                ent = (OrderItem) curtact.getSerializableExtra(Utility.ENTITY_DTO_NAME);
-                entOrder = (Order) curtact.getSerializableExtra("entOrder");
-
-                adap = new ViewOrderItem(this, entOrder.getFirebaseId());
-
-                setTitle("เลขที่ : " + entOrder.getNo());
-                txt_code.setText(ent.getPro_code());
-                txt_name.setText(ent.getPro_name());
-                txtStock.setText(String.valueOf(ent.getQty()));
-                txt_price.setText(String.valueOf(ent.getPrice()));
-//                txt_discount.setText(String.valueOf(ent.getDiscount()));
-
-                calculate();
-                break;
-            case EDIT:
 
                 ent = (OrderItem) curtact.getSerializableExtra(Utility.ENTITY_DTO_NAME);
                 entOrder = (Order) curtact.getSerializableExtra("entOrder");
 
+
                 adap = new ViewOrderItem(this, entOrder.getFirebaseId());
 
-                setTitle("เลขที่ : " + entOrder.getNo());
-                txt_code.setText(ent.getPro_code());
-                txt_name.setText(ent.getPro_name());
-                txtStock.setText(String.valueOf(ent.getQty()));
-                txt_price.setText(String.valueOf(ent.getPrice()));
-//                txt_discount.setText(String.valueOf(ent.getDiscount()));
+        DatabaseReference refDB = FirebaseDatabase.getInstance().getReference();
+        refDB.child("product_"+ Globaldata.Branch.getId())
+                .orderByChild("code").equalTo(ent.getPro_code())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            DataSnapshot value = dataSnapshot.getChildren().iterator().next();
+                            Product prod = (Product) value.getValue(Product.class);
 
-                calculate();
+                            setTitle("เลขที่ : " + entOrder.getNo());
+                            txt_code.setText(ent.getPro_code());
+                            txt_name.setText(ent.getPro_name());
+                            txtStock.setText(String.valueOf(ent.getQty()));
+                            txt_price.setText(String.valueOf(ent.getPrice()));
+                            txt_balance.setText(String.valueOf(prod.getStock()+ent.getQty()));
+                            calculate();
 
-                break;
-        }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
+
+
+
+
 
         Button bt_qty_add = (Button) findViewById(R.id.bt_qty_add);
         bt_qty_add.setOnClickListener(view -> {

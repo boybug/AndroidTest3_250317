@@ -37,7 +37,7 @@
                     android:layout_column="1"
                     android:enabled="false"
                     android:gravity="center|left"
-
+                    android:textColor="@color/colorDark"
                     android:inputType="text"
                     android:maxLines="1"
                     android:lines="1"
@@ -63,7 +63,29 @@
                     android:layout_column="1"
                     android:enabled="false"
                     android:gravity="center|left"
+                    android:paddingRight="5dp"
+                    android:textColor="@color/colorDark"
+                    />
 
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:gravity="center|right"
+                    android:paddingRight="20dp"
+                    android:text="สต๊อก" />
+
+                <EditText
+                    android:id="@+id/txt_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:enabled="false"
+                    android:gravity="center|left"
+                    android:textColor="@color/colorDark"
                     android:inputType="text"
                     android:maxLines="1"
                     android:lines="1"
@@ -71,7 +93,6 @@
                     android:ellipsize="end"/>
 
             </TableRow>
-
             <TableRow>
 
                 <TextView
@@ -144,6 +165,7 @@
                     android:layout_height="match_parent"
                     android:layout_column="1"
                     android:enabled="false"
+                    android:textColor="@color/colorDark"
                     android:gravity="center|left" />
 
             </TableRow>
@@ -204,6 +226,7 @@
                     android:layout_height="match_parent"
                     android:layout_column="1"
                     android:enabled="false"
+                    android:textColor="@color/colorDark"
                     android:gravity="center|left" />
 
             </TableRow>
@@ -216,7 +239,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/linearLayout3" />
+        />
 
 
 </RelativeLayout>
