@@ -375,10 +375,10 @@ public class ActOrderCmd extends _ActivityCustom {
         listViewMsProd = (ListView) findViewById(R.id.list_order_prod_pick);
         TextView empty = (TextView) findViewById(R.id.emptyElement);
         ProgressBar a = (ProgressBar) findViewById(R.id.progressbar);
-
+        TableRow tabempty = (TableRow) findViewById(R.id.tab_empty);
         listViewMsProd.setAdapter(adapMsProd.getAdapter());
-        listViewMsProd.setEmptyView(empty);
-        listViewMsProd.setEmptyView(a);
+        listViewMsProd.setEmptyView(tabempty);
+
         listViewMsProd.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
 

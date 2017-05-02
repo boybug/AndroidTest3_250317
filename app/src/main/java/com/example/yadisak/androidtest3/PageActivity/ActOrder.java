@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.yadisak.androidtest3.ControllerAdap.ViewOrder;
@@ -56,10 +57,10 @@ public class ActOrder extends _ActivityCustom {
         ListView list = (ListView) findViewById(R.id.list_view_data);
         TextView empty = (TextView) findViewById(R.id.emptyElement);
         ProgressBar a = (ProgressBar) findViewById(R.id.progressbar);
-
+        TableRow tabempty = (TableRow) findViewById(R.id.tab_empty);
         list.setAdapter(adap.getAdapter());
-        list.setEmptyView(empty);
-        list.setEmptyView(a);
+        list.setEmptyView(tabempty);
+
         list.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
             Intent nextact = null;
