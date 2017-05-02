@@ -1,6 +1,8 @@
 package com.example.yadisak.androidtest3;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -293,7 +295,26 @@ public class ActLogin extends _ActivityCustom {
         updateUI(null);
 
     }
+    public void onBackPressed() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("ปิดโปรแกรม");
+        dialog.setIcon(R.mipmap.ic_launcher);
+        dialog.setCancelable(true);
+        dialog.setMessage("คุณต้องการออกจากโปรแกรมหรือไม่ ?");
+        dialog.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                finishAffinity();
+            }
+        });
 
+        dialog.setNegativeButton("ไม่", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        dialog.show();
+    }
 //    private void sendEmailVerification() {
 //
 //        // Disable button
