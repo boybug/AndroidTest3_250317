@@ -2,6 +2,9 @@ package com.example.yadisak.androidtest3.PageActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.VisibleForTesting;
 import android.text.Editable;
@@ -13,6 +16,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.yadisak.androidtest3.ControllerAdap.ViewCustomer;
 import com.example.yadisak.androidtest3.DTO.Customer;
@@ -57,9 +62,15 @@ public class ActCustomer extends _ActivityCustom {
         setTitle("ลูกค้า");
 
         adap = new ViewCustomer(this);
+
+        TextView empty = (TextView) findViewById(R.id.emptyElement);
+        ProgressBar a = (ProgressBar) findViewById(R.id.progressbar);
+
         ListView list = (ListView) findViewById(R.id.list_view_data);
         list.setAdapter(adap.getAdapter());
-        list.setEmptyView(findViewById(R.id.emptyElement));
+        list.setEmptyView(empty);
+        list.setEmptyView(a);
+
         list.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
             Customer ent = adap.getItem(position);
@@ -87,6 +98,8 @@ public class ActCustomer extends _ActivityCustom {
         txt_search.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable arg0) {
+                empty.setText("ไม่พบข้อมูล");
+                a.getIndeterminateDrawable().setColorFilter(0x00000000, android.graphics.PorterDuff.Mode.MULTIPLY);
                 String text = txt_search.getText().toString().toLowerCase(Locale.getDefault());
                 adap.filter(text);
 

@@ -65,12 +65,13 @@
                         android:orientation="vertical" >
 
                     <ProgressBar
-                        android:id="@+id/HeaderProgress"
+                        android:id="@+id/progressbar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true">
+                        android:layout_centerVertical="true"
+                        android:visibility="gone">
                     </ProgressBar>
 
                     <ListView

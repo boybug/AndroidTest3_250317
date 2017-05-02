@@ -12,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.yadisak.androidtest3.ControllerAdap.ViewOrder;
 import com.example.yadisak.androidtest3.ControllerAdap.ViewOrderItem;
@@ -52,8 +54,12 @@ public class ActOrder extends _ActivityCustom {
         adap = new ViewOrder(this);
 
         ListView list = (ListView) findViewById(R.id.list_view_data);
+        TextView empty = (TextView) findViewById(R.id.emptyElement);
+        ProgressBar a = (ProgressBar) findViewById(R.id.progressbar);
+
         list.setAdapter(adap.getAdapter());
-        list.setEmptyView(findViewById(R.id.emptyElement));
+        list.setEmptyView(empty);
+        list.setEmptyView(a);
         list.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
             Intent nextact = null;
@@ -177,6 +183,8 @@ public class ActOrder extends _ActivityCustom {
         txt_search.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable arg0) {
+                empty.setText("ไม่พบข้อมูล");
+                a.getIndeterminateDrawable().setColorFilter(0x00000000, android.graphics.PorterDuff.Mode.MULTIPLY);
                 String text = txt_search.getText().toString();
                 adap.filter(text);
             }

@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TableRow;
 
 import com.example.yadisak.androidtest3.ActLogin;
@@ -36,8 +37,11 @@ public class ActBranch extends _ActivityCustom {
         tr.setVisibility(View.GONE);
 
         ListView list = (ListView) findViewById(R.id.list_view_data);
+        ProgressBar a = (ProgressBar) findViewById(R.id.progressbar);
+
         list.setAdapter(adap.getAdapter());
         list.setEmptyView(findViewById(R.id.emptyElement));
+        list.setEmptyView(a);
         list.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
             AlertDialog.Builder dialog_go = new AlertDialog.Builder(this);

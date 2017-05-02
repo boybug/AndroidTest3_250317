@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -370,9 +371,14 @@ public class ActOrderCmd extends _ActivityCustom {
 
         adapMsProd = new ViewProductOrdPick(this);
 
+
         listViewMsProd = (ListView) findViewById(R.id.list_order_prod_pick);
+        TextView empty = (TextView) findViewById(R.id.emptyElement);
+        ProgressBar a = (ProgressBar) findViewById(R.id.progressbar);
+
         listViewMsProd.setAdapter(adapMsProd.getAdapter());
-        listViewMsProd.setEmptyView(findViewById(R.id.emptyElement));
+        listViewMsProd.setEmptyView(empty);
+        listViewMsProd.setEmptyView(a);
         listViewMsProd.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
 
@@ -416,6 +422,8 @@ public class ActOrderCmd extends _ActivityCustom {
         editsearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable arg0) {
+                empty.setText("ไม่พบข้อมูล");
+                a.getIndeterminateDrawable().setColorFilter(0x00000000, android.graphics.PorterDuff.Mode.MULTIPLY);
                 String text = editsearch.getText().toString().toLowerCase(Locale.getDefault());
                 adapMsProd.filter(text);
             }
