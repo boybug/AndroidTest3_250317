@@ -1,8 +1,6 @@
 package com.example.yadisak.androidtest3;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -42,25 +40,27 @@ public class ActLogin extends _ActivityCustom {
         txt_username = (EditText) findViewById(R.id.txt_username);
         txt_password = (EditText) findViewById(R.id.txt_password);
 
+
+
         saveLoginCheckBox = (CheckBox) findViewById(R.id.chk_box);
         loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         loginPrefsEditor = loginPreferences.edit();
         saveLogin = loginPreferences.getBoolean("saveLogin", false);
 
         if (saveLogin == true) {
-            txt_username.setText(loginPreferences.getString("username", ""));
-            txt_password.setText(loginPreferences.getString("password", ""));
+            txt_username.setText(loginPreferences.getString("username", null));
+            txt_password.setText(loginPreferences.getString("password", null));
             saveLoginCheckBox.setChecked(true);
         }
 
+
+
         Button bt_cmd_save = (Button) findViewById(R.id.bt_cmd_login);
         bt_cmd_save.setOnClickListener(v -> {
-            showProgressDialog();
-
             username = txt_username.getText().toString();
             password = txt_password.getText().toString();
-
             if (Validate()) {
+                showProgressDialog();
                 mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(this, task -> {
                     getFirebaseUser(username, task.isSuccessful());
                 });
@@ -69,11 +69,10 @@ public class ActLogin extends _ActivityCustom {
 
         Button bt_cmd_new = (Button) findViewById(R.id.bt_cmd_newaccount);
         bt_cmd_new.setOnClickListener(view -> {
-            showProgressDialog();
-
             username = txt_username.getText().toString();
             password = txt_password.getText().toString();
             if (Validate()) {
+                showProgressDialog();
                 mAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(task -> {
                     getFirebaseUser(username, task.isSuccessful());
                 });
@@ -83,11 +82,13 @@ public class ActLogin extends _ActivityCustom {
 
     private boolean Validate() {
         Boolean isValid = true;
-        if (username == null) {
+        username = txt_username.getText().toString();
+        password = txt_password.getText().toString();
+        if (username.equals("")) {
             txt_username.setError("ต้องกรอก");
             isValid = false;
         }
-        if (password == null) {
+        if (password.equals("")) {
             txt_password.setError("ต้องกรอก");
             isValid = false;
         } else if (password.length() < 6) {
@@ -152,23 +153,10 @@ public class ActLogin extends _ActivityCustom {
     }
 
     public void onBackPressed() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("ปิดโปรแกรม");
-        dialog.setIcon(R.mipmap.ic_launcher);
-        dialog.setCancelable(true);
-        dialog.setMessage("คุณต้องการออกจากโปรแกรมหรือไม่ ?");
-        dialog.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                finishAffinity();
-            }
-        });
-
-        dialog.setNegativeButton("ไม่", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        dialog.show();
+        if (!saveLoginCheckBox.isChecked()) {
+            loginPrefsEditor.clear();
+            loginPrefsEditor.commit();
+        }
+        finishAffinity();
     }
 }
