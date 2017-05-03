@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TableRow;
@@ -39,6 +40,11 @@ public class SummaryOrder extends _ActivityCustom {
     TextView txt_total;
     TextView sp_customer;
     TextView txt_remark;
+    RadioButton rd_cash;
+    RadioButton rd_tranfer;
+    RadioButton rd_credit;
+    Switch switchship;
+    RadioGroup rg;
     TableRow tr_customer_new;
     TableRow tr_order_save;
     TableRow tr_item_head;
@@ -66,12 +72,19 @@ public class SummaryOrder extends _ActivityCustom {
         txt_wgt = (TextView) findViewById(R.id.txt_weight);
         sp_customer = (TextView) findViewById(R.id.sp_customer);
         txt_remark = (TextView) findViewById(R.id.txt_remark);
+
         listViewOrProd = (ListView) findViewById(R.id.list_order_item);
 
         tr_customer_new = (TableRow) findViewById(R.id.tr_customer_new);
         tr_order_save = (TableRow) findViewById(R.id.tr_order_save);
         tr_item_head = (TableRow) findViewById(R.id.tr_item_head);
         tr_item_detail = (TableRow) findViewById(R.id.tr_item_detail);
+
+        switchship = (Switch) findViewById(R.id.switch1);
+        rg = (RadioGroup) findViewById(R.id.radio_group);
+        rd_cash = (RadioButton) findViewById(R.id.radio_cash);
+        rd_tranfer = (RadioButton) findViewById(R.id.radio_tranfer);
+        rd_credit = (RadioButton) findViewById(R.id.radio_credit);
 
         Intent curtact = getIntent();
 
@@ -91,9 +104,20 @@ public class SummaryOrder extends _ActivityCustom {
         txt_total.setText(curtact.getExtras().getString("total"));
         txt_qty.setText(curtact.getExtras().getString("qty"));
         txt_wgt.setText(curtact.getExtras().getString("wgt"));
-        txt_remark.setText(ent.getRemark().toString());
 
-        RadioGroup rg = (RadioGroup) findViewById(R.id.radio_group);
+        if(ent.getStat().toString().equals("confirm")) {
+
+            if (ent.getPay().toString().equals("เงินสด")) {
+                rd_cash.setChecked(true);
+            } else if (ent.getPay().toString().equals("โอนเงิน")) {
+                rd_tranfer.setChecked(true);
+            } else if (ent.getPay().toString().equals("บัตรเครดิต")) {
+                rd_credit.setChecked(true);
+            }
+            txt_remark.setText(ent.getRemark().toString());
+        }
+
+
         rg.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId) {
                 case R.id.radio_cash:
@@ -108,7 +132,7 @@ public class SummaryOrder extends _ActivityCustom {
             }
         });
 
-        Switch switchship = (Switch) findViewById(R.id.switch1);
+
         if (ent.getShip().toString().equals("ส่ง"))
             switchship.setChecked(true);
 
