@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 import android.text.TextUtils;
@@ -39,10 +41,6 @@ public class ActLogin extends _ActivityCustom {
     @VisibleForTesting
     public ProgressDialog mProgressDialog;
 
-    public static final String PREFS_NAME = "MyPrefsFile";
-    private static final String PREF_USERNAME = "username";
-    private static final String PREF_PASSWORD = "password";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +53,9 @@ public class ActLogin extends _ActivityCustom {
         txt_username = (EditText) findViewById(R.id.txt_username);
         txt_password = (EditText) findViewById(R.id.txt_password);
 
-//        SharedPreferences pref = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
-//        txt_username.setText(pref.getString(PREF_USERNAME, null));;
-//        txt_password.setText(pref.getString(PREF_PASSWORD, null));
+//        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//        txt_username.setText(pref.getString("PREF_USERNAME", null));;
+
 
 
         Button bt_cmd_save = (Button) findViewById(R.id.bt_cmd_login);
@@ -194,11 +192,12 @@ public class ActLogin extends _ActivityCustom {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists() == true) {
 
-//                            getSharedPreferences(PREFS_NAME,MODE_PRIVATE)
-//                                    .edit()
-//                                    .putString(PREF_USERNAME, txt_username.getText().toString())
-//                                    .putString(PREF_PASSWORD, txt_password.getText().toString())
-//                                    .commit();
+                            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putString("PREF_USERNAME",txt_username.getText().toString());
+                            editor.putString("PREF_PASSWORD",txt_password.getText().toString());
+                            editor.commit();
+
 
                             DataSnapshot value = dataSnapshot.getChildren().iterator().next();
                             Globaldata.Login = value.getValue(Login.class);
