@@ -10,7 +10,8 @@
         android:layout_height="0dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:id="@+id/linearLayout"></LinearLayout>
+        android:id="@+id/linearLayout"
+        android:orientation="horizontal"></LinearLayout>
 
 
     <ScrollView
@@ -61,7 +62,7 @@
 
             </TableRow>
 
-            <TableRow android:paddingTop="5dp">
+                      <TableRow android:paddingTop="5dp">
 
                 <EditText
                     android:id="@+id/txt_password"
@@ -78,6 +79,21 @@
                     android:paddingLeft="5dp"
                     android:scrollHorizontally="true"
                     android:textSize="20dp" />
+
+
+            </TableRow>
+
+            <TableRow android:paddingTop="5dp">
+
+                <CheckBox
+                    android:id="@+id/chk_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/bt_command_height"
+                    android:gravity="center|left"
+                    android:hint="บันทึกอีเมล/รหัสผ่าน ?"
+                    android:paddingLeft="5dp"
+                    android:scrollHorizontally="true"
+                    android:textSize="15dp" />
 
 
             </TableRow>

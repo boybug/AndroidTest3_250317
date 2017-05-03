@@ -16,6 +16,6 @@
         android:textColor="@color/colorWhite"
         android:background="@color/colorBeef"
         android:layout_gravity="center|right"
-        android:text="ยืนยัน" />
+        android:text="สรุปบิล" />
 
 </LinearLayout>

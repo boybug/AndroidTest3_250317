@@ -1,8 +1,6 @@
 package com.example.yadisak.androidtest3.PageActivity.CMD;
 
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -458,13 +456,6 @@ public class ActOrderCmd extends _ActivityCustom {
 
     @Override
     public void onBackPressed() {
-
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-//            if (hasChanged == true) toPrevActivityRefresh();
-//            else super.onBackPressed();
-//        }
         startActivity(new Intent(this, ActOrder.class));
         finish();
     }
@@ -482,7 +473,6 @@ public class ActOrderCmd extends _ActivityCustom {
             switch (state) {
                 case NEW:
                     Toast.makeText(ActOrderCmd.this, "เอกสารไม่ถูกสร้าง ไม่สามารถยืนยันเอกสารได้", Toast.LENGTH_SHORT).show();
-//                actionViewItem.setVisible(false);
                     this.invalidateOptionsMenu();
                     break;
                 case EDIT:
@@ -502,13 +492,6 @@ public class ActOrderCmd extends _ActivityCustom {
     }
     public void Summary()
     {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("สรุปบิล");
-        dialog.setIcon(R.mipmap.ic_launcher);
-        dialog.setCancelable(true);
-        dialog.setMessage("คุณต้องการสรุปบิลใช่หรือไม่");
-        dialog.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
                 if (txt_orno.getText().toString() != "") {
                     Order ent2 = adap.getItem(txt_orno.getText().toString());
                     Intent nextact = new Intent(ActOrderCmd.this, SummaryOrder.class);
@@ -522,16 +505,6 @@ public class ActOrderCmd extends _ActivityCustom {
                 } else {
                     return;
                 }
-            }
-        });
-
-        dialog.setNegativeButton("ไม่", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        dialog.show();
     }
 
     @Override

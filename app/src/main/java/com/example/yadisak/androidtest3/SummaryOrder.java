@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,18 +38,19 @@ public class SummaryOrder extends _ActivityCustom {
     TextView txt_wgt;
     TextView txt_total;
     TextView sp_customer;
+    TextView txt_remark;
     TableRow tr_customer_new;
     TableRow tr_order_save;
     TableRow tr_item_head;
     TableRow tr_item_detail;
 
     ListView listViewOrProd;
-
+    private String paytyp;
+    private String ship;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.summary_order);
 
         ImageView img_logo_bar = (ImageView) findViewById(R.id.img_logo_bar);
@@ -56,12 +59,14 @@ public class SummaryOrder extends _ActivityCustom {
         TextView title = (TextView) findViewById(R.id.title_text);
         title.setText("สรุปบิล");
 
-        txt_orno  = (TextView) findViewById(R.id.txt_order_no);
+
+        txt_orno = (TextView) findViewById(R.id.txt_order_no);
         txt_total = (TextView) findViewById(R.id.txt_total);
         txt_qty = (TextView) findViewById(R.id.txt_qty);
         txt_wgt = (TextView) findViewById(R.id.txt_weight);
         sp_customer = (TextView) findViewById(R.id.sp_customer);
-        listViewOrProd  = (ListView) findViewById(R.id.list_order_item);
+        txt_remark = (TextView) findViewById(R.id.txt_remark);
+        listViewOrProd = (ListView) findViewById(R.id.list_order_item);
 
         tr_customer_new = (TableRow) findViewById(R.id.tr_customer_new);
         tr_order_save = (TableRow) findViewById(R.id.tr_order_save);
@@ -86,8 +91,37 @@ public class SummaryOrder extends _ActivityCustom {
         txt_total.setText(curtact.getExtras().getString("total"));
         txt_qty.setText(curtact.getExtras().getString("qty"));
         txt_wgt.setText(curtact.getExtras().getString("wgt"));
+        txt_remark.setText(ent.getRemark().toString());
+
+        RadioGroup rg = (RadioGroup) findViewById(R.id.radio_group);
+        rg.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.radio_cash:
+                    paytyp = "เงินสด";
+                    break;
+                case R.id.radio_tranfer:
+                    paytyp = "โอนเงิน";
+                    break;
+                case R.id.radio_credit:
+                    paytyp = "บัตรเครดิต";
+                    break;
+            }
+        });
+
+        Switch switchship = (Switch) findViewById(R.id.switch1);
+        if (ent.getShip().toString().equals("ส่ง"))
+            switchship.setChecked(true);
+
+        switchship.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                ship = switchship.getTextOn().toString();
+            } else {
+                ship = switchship.getTextOff().toString();
+            }
+        });
 
     }
+
     public void Confirm()
     {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
@@ -98,7 +132,7 @@ public class SummaryOrder extends _ActivityCustom {
         dialog.setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 adap = new ViewOrder(SummaryOrder.this);
-                adap.updatestatus(ent,"confirm");
+                adap.updatestatus(ent,"confirm",paytyp,ship,txt_remark.getText().toString());
 
                 onBackPressed();
             }

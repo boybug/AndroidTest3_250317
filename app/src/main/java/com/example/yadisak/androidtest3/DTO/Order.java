@@ -22,6 +22,7 @@ public class Order extends _FirebaseAttribute implements Serializable {
     private String User;
     private String Stat;
     private float total;
+    private String remark;
 
     public String getNo() {
         return no;
@@ -86,5 +87,13 @@ public class Order extends _FirebaseAttribute implements Serializable {
 
     public void setShip(String ship) {
         this.ship = ship;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

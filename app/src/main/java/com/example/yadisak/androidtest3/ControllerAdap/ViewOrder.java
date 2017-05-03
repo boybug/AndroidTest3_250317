@@ -176,14 +176,17 @@ public class ViewOrder implements ICRUDAdap<Order> {
                 });
     }
 
-    public void updatestatus(Order _item, String stat) {
+    public void updatestatus(Order _item, String stat, String pay, String ship, String remark) {
         refTB.orderByChild("no").equalTo(_item.getNo())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
                             DataSnapshot value = dataSnapshot.getChildren().iterator().next();
-                            value.getRef().child("stat").setValue(stat); // Set value by some field
+                            value.getRef().child("stat").setValue(stat);
+                            value.getRef().child("pay").setValue(pay);
+                            value.getRef().child("ship").setValue(ship);
+                            value.getRef().child("remark").setValue(remark);// Set value by some field
                         }
                     }
 

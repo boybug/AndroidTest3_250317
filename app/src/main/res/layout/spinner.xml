@@ -16,7 +16,8 @@
             android:layout_column="0"
             android:gravity="center|right"
             android:paddingLeft="10dp"
-            android:text="ลูกค้า : " />
+            android:text="ลูกค้า : "
+            style="@style/App_TextViewStyle"/>
 
         <Spinner
             android:id="@+id/sp_customer"
@@ -27,7 +28,8 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp" />
+            android:paddingRight="10dp"
+            style="@style/App_TextViewStyle"/>
 
     </LinearLayout>
 

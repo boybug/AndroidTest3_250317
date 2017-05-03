@@ -120,7 +120,7 @@ public class ActOrderItemCmd extends _ActivityCustom {
 //        txtStock.addTextChangedListener(new TextWatcher() {
 //            @Override
 //            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                ent.setDelta(xxx);
+//                ent.setDelta(setRememberMe);
 //            }
 //
 //            @Override
