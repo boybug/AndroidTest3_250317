@@ -62,7 +62,7 @@ public class ActOrderItemCmd extends _ActivityCustom {
 
                 ent = (OrderItem) curtact.getSerializableExtra(Utility.ENTITY_DTO_NAME);
                 entOrder = (Order) curtact.getSerializableExtra("entOrder");
-
+                ent.setDelta(ent.getQty());
 
                 adap = new ViewOrderItem(this, entOrder.getFirebaseId());
 
@@ -116,23 +116,23 @@ public class ActOrderItemCmd extends _ActivityCustom {
             }
         });
 
-        int xxx = Integer.parseInt(txtStock.getText().toString());
-        txtStock.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                ent.setDelta(xxx);
-            }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+//        txtStock.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//                ent.setDelta(xxx);
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
 
         Button bt_cmd_save = (Button) findViewById(R.id.bt_cmd_save);
         bt_cmd_save.setOnClickListener(view -> {

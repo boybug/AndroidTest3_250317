@@ -23,7 +23,7 @@
                 android:layout_height="26dip"
                 android:layout_span="2"
                 android:gravity="top|left"
-                android:paddingLeft="20dp"
+                android:paddingLeft="10dp"
                 android:text="ชื่อ"
                 android:maxLines="1"
                 android:ellipsize="end"
@@ -43,7 +43,7 @@
                 android:layout_height="match_parent"
                 android:layout_column="0"
                 android:layout_weight="0.03"
-                android:paddingLeft="20dp"
+                android:paddingLeft="10dp"
                 android:text="รหัส : "
                 android:textSize="14dp"/>
 
@@ -71,6 +71,7 @@
                     android:enabled="false"
                     android:gravity="center|right"
                     android:paddingLeft="3dp"
+                    android:paddingRight="10dp"
                     android:textSize="20dp"
                     android:text="0.0"/>
 

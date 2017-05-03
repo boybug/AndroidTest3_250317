@@ -142,21 +142,22 @@
         android:gravity="center_vertical"
         android:text="00.00"
         android:textColor="#ff0000"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_above="@+id/tridLine" />
+        android:layout_alignBottom="@+id/tridLine"
+        android:layout_below="@+id/txt_ship" />
 
     <TextView
         android:id="@+id/txt_ship"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:layout_marginRight="6dip"
         android:contentDescription="TODO"
         android:gravity="center_vertical"
         android:text="00.00"
-        android:layout_below="@+id/icon"
-        android:layout_toEndOf="@+id/tridLine"
-        android:layout_alignBottom="@+id/tridLine" />
+
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/secondLine"
+        android:layout_toStartOf="@+id/icon"
+        android:layout_alignEnd="@+id/icon" />
 
     <TextView
         android:id="@+id/tridLine"
@@ -188,7 +189,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="true"
-        android:layout_toStartOf="@+id/icon"
+        android:layout_toStartOf="@+id/txt_ship"
         android:gravity="center_vertical"
         android:paddingLeft="5dp"
         android:text="Example application"
