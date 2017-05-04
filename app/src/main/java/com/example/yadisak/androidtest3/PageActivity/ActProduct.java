@@ -16,20 +16,27 @@ import android.widget.TextView;
 
 import com.example.yadisak.androidtest3.ControllerAdap.ViewProduct;
 import com.example.yadisak.androidtest3.DTO.Product;
+import com.example.yadisak.androidtest3.Globaldata;
 import com.example.yadisak.androidtest3.MainActivity;
 import com.example.yadisak.androidtest3.PageActivity.CMD.ActProductCmd;
 import com.example.yadisak.androidtest3.R;
 import com.example.yadisak.androidtest3._ActivityCustom;
 import com.example.yadisak.androidtest3._Extension.CMDState;
-import com.example.yadisak.androidtest3._Extension.DAOState;
 import com.example.yadisak.androidtest3._Extension.Utility;
-import com.example.yadisak.androidtest3._Interface.ICRUDResult;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Locale;
 
 public class ActProduct extends _ActivityCustom {
 
     ViewProduct adap;
+
+    DatabaseReference refDB = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference refTB = refDB.child("product_"+ Globaldata.Branch.getId());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,36 +45,40 @@ public class ActProduct extends _ActivityCustom {
         setContentView(R.layout.view_data);
         setTitle("สินค้า");
 
-        adap = new ViewProduct(this);
-
         TextView empty = (TextView) findViewById(R.id.emptyElement);
         ProgressBar a = (ProgressBar) findViewById(R.id.progressbar);
         TableRow tabempty = (TableRow) findViewById(R.id.tab_empty);
         ListView list = (ListView) findViewById(R.id.list_view_data);
-        list.setAdapter(adap.getAdapter());
-        list.setEmptyView(tabempty);
+
+        adap = new ViewProduct(this);
+
+        refTB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists() == true) {
+                    list.setAdapter(adap.getAdapter());
+                    list.setEmptyView(tabempty);
+                }
+                else
+                {
+                    empty.setText("ไม่พบข้อมูล");
+                    a.getIndeterminateDrawable().setColorFilter(0x00000000, android.graphics.PorterDuff.Mode.MULTIPLY);
+                    list.setAdapter(adap.getAdapter());
+                    list.setEmptyView(tabempty);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         list.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
-
             Product ent = adap.getItem(position);
             Intent nextact = new Intent(this, ActProductCmd.class);
             nextact.putExtra(Utility.CMD_STATE, CMDState.EDIT);
             nextact.putExtra(Utility.ENTITY_DTO_NAME, ent);
             toNextActivity(nextact);
-
-        });
-        list.setOnItemLongClickListener((AdapterView<?> parent, View view, int position, long id) -> {
-
-            Product ent = adap.getItem(position);
-            adap.removeItem(ent, new ICRUDResult() {
-                @Override
-                public void onReturn(DAOState status, String message) {
-                    if (status != DAOState.SUCCESS)
-                        showMessageAlert(message);
-                }
-            });
-
-            return true;
         });
 
         EditText txt_search = (EditText) findViewById(R.id.txt_search);
@@ -78,13 +89,10 @@ public class ActProduct extends _ActivityCustom {
                 a.getIndeterminateDrawable().setColorFilter(0x00000000, android.graphics.PorterDuff.Mode.MULTIPLY);
                 String text = txt_search.getText().toString().toLowerCase(Locale.getDefault());
                 adap.filter(text);
-
             }
-
             @Override
             public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
             }
-
             @Override
             public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 
@@ -97,6 +105,7 @@ public class ActProduct extends _ActivityCustom {
         });
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

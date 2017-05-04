@@ -369,13 +369,34 @@ public class ActOrderCmd extends _ActivityCustom {
 
         adapMsProd = new ViewProductOrdPick(this);
 
+        DatabaseReference DBpick = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference TBpick = DBpick.child("product_" + Globaldata.Branch.getId());
 
         listViewMsProd = (ListView) findViewById(R.id.list_order_prod_pick);
         TextView empty = (TextView) findViewById(R.id.emptyElement);
         ProgressBar a = (ProgressBar) findViewById(R.id.progressbar);
         TableRow tabempty = (TableRow) findViewById(R.id.tab_empty);
-        listViewMsProd.setAdapter(adapMsProd.getAdapter());
-        listViewMsProd.setEmptyView(tabempty);
+
+        TBpick.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists() == true) {
+                    listViewMsProd.setAdapter(adapMsProd.getAdapter());
+                    listViewMsProd.setEmptyView(tabempty);
+                }
+                else
+                {
+                    empty.setText("ไม่พบข้อมูล");
+                    a.getIndeterminateDrawable().setColorFilter(0x00000000, android.graphics.PorterDuff.Mode.MULTIPLY);
+                    listViewMsProd.setAdapter(adapMsProd.getAdapter());
+                    listViewMsProd.setEmptyView(tabempty);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         listViewMsProd.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 

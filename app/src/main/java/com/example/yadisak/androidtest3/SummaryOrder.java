@@ -132,9 +132,10 @@ public class SummaryOrder extends _ActivityCustom {
             }
         });
 
-
-        if (ent.getShip().toString().equals("ส่ง"))
+        if (ent.getShip().toString().equals("ส่ง")) {
             switchship.setChecked(true);
+            ship = ent.getShip().toString();
+        }
 
         switchship.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {

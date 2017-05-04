@@ -44,6 +44,8 @@ public class ActOrder extends _ActivityCustom {
     ViewOrder adap;
     ViewOrderItem adapOrProd;
 
+    DatabaseReference refDB = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference refTB = refDB.child("order_" + Globaldata.Branch.getId());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +54,37 @@ public class ActOrder extends _ActivityCustom {
         setContentView(R.layout.view_data);
         setTitle("ขาย");
 
-        adap = new ViewOrder(this);
 
         ListView list = (ListView) findViewById(R.id.list_view_data);
         TextView empty = (TextView) findViewById(R.id.emptyElement);
         ProgressBar a = (ProgressBar) findViewById(R.id.progressbar);
         TableRow tabempty = (TableRow) findViewById(R.id.tab_empty);
-        list.setAdapter(adap.getAdapter());
-        list.setEmptyView(tabempty);
+
+
+        adap = new ViewOrder(this);
+
+        refTB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists() == true) {
+                    list.setAdapter(adap.getAdapter());
+                    list.setEmptyView(tabempty);
+                }
+                else
+                {
+                    empty.setText("ไม่พบข้อมูล");
+                    a.getIndeterminateDrawable().setColorFilter(0x00000000, android.graphics.PorterDuff.Mode.MULTIPLY);
+                    list.setAdapter(adap.getAdapter());
+                    list.setEmptyView(tabempty);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
 
         list.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
 
@@ -99,8 +124,7 @@ public class ActOrder extends _ActivityCustom {
 
             if (ent.getStat().equals("new")) {
 
-                DatabaseReference refDB = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference refTB;
+
                 refTB = refDB.child("order_" + Globaldata.Branch.getId()).child(ent.getFirebaseId()).child("item");
                 refTB.addChildEventListener(new ChildEventListener() {
                     @Override
