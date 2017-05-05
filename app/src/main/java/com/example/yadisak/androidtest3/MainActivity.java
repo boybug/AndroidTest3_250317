@@ -54,7 +54,7 @@ public class MainActivity extends _ActivityCustom {
                 nextact = new Intent(this, ActOrder.class);
                 startActivity(nextact);
             }else if (ent.getMenu_id() == 4) {
-                Toast.makeText(MainActivity.this, "เวอร์ชัน 1.0.5", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "เวอร์ชัน 1.0.6", Toast.LENGTH_SHORT).show();
             }
 
         });
