@@ -104,6 +104,9 @@ public class SummaryOrder extends _ActivityCustom {
         txt_total.setText(curtact.getExtras().getString("total"));
         txt_qty.setText(curtact.getExtras().getString("qty"));
         txt_wgt.setText(curtact.getExtras().getString("wgt"));
+        txt_remark.setText("");
+        ship = ent.getShip().toString();
+        paytyp = "เงินสด";
 
         if(ent.getStat().toString().equals("confirm")) {
 
@@ -116,7 +119,6 @@ public class SummaryOrder extends _ActivityCustom {
             }
             txt_remark.setText(ent.getRemark().toString());
         }
-
 
         rg.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId) {
@@ -132,9 +134,12 @@ public class SummaryOrder extends _ActivityCustom {
             }
         });
 
-        if (ent.getShip().toString().equals("ส่ง")) {
+
+        if (ship == "ส่ง") {
             switchship.setChecked(true);
-            ship = ent.getShip().toString();
+        }
+        else {
+            switchship.setChecked(false);
         }
 
         switchship.setOnCheckedChangeListener((buttonView, isChecked) -> {

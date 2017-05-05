@@ -369,15 +369,15 @@ public class ActOrderCmd extends _ActivityCustom {
 
         adapMsProd = new ViewProductOrdPick(this);
 
-        DatabaseReference DBpick = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference TBpick = DBpick.child("product_" + Globaldata.Branch.getId());
 
         listViewMsProd = (ListView) findViewById(R.id.list_order_prod_pick);
         TextView empty = (TextView) findViewById(R.id.emptyElement);
         ProgressBar a = (ProgressBar) findViewById(R.id.progressbar);
         TableRow tabempty = (TableRow) findViewById(R.id.tab_empty);
 
-        TBpick.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference pickDB = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference pickTB = pickDB.child("product_"+ Globaldata.Branch.getId());
+        pickTB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists() == true) {
@@ -394,13 +394,10 @@ public class ActOrderCmd extends _ActivityCustom {
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
 
         listViewMsProd.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
-
-
                 ent_pro = adapMsProd.getItem(position);
 
             OrderItem orit = adapOrProd.getItem(ent_pro.getCode());

@@ -2,8 +2,6 @@ package com.example.yadisak.androidtest3.PageActivity.CMD;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -76,14 +74,9 @@ public class ActOrderItemCmd extends _ActivityCustom {
                             DataSnapshot value = dataSnapshot.getChildren().iterator().next();
                             Product prod = (Product) value.getValue(Product.class);
 
-                            setTitle("เลขที่ : " + entOrder.getNo());
-                            txt_code.setText(ent.getPro_code());
-                            txt_name.setText(ent.getPro_name());
-                            txtStock.setText(String.valueOf(ent.getQty()));
-                            txt_price.setText(String.valueOf(ent.getPrice()));
                             txt_balance.setText(String.valueOf(prod.getStock()+ent.getQty()));
-                            calculate();
-
+                            txtStock.setWidth(600);
+                            txtStock.requestFocus();
                         }
                     }
                     @Override
@@ -92,8 +85,14 @@ public class ActOrderItemCmd extends _ActivityCustom {
                 });
 
 
-
-
+        setTitle("เลขที่ : " + entOrder.getNo());
+        txt_code.setText(ent.getPro_code());
+        txt_name.setText(ent.getPro_name());
+        txtStock.setText(String.valueOf(ent.getQty()));
+        txt_price.setText(String.valueOf(ent.getPrice()));
+        calculate();
+        txtStock.setWidth(600);
+        txtStock.requestFocus();
 
 
         Button bt_qty_add = (Button) findViewById(R.id.bt_qty_add);
@@ -117,25 +116,9 @@ public class ActOrderItemCmd extends _ActivityCustom {
         });
 
 
-//        txtStock.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                ent.setDelta(setRememberMe);
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
-
         Button bt_cmd_save = (Button) findViewById(R.id.bt_cmd_save);
         bt_cmd_save.setOnClickListener(view -> {
+
             Intent intent = new Intent(this, ActOrderCmd.class);
             switch (state) {
                 case NEW:
@@ -171,7 +154,5 @@ public class ActOrderItemCmd extends _ActivityCustom {
 
 
     }
-
-
 }
 

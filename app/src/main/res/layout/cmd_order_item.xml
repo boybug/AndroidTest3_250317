@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="5dp"
@@ -131,11 +132,12 @@
                         android:id="@+id/txt_stock"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.2"
                         android:gravity="center"
+                        android:inputType="numberDecimal"
                         android:text="1"
-                        android:textAlignment="center"
-                        android:inputType="numberSigned"
-                        android:layout_weight="0.2" />
+                        android:textAlignment="center">
+                </EditText>
 
                     <Button
                         android:id="@+id/bt_qty_add"
