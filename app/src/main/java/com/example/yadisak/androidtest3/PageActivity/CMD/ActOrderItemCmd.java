@@ -77,6 +77,7 @@ public class ActOrderItemCmd extends _ActivityCustom {
                             txt_balance.setText(String.valueOf(prod.getStock()+ent.getQty()));
                             txtStock.setWidth(600);
                             txtStock.requestFocus();
+                            txtStock.selectAll();
                         }
                     }
                     @Override
@@ -93,6 +94,7 @@ public class ActOrderItemCmd extends _ActivityCustom {
         calculate();
         txtStock.setWidth(600);
         txtStock.requestFocus();
+        txtStock.selectAll();
 
 
         Button bt_qty_add = (Button) findViewById(R.id.bt_qty_add);
